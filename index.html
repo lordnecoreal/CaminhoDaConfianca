@@ -27,7 +27,6 @@
             box-sizing: border-box;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: manipulation;
         }
         body, html {
             margin: 0;
@@ -54,6 +53,9 @@
             display: flex;
             opacity: 1;
             z-index: 10;
+        }
+        #physicsCanvas {
+            touch-action: none;
         }
         @keyframes pulseGlow {
             0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 230, 0, 0.4); }
@@ -89,22 +91,24 @@
     <canvas id="bgCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
 
     <!-- ================= TELA 1: STANDBY ================= -->
-    <div id="screen1" class="screen active bg-gradient-to-br from-eyDarker via-neutral-900 to-black cursor-pointer p-6" onclick="goToScreen(2)">
-        <div class="absolute top-6 left-6 md:top-8 md:left-12 flex items-center gap-4">
+    <div id="screen1" class="screen active bg-gradient-to-br from-eyDarker via-neutral-900 to-black cursor-pointer p-6 h-full flex flex-col justify-between" onclick="goToScreen(2)">
+        <!-- Topo Header -->
+        <div class="w-full flex items-center gap-4 z-10">
             <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
             <span class="text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
         </div>
 
-        <div class="text-center z-10 max-w-4xl px-4 my-auto">
-            <div class="inline-block p-4 md:p-6 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 mb-6 md:mb-8 floating-orb">
-                <svg class="w-12 h-12 md:w-20 md:h-20 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Conteúdo Central -->
+        <div class="text-center z-10 max-w-4xl px-4 my-auto py-6">
+            <div class="inline-block p-3 md:p-5 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 mb-4 md:mb-6 floating-orb">
+                <svg class="w-10 h-10 md:w-16 md:h-16 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
             </div>
-            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight mb-4 md:mb-6 bg-gradient-to-r from-white via-neutral-200 to-eyYellow bg-clip-text text-transparent">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 bg-gradient-to-r from-white via-neutral-200 to-eyYellow bg-clip-text text-transparent">
                 CAMINHO DA CONFIANÇA
             </h1>
-            <p class="text-lg md:text-2xl text-neutral-300 mb-8 md:mb-12 max-w-2xl mx-auto">
+            <p class="text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-10 max-w-2xl mx-auto">
                 Desafie sua agilidade estratégica em um ambiente corporativo de alta performance.
             </p>
             <div class="inline-block px-8 py-4 md:px-10 md:py-5 bg-eyYellow text-black font-extrabold text-lg md:text-2xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider">
@@ -112,8 +116,12 @@
             </div>
         </div>
 
-        <div class="absolute bottom-6 text-neutral-500 text-xs md:text-sm tracking-wider uppercase">
-            Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span>
+        <!-- Rodapé 100% Alinhado na Base -->
+        <div class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-3 z-10 bg-black/40 backdrop-blur-sm">
+            <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
+            <div class="mt-1 text-[11px] md:text-xs text-neutral-400">
+                Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" onclick="event.stopPropagation()" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
+            </div>
         </div>
     </div>
 
@@ -141,7 +149,7 @@
                     <div class="text-3xl md:text-4xl">🔥</div>
                     <div>
                         <h4 class="font-bold text-base md:text-lg text-white">Bônus & Combo 15</h4>
-                        <p class="text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos ganhe <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), ganhe <b>+500 pontos</b> com super boom!</p>
+                        <p class="text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), você ganha <b>+500 pontos</b> com super boom!</p>
                     </div>
                 </div>
             </div>
@@ -167,7 +175,6 @@
                 </div>
             </div>
 
-            <!-- Indicadores de Combo e Ponto Bonus -->
             <div class="flex items-center gap-2">
                 <div class="bg-neutral-800 border border-neutral-700 px-2.5 py-1 rounded-xl text-center">
                     <div class="text-[9px] md:text-[11px] text-neutral-400 uppercase tracking-widest font-bold">Acertos Seguidos</div>
@@ -191,7 +198,6 @@
 
         <!-- Área Central de Jogo / Canvas de Física -->
         <div id="gameContainer" class="relative flex-1 w-full overflow-hidden">
-            <!-- Zonas Laterais de Drop -->
             <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-[28%] md:w-1/4 bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-2 md:p-6 text-center transition-colors">
                 <div class="text-xl md:text-4xl mb-1 md:mb-3">🛡️</div>
                 <div class="text-eyPurple font-black text-xs md:text-2xl uppercase tracking-wider">Obstáculo / Insegurança</div>
@@ -204,18 +210,15 @@
                 <div class="text-neutral-400 text-[9px] md:text-xs mt-1 md:mt-2">Arremesse aqui</div>
             </div>
 
-            <!-- Toast de Feedback Discreto -->
             <div id="feedbackToast" class="absolute top-3 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-all">
                 <div id="toastBox" class="px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg border">
                     DECISÃO CERTA!
                 </div>
             </div>
 
-            <!-- Canvas de Física -->
             <canvas id="physicsCanvas" class="absolute inset-0 z-10"></canvas>
         </div>
 
-        <!-- Rodapé do Mini-Jogo -->
         <div class="py-2 md:py-3 bg-neutral-900/50 text-center text-neutral-500 text-[10px] md:text-xs tracking-widest uppercase border-t border-neutral-900 z-20">
             Toque, segure e lance o card corporativo em direção à zona correta!
         </div>
@@ -234,7 +237,6 @@
                 <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-4 py-3 md:px-6 md:py-4 text-xl md:text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase">
             </div>
 
-            <!-- Teclado Virtual QWERTY Tátil -->
             <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-2 md:p-4 rounded-2xl mb-6 shadow-2xl">
                 <!-- Gerado via script -->
             </div>
@@ -252,7 +254,6 @@
             <h2 id="endGameTitle" class="text-3xl md:text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
             <p id="endGameSubtitle" class="text-neutral-400 text-base md:text-lg mb-4">Você demonstrou excelente visão estratégica.</p>
 
-            <!-- Tabela Top 10 -->
             <div class="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-4 md:p-6 mb-6 max-h-56 md:max-h-72 overflow-y-auto">
                 <h3 class="text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3">Top 10 — Ranking Oficial</h3>
                 <div id="leaderboardList" class="space-y-2 md:space-y-3">
@@ -289,8 +290,7 @@
 
     <!-- ================= SCRIPT COMPLETO DO APLICATIVO ================= -->
     <script>
-        // --- 1. BANCO EXPANDIDO COM 60 CARTÕES CORPORATIVOS ---
-        const cardsData = [
+        const masterCardsData = [
             { title: "Adoção de IA Generativa", desc: "Automatização avançada de processos e atendimento ao cliente.", target: "right" },
             { title: "Vazamento de Dados", desc: "Falha crítica de segurança em servidores corporativos em nuvem.", target: "left" },
             { title: "Transição Energética ESG", desc: "Migração completa para matrizes sustentáveis e metas de carbono.", target: "right" },
@@ -321,39 +321,57 @@
             { title: "Monopólio de Fornecedor Único", desc: "Alta vulnerabilidade e dependência comercial crítica.", target: "left" },
             { title: "Auditoria Automatizada em Tempo Real", desc: "Visibilidade financeira e operacional transparente e segura.", target: "right" },
             { title: "Falta de Visão de Futuro", desc: "Gestão reativa focada apenas no curto prazo e sobrevivência.", target: "left" },
-            { title: "Modernização de ERP em Nuvem", desc: "Migração de sistemas legados para plataformas flexíveis e escaláveis.", target: "right" },
-            { title: "Ataques de Ransomware Frequentes", desc: "Falta de protocolos de resiliência e bloqueio de resgate de dados.", target: "left" },
-            { title: "Relatórios de Sustentabilidade Integrados", desc: "Transparência total nos impactos ambientais e sociais da corporação.", target: "right" },
-            { title: "Comunicação Interna Ineficiente", desc: "Gargalos operacionais causados por desalinhamento entre diretorias.", target: "left" },
-            { title: "Implementação de Zero Trust", desc: "Arquitetura de segurança avançada baseada em verificação contínua.", target: "right" },
-            { title: "Baixa Retenção de Talentos Tech", desc: "Alta rotatividade de profissionais especializados por falta de incentivo.", target: "left" },
-            { title: "Cadeia de Suprimentos Inteligente", desc: "Uso de IoT e blockchain para rastreabilidade de mercadorias.", target: "right" },
-            { title: "Processo Decisório Lento e Burocrático", desc: "Excesso de camadas de aprovação que travam a inovação.", target: "left" },
-            { title: "Plataforma de Dados Centralizada", desc: "Criação de um Data Lakehouse unificado para inteligência de negócios.", target: "right" },
-            { title: "Uso de Software Desatualizado", desc: "Aplicativos sem atualizações de segurança e cheios de bugs.", target: "left" },
-            { title: "Parcerias com Ecossistemas de Inovação", desc: "Co-criação de soluções disruptivas com hubs tecnológicos.", target: "right" },
-            { title: "Falta de Transparência Financeira", desc: "Processos contábeis confusos que geram desconfiança de investidores.", target: "left" },
-            { title: "Gestão Baseada em Indicadores em Tempo Real", desc: "Dashboards executivos dinâmicos para tomada de decisão ágil.", target: "right" },
-            { title: "Resistência a Novas Ferramentas", desc: "Colaboradores apegados a métodos arcaicos de trabalho.", target: "left" },
-            { title: "Estratégia Multicloud Resiliente", desc: "Distribuição de cargas entre diferentes provedores para evitar quedas.", target: "right" },
-            { title: "Falta de Documentação de Processos", desc: "Conhecimento retido apenas em pessoas-chave da organização.", target: "left" },
-            { title: "Automatização de Compliance Jurídico", desc: "Uso de IA para monitoramento de contratos e riscos legais.", target: "right" },
-            { title: "Falta de Alinhamento com o Cliente", desc: "Produtos desenvolvidos sem validação prévia de mercado.", target: "left" },
-            { title: "Cultura Data-Driven Consolidada", desc: "Decisões baseadas em evidências analíticas em todos os níveis.", target: "right" },
-            { title: "Vulnerabilidade em Dispositivos Móveis", desc: "Falta de controle sobre acessos corporativos via smartphones.", target: "left" },
-            { title: "Iniciativas de Economia Circular", desc: "Reutilização de recursos e redução drástica de resíduos industriais.", target: "right" },
-            { title: "Falta de Orçamento para Inovação", desc: "Cortes drásticos em P&D que comprometem o futuro da empresa.", target: "left" },
-            { title: "Experiência do Funcionário Digital (EX)", desc: "Plataformas integradas para engajamento e bem-estar dos colaboradores.", target: "right" },
-            { title: "Falta de Monitoramento de Reputação", desc: "Ausência de gestão de crises em redes sociais e mercado.", target: "left" },
-            { title: "Inovação em Modelos de Negócio", desc: "Transição de venda de produtos para serviços recorrentes (As a Service).", target: "right" },
-            { title: "Erros Críticos de Entrada de Dados", desc: "Prejuízos recorrentes por digitação manual sem validação automática.", target: "left" },
-            { title: "Plano de Sucessão Executiva Claro", desc: "Desenvolvimento contínuo de novos líderes para continuidade dos negócios.", target: "right" },
-            { title: "Gestão Reativa de Incidentes", desc: "Apagando incêndios constantes por falta de planejamento de riscos.", target: "left" },
-            { title: "Laboratório de Prototipagem Rápida", desc: "Validação ágil de ideias inovadoras antes do lançamento oficial.", target: "right" },
-            { title: "Falta de Visão de Segurança na Borda", desc: "Dispositivos remotos desprotegidos em redes públicas.", target: "left" }
+            { title: "Cadeia de Suprimentos Circular", desc: "Logística reversa e reaproveitamento inteligente de insumos.", target: "right" },
+            { title: "Falta de Diversidade na Liderança", desc: "Tomadas de decisão homogêneas e sem visão plural de mercado.", target: "left" },
+            { title: "APIs Abertas e Escaláveis", desc: "Integração fluida com ecossistemas de parceiros e desenvolvedores.", target: "right" },
+            { title: "Uso de Software Não Licenciado", desc: "Riscos graves de compliance e portas abertas para malwares.", target: "left" },
+            { title: "Plataforma de Analytics em Self-Service", desc: "Empoderamento de equipes com dados em tempo real.", target: "right" },
+            { title: "Falta de Canais de Feedback Anônimo", desc: "Clima organizacional tóxico e problemas abafados na base.", target: "left" },
+            { title: "Estratégia de Zero Trust", desc: "Validação contínua de identidade para cada acesso corporativo.", target: "right" },
+            { title: "Dependência de Planilhas Manuais", desc: "Erros humanos frequentes em relatórios financeiros críticos.", target: "left" },
+            { title: "Modernização de ERP na Nuvem", desc: "Integração total de finanças, RH e operações em tempo real.", target: "right" },
+            { title: "Resistência a Auditorias Externas", desc: "Falta de transparência contábil e processos obscuros.", target: "left" },
+            { title: "Gestão de Identidade Descentralizada", desc: "Controle rigoroso de privilégios e acessos temporários.", target: "right" },
+            { title: "Ausência de Onboarding Estruturado", desc: "Alta rotatividade e baixa produtividade inicial de novos talentos.", target: "left" },
+            { title: "Laboratório de Inovação Interno", desc: "Espaço dedicado para prototipagem rápida de novos negócios.", target: "right" },
+            { title: "Comunicação Interna Falha", desc: "Rumores, desinformação e desalinhamento operacional generalizado.", target: "left" },
+            { title: "Mitigação de Pegada de Carbono", desc: "Monitoramento rigoroso de emissões em toda a cadeia produtiva.", target: "right" },
+            { title: "Contratos Antigos Sem Revisão", desc: "Cláusulas abusivas e reajustes desfavoráveis ocultos.", target: "left" },
+            { title: "Cultura de Testes e Aprendizado", desc: "Encarar falhas rápidas como oportunidades de melhoria ágil.", target: "right" },
+            { title: "Falta de Métricas de Retenção", desc: "Perda silenciosa de clientes valiosos para a concorrência.", target: "left" },
+            { title: "Plataforma de Relacionamento CRM", desc: "Visibilidade 360 graus do histórico e satisfação do cliente.", target: "right" },
+            { title: "Gestão Baseada em Achismos", desc: "Decisões executivas tomadas sem embasamento em dados reais.", target: "left" },
+            { title: "Criptografia Quântica Preventiva", desc: "Preparação antecipada contra futuras ameaças criptográficas.", target: "right" },
+            { title: "Falta de Ergonomia e Bem-Estar", desc: "Altos índices de burnout e esgotamento físico de equipes.", target: "left" },
+            { title: "Programa de Parceria com Universidades", desc: "Captação precoce de talentos de alta performance técnica.", target: "right" },
+            { title: "Burocracia Excessiva (Red Tape)", desc: "Lentidão extrema na aprovação de projetos inovadores.", target: "left" },
+            { title: "Arquitetura Orientada a Eventos", desc: "Respostas em tempo real para mudanças no fluxo operacional.", target: "right" },
+            { title: "Falta de Canal de Denúncias Éticas", desc: "Exposição jurídica e desamparo a colaboradores.", target: "left" },
+            { title: "Automatização de Testes de Software", desc: "Garantia de qualidade contínua em deploys de alta frequência.", target: "right" },
+            { title: "Falta de Alinhamento com o Regulador", desc: "Conflitos iminentes com órgãos governamentais do setor.", target: "left" },
+            { title: "Programa de Mentoria Executiva", desc: "Desenvolvimento acelerado de sucessores para liderança.", target: "right" },
+            { title: "Corte Cego de Custos Operacionais", desc: "Eliminação de ferramentas essenciais que prejudicam a entrega.", target: "left" }
         ];
 
-        // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS ---
+        let shuffledCardsDeck = [];
+        let cardIndex = 0;
+
+        function prepareDeck() {
+            shuffledCardsDeck = [...masterCardsData];
+            for (let i = shuffledCardsDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledCardsDeck[i], shuffledCardsDeck[j]] = [shuffledCardsDeck[j], shuffledCardsDeck[i]];
+            }
+            cardIndex = 0;
+        }
+
+        function getNextCard() {
+            if (cardIndex >= shuffledCardsDeck.length) {
+                prepareDeck();
+            }
+            return shuffledCardsDeck[cardIndex++];
+        }
+
         let currentScreen = 1;
         let score = 0;
         let timeLeft = 60;
@@ -368,13 +386,10 @@
         let combo15 = 0;
 
         let currentCard = null;
-        let lastCardIndex = -1; // Variável anti-repetição em sequência
         let physicsAnimFrame = null;
-        let isDragging = false;
         let dragOffset = { x: 0, y: 0 };
         let canvasW = 0, canvasH = 0;
 
-        // Fundo em Canvas (Partículas)
         const bgCanvas = document.getElementById('bgCanvas');
         const bgCtx = bgCanvas.getContext('2d');
         let particles = [];
@@ -417,7 +432,6 @@
         drawBg();
         window.addEventListener('resize', initBgCanvas);
 
-        // --- 3. MOTOR DE ÁUDIO SINTETIZADO ---
         let audioCtx = null;
         let bgmInterval = null;
 
@@ -559,7 +573,6 @@
             }
         }
 
-        // --- 4. MÁQUINA DE ESTADOS & TELAS ---
         function goToScreen(screenNum) {
             playSound('click');
             currentScreen = screenNum;
@@ -585,7 +598,6 @@
             }
         }
 
-        // --- 5. TIMER DE INATIVIDADE DA TELA DO JOGO (7 SEGUNDOS) ---
         function resetInactivityTimer() {
             if (currentScreen !== 3) return;
             hideInactivityModal();
@@ -625,15 +637,14 @@
             });
         });
 
-        // --- 6. MINI-JOGO & FÍSICA ---
         function startGame() {
             score = 0;
             timeLeft = 60;
             Acerto_seguido_ponto = 0;
             Ponto_Bonus = 0;
             combo15 = 0;
-            lastCardIndex = -1;
 
+            prepareDeck();
             updateHUD();
             goToScreen(3);
             startBgm();
@@ -675,16 +686,16 @@
 
             const getTouchPos = (e) => {
                 const rect = canvas.getBoundingClientRect();
-                const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-                const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+                const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
                 return { x: clientX - rect.left, y: clientY - rect.top };
             };
 
-            canvas.onpointerdown = (e) => {
+            const handlePointerDown = (e) => {
                 const pos = getTouchPos(e);
                 if (currentCard &&
-                    pos.x >= currentCard.x && pos.x <= currentCard.x + currentCard.w &&
-                    pos.y >= currentCard.y && pos.y <= currentCard.y + currentCard.h) {
+                    pos.x >= currentCard.x - 15 && pos.x <= currentCard.x + currentCard.w + 15 &&
+                    pos.y >= currentCard.y - 15 && pos.y <= currentCard.y + currentCard.h + 15) {
                     dragging = true;
                     currentCard.vx = 0;
                     currentCard.vy = 0;
@@ -693,14 +704,14 @@
                 }
             };
 
-            canvas.onpointermove = (e) => {
+            const handlePointerMove = (e) => {
                 if (!dragging || !currentCard) return;
                 const pos = getTouchPos(e);
                 let targetX = pos.x - dragOffset.x;
                 let targetY = pos.y - dragOffset.y;
 
-                currentCard.vx = (targetX - currentCard.x) * 0.3;
-                currentCard.vy = (targetY - currentCard.y) * 0.3;
+                currentCard.vx = (targetX - currentCard.x) * 0.4;
+                currentCard.vy = (targetY - currentCard.y) * 0.4;
 
                 currentCard.x = targetX;
                 currentCard.y = targetY;
@@ -708,7 +719,7 @@
                 highlightZones(currentCard.x + currentCard.w/2);
             };
 
-            canvas.onpointerup = canvas.onpointercancel = (e) => {
+            const handlePointerUp = (e) => {
                 if (!dragging) return;
                 dragging = false;
                 clearZoneHighlights();
@@ -722,12 +733,20 @@
                 }
             };
 
+            canvas.onpointerdown = handlePointerDown;
+            canvas.onpointermove = handlePointerMove;
+            canvas.onpointerup = canvas.onpointercancel = handlePointerUp;
+
+            canvas.ontouchstart = (e) => { handlePointerDown(e); e.preventDefault(); };
+            canvas.ontouchmove = (e) => { handlePointerMove(e); e.preventDefault(); };
+            canvas.ontouchend = (e) => { handlePointerUp(e); e.preventDefault(); };
+
             function physicsLoop() {
                 ctx.clearRect(0, 0, canvasW, canvasH);
 
                 if (currentCard) {
                     if (!dragging) {
-                        currentCard.vy += 0.2;
+                        currentCard.vy += 0.25;
                         currentCard.x += currentCard.vx;
                         currentCard.y += currentCard.vy;
                         currentCard.vx *= 0.95;
@@ -745,7 +764,6 @@
                         }
                     }
 
-                    // Renderização do Card com Título em NEGRITO e Máxima Visibilidade
                     ctx.save();
                     ctx.shadowColor = 'rgba(0, 229, 255, 0.4)';
                     ctx.shadowBlur = 20;
@@ -759,21 +777,18 @@
                     ctx.fill();
                     ctx.stroke();
 
-                    // Destaque amarelo EY
                     ctx.fillStyle = '#FFE600';
                     ctx.beginPath();
                     ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
                     ctx.fill();
 
-                    // Título em NEGRITO super destacado
                     ctx.fillStyle = '#ffffff';
                     const titleFontSize = Math.max(18, Math.min(23, canvasW * 0.055));
                     ctx.font = `900 ${titleFontSize}px system-ui, -apple-system, sans-serif`;
                     ctx.fillText(currentCard.title, currentCard.x + 18, currentCard.y + 54, currentCard.w - 36);
 
-                    // Descrição Nítida e Legível
-                    ctx.fillStyle = '#fafafa'; 
-                    const descFontSize = Math.max(15, Math.min(19, canvasW * 0.045));
+                    ctx.fillStyle = '#f4f4f5'; 
+                    const descFontSize = Math.max(15, Math.min(18, canvasW * 0.042));
                     ctx.font = `600 ${descFontSize}px system-ui, -apple-system, sans-serif`;
                     wrapText(ctx, currentCard.desc, currentCard.x + 18, currentCard.y + 86, currentCard.w - 36, descFontSize + 7);
 
@@ -786,16 +801,9 @@
         }
 
         function spawnNewCard() {
-            // Lógica anti-repetição em sequência exata
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * cardsData.length);
-            } while (randomIndex === lastCardIndex && cardsData.length > 1);
-
-            lastCardIndex = randomIndex;
-            const raw = cardsData[randomIndex];
-
+            const raw = getNextCard();
             const centerZoneWidth = canvasW * 0.44;
+            
             const cardW = Math.min(centerZoneWidth - 12, 310);
             const cardH = Math.min(canvasH * 0.38, 205);
 
@@ -901,7 +909,6 @@
             spawnNewCard();
         }
 
-        // --- 7. TECLADO VIRTUAL & FÍSICO ---
         const keyboardLayout = [
             ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
             ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -951,7 +958,6 @@
             }
         });
 
-        // --- 8. RANKING & LOCALSTORAGE ---
         function saveScoreAndFinish() {
             const inputName = document.getElementById('playerNameInput').value.trim() || "JOGADOR EY";
             let leaderboard = JSON.parse(localStorage.getItem('ey_leaderboard') || '[]');
