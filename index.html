@@ -117,7 +117,7 @@
         </div>
     </div>
 
-    <!-- ================= TELA 2: INICIAL / REGRAS COM DETALHES CLAROS ================= -->
+    <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
     <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-eyDarker p-6">
         <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto">
             <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-bold mb-4 md:mb-6">
@@ -141,7 +141,7 @@
                     <div class="text-3xl md:text-4xl">🔥</div>
                     <div>
                         <h4 class="font-bold text-base md:text-lg text-white">Bônus & Combo 15</h4>
-                        <p class="text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), você ganha <b>+500 pontos</b> com super boom!</p>
+                        <p class="text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos ganhe <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), ganhe <b>+500 pontos</b> com super boom!</p>
                     </div>
                 </div>
             </div>
@@ -289,7 +289,7 @@
 
     <!-- ================= SCRIPT COMPLETO DO APLICATIVO ================= -->
     <script>
-        // --- 1. CARTÕES CORPORATIVOS ---
+        // --- 1. BANCO EXPANDIDO COM 60 CARTÕES CORPORATIVOS ---
         const cardsData = [
             { title: "Adoção de IA Generativa", desc: "Automatização avançada de processos e atendimento ao cliente.", target: "right" },
             { title: "Vazamento de Dados", desc: "Falha crítica de segurança em servidores corporativos em nuvem.", target: "left" },
@@ -320,7 +320,37 @@
             { title: "Experiência Omnichannel Integrada", desc: "Jornada do cliente fluida e conectada em todos os pontos de contato.", target: "right" },
             { title: "Monopólio de Fornecedor Único", desc: "Alta vulnerabilidade e dependência comercial crítica.", target: "left" },
             { title: "Auditoria Automatizada em Tempo Real", desc: "Visibilidade financeira e operacional transparente e segura.", target: "right" },
-            { title: "Falta de Visão de Futuro", desc: "Gestão reativa focada apenas no curto prazo e sobrevivência.", target: "left" }
+            { title: "Falta de Visão de Futuro", desc: "Gestão reativa focada apenas no curto prazo e sobrevivência.", target: "left" },
+            { title: "Modernização de ERP em Nuvem", desc: "Migração de sistemas legados para plataformas flexíveis e escaláveis.", target: "right" },
+            { title: "Ataques de Ransomware Frequentes", desc: "Falta de protocolos de resiliência e bloqueio de resgate de dados.", target: "left" },
+            { title: "Relatórios de Sustentabilidade Integrados", desc: "Transparência total nos impactos ambientais e sociais da corporação.", target: "right" },
+            { title: "Comunicação Interna Ineficiente", desc: "Gargalos operacionais causados por desalinhamento entre diretorias.", target: "left" },
+            { title: "Implementação de Zero Trust", desc: "Arquitetura de segurança avançada baseada em verificação contínua.", target: "right" },
+            { title: "Baixa Retenção de Talentos Tech", desc: "Alta rotatividade de profissionais especializados por falta de incentivo.", target: "left" },
+            { title: "Cadeia de Suprimentos Inteligente", desc: "Uso de IoT e blockchain para rastreabilidade de mercadorias.", target: "right" },
+            { title: "Processo Decisório Lento e Burocrático", desc: "Excesso de camadas de aprovação que travam a inovação.", target: "left" },
+            { title: "Plataforma de Dados Centralizada", desc: "Criação de um Data Lakehouse unificado para inteligência de negócios.", target: "right" },
+            { title: "Uso de Software Desatualizado", desc: "Aplicativos sem atualizações de segurança e cheios de bugs.", target: "left" },
+            { title: "Parcerias com Ecossistemas de Inovação", desc: "Co-criação de soluções disruptivas com hubs tecnológicos.", target: "right" },
+            { title: "Falta de Transparência Financeira", desc: "Processos contábeis confusos que geram desconfiança de investidores.", target: "left" },
+            { title: "Gestão Baseada em Indicadores em Tempo Real", desc: "Dashboards executivos dinâmicos para tomada de decisão ágil.", target: "right" },
+            { title: "Resistência a Novas Ferramentas", desc: "Colaboradores apegados a métodos arcaicos de trabalho.", target: "left" },
+            { title: "Estratégia Multicloud Resiliente", desc: "Distribuição de cargas entre diferentes provedores para evitar quedas.", target: "right" },
+            { title: "Falta de Documentação de Processos", desc: "Conhecimento retido apenas em pessoas-chave da organização.", target: "left" },
+            { title: "Automatização de Compliance Jurídico", desc: "Uso de IA para monitoramento de contratos e riscos legais.", target: "right" },
+            { title: "Falta de Alinhamento com o Cliente", desc: "Produtos desenvolvidos sem validação prévia de mercado.", target: "left" },
+            { title: "Cultura Data-Driven Consolidada", desc: "Decisões baseadas em evidências analíticas em todos os níveis.", target: "right" },
+            { title: "Vulnerabilidade em Dispositivos Móveis", desc: "Falta de controle sobre acessos corporativos via smartphones.", target: "left" },
+            { title: "Iniciativas de Economia Circular", desc: "Reutilização de recursos e redução drástica de resíduos industriais.", target: "right" },
+            { title: "Falta de Orçamento para Inovação", desc: "Cortes drásticos em P&D que comprometem o futuro da empresa.", target: "left" },
+            { title: "Experiência do Funcionário Digital (EX)", desc: "Plataformas integradas para engajamento e bem-estar dos colaboradores.", target: "right" },
+            { title: "Falta de Monitoramento de Reputação", desc: "Ausência de gestão de crises em redes sociais e mercado.", target: "left" },
+            { title: "Inovação em Modelos de Negócio", desc: "Transição de venda de produtos para serviços recorrentes (As a Service).", target: "right" },
+            { title: "Erros Críticos de Entrada de Dados", desc: "Prejuízos recorrentes por digitação manual sem validação automática.", target: "left" },
+            { title: "Plano de Sucessão Executiva Claro", desc: "Desenvolvimento contínuo de novos líderes para continuidade dos negócios.", target: "right" },
+            { title: "Gestão Reativa de Incidentes", desc: "Apagando incêndios constantes por falta de planejamento de riscos.", target: "left" },
+            { title: "Laboratório de Prototipagem Rápida", desc: "Validação ágil de ideias inovadoras antes do lançamento oficial.", target: "right" },
+            { title: "Falta de Visão de Segurança na Borda", desc: "Dispositivos remotos desprotegidos em redes públicas.", target: "left" }
         ];
 
         // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS ---
@@ -338,6 +368,7 @@
         let combo15 = 0;
 
         let currentCard = null;
+        let lastCardIndex = -1; // Variável anti-repetição em sequência
         let physicsAnimFrame = null;
         let isDragging = false;
         let dragOffset = { x: 0, y: 0 };
@@ -601,6 +632,7 @@
             Acerto_seguido_ponto = 0;
             Ponto_Bonus = 0;
             combo15 = 0;
+            lastCardIndex = -1;
 
             updateHUD();
             goToScreen(3);
@@ -713,13 +745,13 @@
                         }
                     }
 
-                    // Renderização do Card com Fontes Maiores e Altamente Legíveis
+                    // Renderização do Card com Título em NEGRITO e Máxima Visibilidade
                     ctx.save();
-                    ctx.shadowColor = 'rgba(0, 229, 255, 0.35)';
-                    ctx.shadowBlur = 18;
+                    ctx.shadowColor = 'rgba(0, 229, 255, 0.4)';
+                    ctx.shadowBlur = 20;
                     ctx.fillStyle = '#18181b';
-                    ctx.strokeStyle = '#52525b';
-                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = '#71717a';
+                    ctx.lineWidth = 3.5;
 
                     const radius = 18;
                     ctx.beginPath();
@@ -733,17 +765,17 @@
                     ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
                     ctx.fill();
 
-                    // Título Maior e Nítido
+                    // Título em NEGRITO super destacado
                     ctx.fillStyle = '#ffffff';
-                    const titleFontSize = Math.max(17, Math.min(22, canvasW * 0.052));
-                    ctx.font = `bold ${titleFontSize}px system-ui, -apple-system, sans-serif`;
-                    ctx.fillText(currentCard.title, currentCard.x + 18, currentCard.y + 52, currentCard.w - 36);
+                    const titleFontSize = Math.max(18, Math.min(23, canvasW * 0.055));
+                    ctx.font = `900 ${titleFontSize}px system-ui, -apple-system, sans-serif`;
+                    ctx.fillText(currentCard.title, currentCard.x + 18, currentCard.y + 54, currentCard.w - 36);
 
-                    // Descrição Maior com Máxima Legibilidade
-                    ctx.fillStyle = '#f4f4f5'; 
-                    const descFontSize = Math.max(15, Math.min(18, canvasW * 0.042));
+                    // Descrição Nítida e Legível
+                    ctx.fillStyle = '#fafafa'; 
+                    const descFontSize = Math.max(15, Math.min(19, canvasW * 0.045));
                     ctx.font = `600 ${descFontSize}px system-ui, -apple-system, sans-serif`;
-                    wrapText(ctx, currentCard.desc, currentCard.x + 18, currentCard.y + 82, currentCard.w - 36, descFontSize + 7);
+                    wrapText(ctx, currentCard.desc, currentCard.x + 18, currentCard.y + 86, currentCard.w - 36, descFontSize + 7);
 
                     ctx.restore();
                 }
@@ -754,11 +786,18 @@
         }
 
         function spawnNewCard() {
-            const raw = cardsData[Math.floor(Math.random() * cardsData.length)];
+            // Lógica anti-repetição em sequência exata
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * cardsData.length);
+            } while (randomIndex === lastCardIndex && cardsData.length > 1);
+
+            lastCardIndex = randomIndex;
+            const raw = cardsData[randomIndex];
+
             const centerZoneWidth = canvasW * 0.44;
-            
-            const cardW = Math.min(centerZoneWidth - 12, 300);
-            const cardH = Math.min(canvasH * 0.36, 195);
+            const cardW = Math.min(centerZoneWidth - 12, 310);
+            const cardH = Math.min(canvasH * 0.38, 205);
 
             currentCard = {
                 title: raw.title,
@@ -822,7 +861,6 @@
                 Acerto_seguido_ponto++;
                 let earned = 100;
 
-                // Verificação da mecânica de combo 15 (+500 PTS)
                 if (Acerto_seguido_ponto === 15) {
                     combo15++;
                     earned = 500;
@@ -833,7 +871,6 @@
                     toastBox.innerText = `🔥 COMBO 15! SUPER BOOM! (+500 PTS)`;
                     toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-eyGold text-black border border-white animate-bounce";
                 } 
-                // Verificação de Ponto Bônus a cada 5 acertos seguidos (+200 PTS)
                 else if (Acerto_seguido_ponto % 5 === 0) {
                     earned = 200;
                     score += earned;
