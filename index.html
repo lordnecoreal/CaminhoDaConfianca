@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Caminho da Confiança - EY Brasil</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        eyYellow: '#FFE600',
+                        eyDark: '#121212',
+                        eyDarker: '#0a0a0a',
+                        eyCyan: '#00E5FF',
+                        eyPurple: '#B026FF',
+                        eyGold: '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Regras estritas para Totem Touchscreen */
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0a0a0a;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #ffffff;
+        }
+        .screen {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .screen.active {
+            display: flex;
+            opacity: 1;
+            z-index: 10;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 230, 0, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(255, 230, 0, 0.8); }
+        }
+        .pulse-btn {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+        .floating-orb {
+            animation: floatOrb 4s infinite ease-in-out;
+        }
+        @keyframes toastSlide {
+            0% { transform: translateY(-20px); opacity: 0; }
+            20% { transform: translateY(0); opacity: 1; }
+            80% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-20px); opacity: 0; }
+        }
+        .toast-animate {
+            animation: toastSlide 0.9s forwards ease-in-out;
+        }
+        /* Esconder scrollbars */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <!-- CANVAS DE FUNDO GLOBAL (Partículas & Física Standby) -->
+    <canvas id="bgCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- ================= TELA 1: STANDBY ================= -->
+    <div id="screen1" class="screen active bg-gradient-to-br from-eyDarker via-neutral-900 to-black cursor-pointer" onclick="goToScreen(2)">
+        <div class="absolute top-8 left-12 flex items-center gap-4">
+            <div class="bg-eyYellow text-black font-extrabold px-4 py-2 rounded text-xl tracking-wider">EY</div>
+            <span class="text-neutral-400 text-lg uppercase tracking-widest font-semibold">Shape the future with confidence</span>
+        </div>
+
+        <div class="text-center z-10 max-w-4xl px-6">
+            <div class="inline-block p-6 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 mb-8 floating-orb">
+                <svg class="w-20 h-20 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tight mb-6 bg-gradient-to-r from-white via-neutral-200 to-eyYellow bg-clip-text text-transparent">
+                CAMINHO DA CONFIANÇA
+            </h1>
+            <p class="text-2xl text-neutral-300 mb-12 max-w-2xl mx-auto">
+                Desafie sua agilidade estratégica em um ambiente corporativo de alta performance.
+            </p>
+            <div class="inline-block px-10 py-5 bg-eyYellow text-black font-extrabold text-2xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider">
+                Toque na tela para participar
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 text-neutral-500 text-sm tracking-wider uppercase">
+            Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span>
+        </div>
+    </div>
+
+    <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
+    <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-eyDarker">
+        <div class="max-w-3xl w-full mx-auto px-6 text-center z-10">
+            <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-6 py-2 rounded-full text-lg font-bold mb-6">
+                Desafio Interativo
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-6 text-white tracking-tight">Como Jogar</h2>
+            <p class="text-2xl text-neutral-300 mb-10 leading-relaxed">
+                Arraste e arremesse rapidamente os cartões corporativos para a zona correta.<br>
+                Classifique em <span class="text-eyPurple font-bold">Obstáculo / Insegurança</span> ou <span class="text-eyCyan font-bold">Transformar / Crescer</span> antes que o tempo acabe!
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 text-left">
+                <div class="bg-neutral-800/80 border border-neutral-700 p-6 rounded-2xl flex items-center gap-4">
+                    <div class="text-4xl">⏱️</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">60 Segundos</h4>
+                        <p class="text-neutral-400 text-sm">Máxima pontuação no menor tempo possível.</p>
+                    </div>
+                </div>
+                <div class="bg-neutral-800/80 border border-neutral-700 p-6 rounded-2xl flex items-center gap-4">
+                    <div class="text-4xl">🎯</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Física & Precisão</h4>
+                        <p class="text-neutral-400 text-sm">Erros não tiram pontos. Foco em acertar!</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startGame()" class="w-full md:w-auto px-16 py-6 bg-eyYellow text-black font-black text-2xl rounded-2xl shadow-2xl hover:scale-105 transition active:scale-95 uppercase tracking-wider">
+                Iniciar Desafio
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= TELA 3: MINI-JOGO (GOOGLE GRAVITY) ================= -->
+    <div id="screen3" class="screen bg-neutral-950 flex flex-col justify-between overflow-hidden">
+        <!-- HUD Superior -->
+        <div class="w-full px-8 py-4 bg-neutral-900/90 border-b border-neutral-800 flex justify-between items-center z-20">
+            <div class="flex items-center gap-6">
+                <div class="text-neutral-400 text-sm uppercase tracking-widest font-semibold">Tempo Restante</div>
+                <div id="timerDisplay" class="text-4xl font-black text-eyYellow">60s</div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-neutral-400 text-sm uppercase tracking-widest font-semibold">Pontuação</div>
+                <div id="scoreDisplay" class="text-4xl font-black text-eyCyan">0</div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleAudio()" id="audioBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-3 rounded-xl font-bold flex items-center gap-2 border border-neutral-700">
+                    🔊 Som
+                </button>
+                <button onclick="goToScreen(2)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-4 py-3 rounded-xl font-bold border border-neutral-700">
+                    Reiniciar
+                </button>
+            </div>
+        </div>
+
+        <!-- Área Central de Jogo / Canvas de Física -->
+        <div id="gameContainer" class="relative flex-1 w-full overflow-hidden">
+            <!-- Zonas Laterais de Drop -->
+            <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-1/4 bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-6 text-center transition-colors">
+                <div class="text-4xl mb-3">🛡️</div>
+                <div class="text-eyPurple font-black text-xl md:text-2xl uppercase tracking-wider">Obstáculo / Insegurança</div>
+                <div class="text-neutral-400 text-xs mt-2">Arremesse aqui</div>
+            </div>
+
+            <div id="zoneRight" class="absolute right-0 top-0 bottom-0 w-1/4 bg-cyan-950/20 border-l-2 border-dashed border-eyCyan/40 flex flex-col items-center justify-center p-6 text-center transition-colors">
+                <div class="text-4xl mb-3">🚀</div>
+                <div class="text-eyCyan font-black text-xl md:text-2xl uppercase tracking-wider">Transformar / Crescer</div>
+                <div class="text-neutral-400 text-xs mt-2">Arremesse aqui</div>
+            </div>
+
+            <!-- Toast de Feedback Discreto (Topo centralizado) -->
+            <div id="feedbackToast" class="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-all">
+                <div id="toastBox" class="px-6 py-2 rounded-xl text-sm font-black tracking-wider shadow-lg border">
+                    DECISÃO CERTA!
+                </div>
+            </div>
+
+            <!-- Canvas onde o card físico interativo flui -->
+            <canvas id="physicsCanvas" class="absolute inset-0 z-10"></canvas>
+        </div>
+
+        <!-- Rodapé do Mini-Jogo -->
+        <div class="py-3 bg-neutral-900/50 text-center text-neutral-500 text-xs tracking-widest uppercase border-t border-neutral-900 z-20">
+            Toque, segure e lance o card corporativo em direção à zona correta!
+        </div>
+    </div>
+
+    <!-- ================= TELA 4: REGISTRO DE NOME ================= -->
+    <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black">
+        <div class="max-w-2xl w-full mx-auto px-6 text-center z-10">
+            <h2 class="text-4xl md:text-5xl font-black mb-3 text-white">Fim de Jogo!</h2>
+            <p class="text-xl text-neutral-300 mb-6">Sua pontuação final:</p>
+            <div id="finalScoreDisplay" class="text-6xl font-black text-eyYellow mb-8">0 PTS</div>
+
+            <div class="mb-8">
+                <label class="block text-sm uppercase tracking-widest text-neutral-400 mb-3 font-bold">Digite seu nome ou apelido:</label>
+                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-6 py-4 text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase">
+            </div>
+
+            <!-- Teclado Virtual QWERTY Tátil -->
+            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-4 rounded-2xl mb-8 shadow-2xl">
+                <!-- Linhas geradas via script -->
+            </div>
+
+            <button onclick="saveScoreAndFinish()" class="w-full py-5 bg-eyYellow text-black font-black text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+                Salvar no Ranking & Ver Posição
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= TELA 5: RANKING & VITÓRIA ================= -->
+    <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black">
+        <div class="max-w-3xl w-full mx-auto px-6 text-center z-10 py-10">
+            <div id="trophyIcon" class="text-6xl mb-3 animate-bounce">🏆</div>
+            <h2 id="endGameTitle" class="text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
+            <p id="endGameSubtitle" class="text-neutral-400 text-lg mb-6">Você demonstrou excelente visão estratégica.</p>
+
+            <!-- Tabela Top 10 -->
+            <div class="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-6 mb-8 max-h-72 overflow-y-auto">
+                <h3 class="text-eyGold font-black uppercase tracking-widest text-sm mb-4">Top 10 — Ranking Oficial</h3>
+                <div id="leaderboardList" class="space-y-3">
+                    <!-- Preenchido via JS -->
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="goToScreen(1)" class="flex-1 py-5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xl rounded-2xl border border-neutral-700 uppercase tracking-wider">
+                    Tela Inicial
+                </button>
+                <button onclick="startGame()" class="flex-1 py-5 bg-eyYellow text-black font-black text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+                    Novo Jogador
+                </button>
+            </div>
+
+            <div class="mt-8 text-neutral-500 text-xs tracking-widest uppercase">
+                Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL DE INATIVIDADE (7 SEGUNDOS) ================= -->
+    <div id="inactivityModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center">
+        <div class="bg-neutral-900 border-2 border-eyYellow p-8 rounded-3xl text-center max-w-md mx-4 shadow-2xl">
+            <div class="text-5xl mb-4">⚠️</div>
+            <h3 class="text-2xl font-black text-white mb-2">Você ainda está aí?</h3>
+            <p class="text-neutral-300 mb-6">O totem retornará ao modo de descanso em <span id="countdownModal" class="text-eyYellow font-black text-3xl">3</span> segundos.</p>
+            <button onclick="resetInactivityTimer()" class="w-full py-4 bg-eyYellow text-black font-black text-lg rounded-xl uppercase tracking-wider">
+                Continuar Jogando
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= SCRIPT COMPLETO DO APLICATIVO ================= -->
+    <script>
+        // --- 1. BANCO DE DADOS DE CARTÕES CORPORATIVOS ---
+        const cardsData = [
+            { title: "Adoção de IA Generativa", desc: "Automatização avançada de processos e atendimento ao cliente.", target: "right" },
+            { title: "Vazamento de Dados", desc: "Falha crítica de segurança em servidores corporativos em nuvem.", target: "left" },
+            { title: "Transição Energética ESG", desc: "Migração completa para matrizes sustentáveis e metas de carbono.", target: "right" },
+            { title: "Processos Manuais Obsoletos", desc: "Uso de planilhas locais sem backup ou governança integrada.", target: "left" },
+            { title: "Arquitetura Cloud Native", desc: "Escalabilidade elástica e alta disponibilidade de microsserviços.", target: "right" },
+            { title: "Resistência Cultural Interna", desc: "Falta de alinhamento das equipes com a inovação digital.", target: "left" },
+            { title: "Governança de Dados Robusta", desc: "Conformidade total com LGPD e auditoria automatizada.", target: "right" },
+            { title: "Falta de Visibilidade de Riscos", desc: "Ausência de monitoramento preditivo de ameaças no ecossistema.", target: "left" },
+            { title: "Inovação Aberta com Startups", desc: "Parcerias estratégicas para aceleração de novos produtos.", target: "right" },
+            { title: "Dependência de Legado Antigo", desc: "Sistemas monolíticos sem suporte e vulneráveis a falhas.", target: "left" },
+            { title: "Cultura de Cibersegurança", desc: "Treinamento contínuo e conscientização de colaboradores.", target: "right" },
+            { title: "Falta de Agilidade Estratégica", desc: "Decisões lentas frente às mudanças rápidas de mercado.", target: "left" },
+            { title: "Automação RPA de Processos", desc: "Redução de erros humanos em tarefas repetitivas e financeiras.", target: "right" },
+            { title: "Fraude Interna por Acesso Livre", desc: "Falta de controle de permissões e auditoria de logs.", target: "left" },
+            { title: "Análise de Dados Preditiva", desc: "Uso de Business Intelligence para antecipar tendências globais.", target: "right" },
+            { title: "Falta de Backup Geográfico", desc: "Risco iminente de perda total de dados em caso de desastre.", target: "left" },
+            { title: "Parcerias Estratégicas Globais", desc: "Expansão de mercado com segurança e conformidade jurídica.", target: "right" },
+            { title: "Infraestrutura Local Vulnerável", desc: "Servidores físicos expostos a falhas elétricas e invasões.", target: "left" },
+            { title: "Transformação Digital Ágil", desc: "Modernização completa da jornada do cliente com tecnologia.", target: "right" },
+            { title: "Ausência de Plano de Continuidade", desc: "Empresa sem protocolos de contingência para crises graves.", target: "left" }
+        ];
+
+        // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS GLOBAIS ---
+        let currentScreen = 1;
+        let score = 0;
+        let timeLeft = 60;
+        let gameInterval = null;
+        let inactivityTimer = null;
+        let modalCountdownInterval = null;
+        let modalSecondsLeft = 3;
+        let audioEnabled = true;
+
+        // Física e Estado do Card Atual no Jogo
+        let currentCard = null;
+        let physicsAnimFrame = null;
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+        let canvasW = 0, canvasH = 0;
+
+        // Fundo em Canvas (Partículas Standby)
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let particles = [];
+
+        function initBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    radius: Math.random() * 2 + 1,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    alpha: Math.random() * 0.5 + 0.2
+                });
+            }
+        }
+
+        function drawBg() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            bgCtx.fillStyle = '#FFE600';
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = bgCanvas.width;
+                if (p.x > bgCanvas.width) p.x = 0;
+                if (p.y < 0) p.y = bgCanvas.height;
+                if (p.y > bgCanvas.height) p.y = 0;
+
+                bgCtx.globalAlpha = p.alpha;
+                bgCtx.beginPath();
+                bgCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                bgCtx.fill();
+            });
+            requestAnimationFrame(drawBg);
+        }
+        initBgCanvas();
+        drawBg();
+        window.addEventListener('resize', initBgCanvas);
+
+        // --- 3. MOTOR DE ÁUDIO SINTETIZADO (WEB AUDIO API - 100% OFFLINE) ---
+        let audioCtx = null;
+        let bgmInterval = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(type) {
+            if (!audioEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                const now = ctx.currentTime;
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'success') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'error') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.linearRampToValueAtTime(110, now + 0.2);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                } else if (type === 'victory') {
+                    // Fanfarra de vitória
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const o = ctx.createOscillator();
+                        const g = ctx.createGain();
+                        o.connect(g);
+                        g.connect(ctx.destination);
+                        o.frequency.setValueAtTime(freq, now + idx * 0.12);
+                        g.gain.setValueAtTime(0.2, now + idx * 0.12);
+                        g.gain.linearRampToValueAtTime(0.01, now + idx * 0.12 + 0.25);
+                        o.start(now + idx * 0.12);
+                        o.stop(now + idx * 0.12 + 0.25);
+                    });
+                } else if (type === 'highscore') {
+                    // Som especial de recorde
+                    const notes = [440, 554.37, 659.25, 880];
+                    notes.forEach((freq, idx) => {
+                        const o = ctx.createOscillator();
+                        const g = ctx.createGain();
+                        o.connect(g);
+                        g.connect(ctx.destination);
+                        o.frequency.setValueAtTime(freq, now + idx * 0.15);
+                        g.gain.setValueAtTime(0.25, now + idx * 0.15);
+                        g.gain.linearRampToValueAtTime(0.01, now + idx * 0.15 + 0.3);
+                        o.start(now + idx * 0.15);
+                        o.stop(now + idx * 0.15 + 0.3);
+                    });
+                }
+            } catch (e) {
+                console.error("Audio error:", e);
+            }
+        }
+
+        // BGM Contínua durante a partida
+        function startBgm() {
+            stopBgm();
+            if (!audioEnabled) return;
+            const bassNotes = [220, 246.94, 261.63, 293.66];
+            let step = 0;
+            bgmInterval = setInterval(() => {
+                if (!audioEnabled || currentScreen !== 3) return;
+                try {
+                    const ctx = getAudioContext();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    const now = ctx.currentTime;
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(bassNotes[step % bassNotes.length], now);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.linearRampToValueAtTime(0.001, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                    step++;
+                } catch(e) {}
+            }, 300);
+        }
+
+        function stopBgm() {
+            if (bgmInterval) {
+                clearInterval(bgmInterval);
+                bgmInterval = null;
+            }
+        }
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            const btn = document.getElementById('audioBtn');
+            if (audioEnabled) {
+                btn.innerHTML = "🔊 Som";
+                playSound('click');
+                if (currentScreen === 3) startBgm();
+            } else {
+                btn.innerHTML = "🔇 Mudo";
+                stopBgm();
+            }
+        }
+
+        // --- 4. MÁQUINA DE ESTADOS & GERENCIAMENTO DE TELAS ---
+        function goToScreen(screenNum) {
+            playSound('click');
+            currentScreen = screenNum;
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(`screen${screenNum}`).classList.add('active');
+
+            // Limpezas de timers anteriores
+            if (gameInterval) clearInterval(gameInterval);
+            if (physicsAnimFrame) cancelAnimationFrame(physicsAnimFrame);
+            stopBgm();
+
+            if (screenNum === 1) {
+                hideInactivityModal();
+            } else {
+                resetInactivityTimer();
+            }
+
+            if (screenNum === 3) {
+                initGame();
+            }
+            if (screenNum === 4) {
+                document.getElementById('finalScoreDisplay5') || (document.getElementById('finalScoreDisplay').innerText = `${score} PTS`);
+                document.getElementById('playerNameInput').value = '';
+            }
+            if (screenNum === 5) {
+                renderLeaderboard();
+            }
+        }
+
+        // --- 5. TIMER GLOBAL DE INATIVIDADE (7 SEGUNDOS) ---
+        function resetInactivityTimer() {
+            hideInactivityModal();
+            if (inactivityTimer) clearTimeout(inactivityTimer);
+            if (modalCountdownInterval) clearInterval(modalCountdownInterval);
+
+            if (currentScreen > 1) {
+                inactivityTimer = setTimeout(() => {
+                    showInactivityModal();
+                }, 7000); // 7 segundos de inatividade
+            }
+        }
+
+        function showInactivityModal() {
+            modalSecondsLeft = 3;
+            document.getElementById('countdownModal').innerText = modalSecondsLeft;
+            document.getElementById('inactivityModal').classList.remove('hidden');
+
+            modalCountdownInterval = setInterval(() => {
+                modalSecondsLeft--;
+                document.getElementById('countdownModal').innerText = modalSecondsLeft;
+                if (modalSecondsLeft <= 0) {
+                    clearInterval(modalCountdownInterval);
+                    hideInactivityModal();
+                    goToScreen(1);
+                }
+            }, 1000);
+        }
+
+        function hideInactivityModal() {
+            document.getElementById('inactivityModal').classList.add('hidden');
+            if (modalCountdownInterval) clearInterval(modalCountdownInterval);
+        }
+
+        // Ouvintes globais de toque/clique para inatividade
+        ['pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (currentScreen > 1) resetInactivityTimer();
+            });
+        });
+
+        // --- 6. LÓGICA DO MINI-JOGO & FÍSICA GOOGLE GRAVITY (1 CARD POR VEZ) ---
+        function startGame() {
+            score = 0;
+            timeLeft = 60;
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('timerDisplay').innerText = timeLeft + 's';
+            goToScreen(3);
+
+            startBgm();
+
+            gameInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timerDisplay').innerText = timeLeft + 's';
+                if (timeLeft <= 10) {
+                    document.getElementById('timerDisplay').classList.add('text-red-500', 'animate-pulse');
+                }
+                if (timeLeft <= 0) {
+                    clearInterval(gameInterval);
+                    stopBgm();
+                    playSound('victory');
+                    goToScreen(4);
+                }
+            }, 1000);
+        }
+
+        function initGame() {
+            const container = document.getElementById('gameContainer');
+            const canvas = document.getElementById('physicsCanvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            canvasW = canvas.width;
+            canvasH = canvas.height;
+
+            spawnNewCard();
+
+            // Configuração de Física e Drag/Drop
+            let dragging = false;
+
+            const getTouchPos = (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+                return { x: clientX - rect.left, y: clientY - rect.top };
+            };
+
+            canvas.onpointerdown = (e) => {
+                const pos = getTouchPos(e);
+                if (currentCard &&
+                    pos.x >= currentCard.x && pos.x <= currentCard.x + currentCard.w &&
+                    pos.y >= currentCard.y && pos.y <= currentCard.y + currentCard.h) {
+                    dragging = true;
+                    currentCard.vx = 0;
+                    currentCard.vy = 0;
+                    dragOffset.x = pos.x - currentCard.x;
+                    dragOffset.y = pos.y - currentCard.y;
+                }
+            };
+
+            canvas.onpointermove = (e) => {
+                if (!dragging || !currentCard) return;
+                const pos = getTouchPos(e);
+                let targetX = pos.x - dragOffset.x;
+                let targetY = pos.y - dragOffset.y;
+
+                // Cálculo de velocidade de lançamento (momentum)
+                currentCard.vx = (targetX - currentCard.x) * 0.3;
+                currentCard.vy = (targetY - currentCard.y) * 0.3;
+
+                currentCard.x = targetX;
+                currentCard.y = targetY;
+
+                // Highlight nas zonas laterais
+                highlightZones(currentCard.x + currentCard.w/2);
+            };
+
+            canvas.onpointerup = canvas.onpointercancel = (e) => {
+                if (!dragging) return;
+                dragging = false;
+                clearZoneHighlights();
+
+                // Verificar se foi jogado nas zonas laterais
+                const centerX = currentCard.x + currentCard.w / 2;
+                const zoneWidth = canvasW * 0.25;
+
+                if (centerX < zoneWidth || centerX > canvasW - zoneWidth) {
+                    const chosenSide = centerX < zoneWidth ? 'left' : 'right';
+                    evaluateCard(chosenSide);
+                }
+            };
+
+            // Loop de Física a 60 FPS
+            function physicsLoop() {
+                ctx.clearRect(0, 0, canvasW, canvasH);
+
+                if (currentCard) {
+                    if (!dragging) {
+                        // Aplicar gravidade e inércia suave
+                        currentCard.vy += 0.2; // gravidade leve
+                        currentCard.x += currentCard.vx;
+                        currentCard.y += currentCard.vy;
+                        currentCard.vx *= 0.95; // atrito do ar
+
+                        // Limites de tela / piso
+                        if (currentCard.x < 10) { currentCard.x = 10; currentCard.vx *= -0.5; }
+                        if (currentCard.x + currentCard.w > canvasW - 10) { currentCard.x = canvasW - 10 - currentCard.w; currentCard.vx *= -0.5; }
+                        if (currentCard.y + currentCard.h > canvasH - 20) {
+                            // Se cair no chão sem ir pra lateral, reposiciona no centro com impulso
+                            currentCard.y = canvasH - 20 - currentCard.h;
+                            currentCard.vy *= -0.4;
+                        }
+                    }
+
+                    // Desenhar Cartão Corporativo com Estilo Moderno
+                    ctx.save();
+                    ctx.shadowColor = 'rgba(0, 229, 255, 0.2)';
+                    ctx.shadowBlur = 15;
+                    ctx.fillStyle = '#18181b';
+                    ctx.strokeStyle = '#27272a';
+                    ctx.lineWidth = 2;
+
+                    const radius = 16;
+                    ctx.beginPath();
+                    ctx.roundRect(currentCard.x, currentCard.y, currentCard.w, currentCard.h, radius);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // Barra de destaque EY no topo do card
+                    ctx.fillStyle = '#FFE600';
+                    ctx.beginPath();
+                    ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
+                    ctx.fill();
+
+                    // Textos do Card
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 20px system-ui';
+                    ctx.fillText(currentCard.title, currentCard.x + 20, currentCard.y + 60, currentCard.w - 40);
+
+                    ctx.fillStyle = '#a1a1aa';
+                    ctx.font = '15px system-ui';
+                    wrapText(ctx, currentCard.desc, currentCard.x + 20, currentCard.y + 95, currentCard.w - 40, 22);
+
+                    ctx.restore();
+                }
+
+                physicsAnimFrame = requestAnimationFrame(physicsLoop);
+            }
+            physicsLoop();
+        }
+
+        function spawnNewCard() {
+            const raw = cardsData[Math.floor(Math.random() * cardsData.length)];
+            currentCard = {
+                title: raw.title,
+                desc: raw.desc,
+                target: raw.target,
+                w: 340,
+                h: 180,
+                x: canvasW / 2 - 170,
+                y: 40,
+                vx: (Math.random() - 0.5) * 4,
+                vy: 2
+            };
+        }
+
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+            const words = text.split(' ');
+            let line = '';
+            for(let n = 0; n < words.length; n++) {
+                let testLine = line + words[n] + ' ';
+                let metrics = ctx.measureText(testLine);
+                let testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, x, y);
+                    line = words[n] + ' ';
+                    y += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, x, y);
+        }
+
+        function highlightZones(xPos) {
+            const zoneW = canvasW * 0.25;
+            const zoneLeft = document.getElementById('zoneLeft');
+            const zoneRight = document.getElementById('zoneRight');
+
+            if (xPos < zoneW) {
+                zoneLeft.style.backgroundColor = 'rgba(176, 38, 255, 0.35)';
+                zoneRight.style.backgroundColor = 'rgba(0, 145, 255, 0.1)';
+            } else if (xPos > canvasW - zoneW) {
+                zoneRight.style.backgroundColor = 'rgba(0, 229, 255, 0.35)';
+                zoneLeft.style.backgroundColor = 'rgba(176, 38, 255, 0.1)';
+            } else {
+                zoneLeft.style.backgroundColor = 'rgba(176, 38, 255, 0.2)';
+                zoneRight.style.backgroundColor = 'rgba(0, 145, 255, 0.2)';
+            }
+        }
+
+        function clearZoneHighlights() {
+            document.getElementById('zoneLeft').style.backgroundColor = 'rgba(176, 38, 255, 0.2)';
+            document.getElementById('zoneRight').style.backgroundColor = 'rgba(0, 145, 255, 0.2)';
+        }
+
+        function evaluateCard(chosenSide) {
+            const isCorrect = chosenSide === currentCard.target;
+            const toast = document.getElementById('feedbackToast');
+            const toastBox = document.getElementById('toastBox');
+
+            if (isCorrect) {
+                score += 100;
+                playSound('success');
+                toastBox.innerText = "✓ DECISÃO CERTA! (+100 PTS)";
+                toastBox.className = "px-6 py-2 rounded-xl text-sm font-black tracking-wider shadow-lg bg-emerald-950/90 text-emerald-400 border border-emerald-500/50";
+            } else {
+                // Regra: Erros NÃO reduzem pontos! Apenas som sonoro e visual de aviso
+                playSound('error');
+                toastBox.innerText = "✗ DECISÃO INCORRETA!";
+                toastBox.className = "px-6 py-2 rounded-xl text-sm font-black tracking-wider shadow-lg bg-rose-950/90 text-rose-400 border border-rose-500/50";
+            }
+
+            document.getElementById('scoreDisplay').innerText = score;
+
+            // Animação Toast Rápida e Discreta (desaparece em 900ms)
+            toast.classList.remove('toast-animate');
+            void toast.offsetWidth; // reflow
+            toast.classList.add('toast-animate');
+
+            spawnNewCard();
+        }
+
+        // --- 7. TECLADO VIRTUAL & FÍSICO (TELA 4) ---
+        const keyboardLayout = [
+            ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+            ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+            ['Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
+        ];
+
+        function initVirtualKeyboard() {
+            const container = document.getElementById('virtualKeyboard');
+            container.innerHTML = '';
+            keyboardLayout.forEach(row => {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = "flex justify-center gap-2 mb-2";
+                row.forEach(key => {
+                    const btn = document.createElement('button');
+                    btn.className = "bg-neutral-800 hover:bg-neutral-700 active:bg-eyYellow active:text-black text-white font-black text-lg md:text-xl px-4 py-3 rounded-xl min-w-[45px] md:min-w-[55px] shadow transition";
+                    btn.innerText = key;
+                    btn.onclick = () => handleVirtualKeyPress(key);
+                    rowDiv.appendChild(btn);
+                });
+                container.appendChild(rowDiv);
+            });
+        }
+        initVirtualKeyboard();
+
+        function handleVirtualKeyPress(key) {
+            playSound('click');
+            const input = document.getElementById('playerNameInput');
+            if (key === '⌫') {
+                input.value = input.value.slice(0, -1);
+            } else {
+                if (input.value.length < 12) {
+                    input.value += key;
+                }
+            }
+        }
+
+        // Suporte a Teclado Físico na Tela 4
+        window.addEventListener('keydown', (e) => {
+            if (currentScreen === 4) {
+                const input = document.getElementById('playerNameInput');
+                if (e.key === 'Backspace') {
+                    input.value = input.value.slice(0, -1);
+                } else if (e.key.length === 1 && /^[a-zA-ZÀ-ÿ0-9 ]$/.test(e.key)) {
+                    if (input.value.length < 12) {
+                        input.value += e.key.toUpperCase();
+                    }
+                }
+            }
+        });
+
+        // --- 8. RANKING & LOCALSTORAGE ---
+        function saveScoreAndFinish() {
+            const inputName = document.getElementById('playerNameInput').value.trim() || "JOGADOR EY";
+            let leaderboard = JSON.parse(localStorage.getItem('ey_leaderboard') || '[]');
+
+            const newEntry = { name: inputName, score: score, date: new Date().toLocaleDateString() };
+            leaderboard.push(newEntry);
+            leaderboard.sort((a, b) => b.score - a.score);
+            leaderboard = leaderboard.slice(0, 10); // Mantém Top 10
+
+            localStorage.setItem('ey_leaderboard', JSON.stringify(leaderboard));
+
+            // Verifica se quebrou recorde (1º lugar)
+            if (leaderboard.length > 0 && leaderboard[0].name === inputName && leaderboard[0].score === score && score > 0) {
+                playSound('highscore');
+            } else {
+                playSound('success');
+            }
+
+            goToScreen(5);
+        }
+
+        function renderLeaderboard() {
+            const listContainer = document.getElementById('leaderboardList');
+            const leaderboard = JSON.parse(localStorage.getItem('ey_leaderboard') || '[]');
+            listContainer.innerHTML = '';
+
+            if (leaderboard.length === 0) {
+                listContainer.innerHTML = `<div class="text-neutral-500 py-4">Nenhum recorde registrado ainda. Seja o primeiro!</div>`;
+                return;
+            }
+
+            leaderboard.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = `flex justify-between items-center p-3 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-bold' : 'bg-neutral-800/50 text-neutral-300'}`;
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-6 text-center font-black">#${index + 1}</span>
+                        <span>${item.name}</span>
+                    </div>
+                    <div class="font-black text-lg">${item.score} PTS</div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            // Ajuste de Troféu Dinâmico
+            const trophy = document.getElementById('trophyIcon');
+            if (score >= 1000) {
+                trophy.innerText = "🏆";
+                document.getElementById('endGameTitle').innerText = "Desempenho Extraordinário!";
+            } else if (score >= 500) {
+                trophy.innerText = "🥈";
+                document.getElementById('endGameTitle').innerText = "Excelente Visão Estratégica!";
+            } else {
+                trophy.innerText = "⭐";
+                document.getElementById('endGameTitle').innerText = "Bom Trabalho!";
+            }
+        }
+    </script>
+</body>
+</html>
