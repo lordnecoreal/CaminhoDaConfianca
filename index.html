@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -34,16 +35,14 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background-color: #0a0a0a;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #ffffff;
         }
         .screen {
             position: absolute;
             inset: 0;
             display: none;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
@@ -85,18 +84,28 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body id="appBody" class="bg-neutral-950 text-white h-full" oncontextmenu="return false;">
 
     <!-- CANVAS DE FUNDO GLOBAL -->
     <canvas id="bgCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
 
     <!-- ================= TELA 1: STANDBY ================= -->
-    <div id="screen1" class="screen active bg-gradient-to-br from-eyDarker via-neutral-900 to-black cursor-pointer p-6 h-full flex flex-col justify-between" onclick="goToScreen(2)">
-        <!-- Topo Header -->
-        <div class="w-full flex items-center gap-4 z-10">
-            <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
-            <span class="text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
-        </div>
+    <div id="screen1" class="screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black cursor-pointer p-0 h-full w-full" onclick="goToScreen(2)">
+        <!-- Topo Header Global -->
+        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4 bg-transparent">
+            <div class="flex items-center gap-4">
+                <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
+                <span class="subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+            </div>
+            <div class="flex items-center gap-2" onclick="event.stopPropagation()">
+                <button onclick="toggleTheme()" id="themeBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">
+                    🌞 Claro
+                </button>
+                <button onclick="adjustVolume()" id="volBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">
+                    🔊 100%
+                </button>
+            </div>
+        </header>
 
         <!-- Conteúdo Central -->
         <div class="text-center z-10 max-w-4xl px-4 my-auto py-6">
@@ -105,10 +114,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
             </div>
-            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 bg-gradient-to-r from-white via-neutral-200 to-eyYellow bg-clip-text text-transparent">
-                CAMINHO DA CONFIANÇA
+            <h1 id="mainTitle" class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-white">
+                CAMINHO DA <span class="text-eyYellow">CONFIANÇA</span>
             </h1>
-            <p class="text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-10 max-w-2xl mx-auto">
+            <p class="desc-main text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-10 max-w-2xl mx-auto">
                 Desafie sua agilidade estratégica em um ambiente corporativo de alta performance.
             </p>
             <div class="inline-block px-8 py-4 md:px-10 md:py-5 bg-eyYellow text-black font-extrabold text-lg md:text-2xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider">
@@ -116,40 +125,51 @@
             </div>
         </div>
 
-        <!-- Rodapé 100% Alinhado na Base -->
-        <div class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-3 z-10 bg-black/40 backdrop-blur-sm">
+        <!-- Rodapé Semântico <footer> 100% Completo sem Tarja Isolada -->
+        <footer id="appFooter1" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
             <div class="mt-1 text-[11px] md:text-xs text-neutral-400">
                 Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" onclick="event.stopPropagation()" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
             </div>
-        </div>
+        </footer>
     </div>
 
     <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
-    <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-eyDarker p-6">
-        <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto">
+    <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full">
+        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4">
+            <div class="flex items-center gap-4">
+                <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
+                <span class="subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme()" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">Tema</button>
+                <button onclick="adjustVolume()" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">Volume</button>
+            </div>
+        </header>
+
+        <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto px-4 py-6">
             <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-bold mb-4 md:mb-6">
                 Desafio Interativo
             </div>
-            <h2 class="text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight">Como Jogar</h2>
-            <p class="text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-8 leading-relaxed">
+            <h2 class="title-main text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight">Como Jogar</h2>
+            <p class="desc-main text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-8 leading-relaxed">
                 Arraste e arremesse rapidamente os cartões corporativos para a zona correta.<br>
                 Classifique em <span class="text-eyPurple font-bold">Obstáculo / Insegurança</span> ou <span class="text-eyCyan font-bold">Transformar / Crescer</span> antes que o tempo acabe!
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10 text-left">
-                <div class="bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
+                <div class="card-box bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
                     <div class="text-3xl md:text-4xl">⏱️</div>
                     <div>
-                        <h4 class="font-bold text-base md:text-lg text-white">60 Segundos & Pontos</h4>
-                        <p class="text-neutral-400 text-xs md:text-sm">Cada acerto vale 100 pontos. Erros não descontam pontos!</p>
+                        <h4 class="font-bold text-base md:text-lg text-white card-title-inner">60 Segundos & Pontos</h4>
+                        <p class="card-desc-inner text-neutral-400 text-xs md:text-sm">Cada acerto vale 100 pontos. Erros não descontam pontos!</p>
                     </div>
                 </div>
-                <div class="bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
+                <div class="card-box bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
                     <div class="text-3xl md:text-4xl">🔥</div>
                     <div>
-                        <h4 class="font-bold text-base md:text-lg text-white">Bônus & Combo 15</h4>
-                        <p class="text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), você ganha <b>+500 pontos</b> com super boom!</p>
+                        <h4 class="font-bold text-base md:text-lg text-white card-title-inner">Bônus & Combo 15</h4>
+                        <p class="card-desc-inner text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), você ganha <b>+500 pontos</b> com super boom!</p>
                     </div>
                 </div>
             </div>
@@ -158,13 +178,19 @@
                 Iniciar Desafio
             </button>
         </div>
+
+        <footer id="appFooter2" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
+            <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
+            <div class="mt-1 text-[11px] md:text-xs text-neutral-400">
+                Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
+            </div>
+        </footer>
     </div>
 
-    <!-- ================= TELA 3: MINI-JOGO (GOOGLE GRAVITY) ================= -->
-    <div id="screen3" class="screen bg-neutral-950 flex flex-col justify-between overflow-hidden">
-        <!-- HUD Superior -->
-        <div class="w-full px-3 md:px-8 py-2 md:py-4 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-1 md:gap-4">
-            <div class="flex items-center gap-2 md:gap-6">
+    <!-- ================= TELA 3: MINI-JOGO ================= -->
+    <div id="screen3" class="screen bg-neutral-950 flex flex-col justify-between overflow-hidden h-full w-full">
+        <div class="w-full px-3 md:px-8 py-2 md:py-4 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-2 md:gap-6">
+            <div class="flex items-center gap-3 md:gap-6">
                 <div>
                     <div class="text-neutral-400 text-[10px] md:text-xs uppercase tracking-widest font-semibold hidden sm:block">Tempo</div>
                     <div id="timerDisplay" class="text-xl md:text-3xl font-black text-eyYellow">60s</div>
@@ -175,12 +201,12 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-2">
-                <div class="bg-neutral-800 border border-neutral-700 px-2.5 py-1 rounded-xl text-center">
+            <div class="flex items-center gap-3 mr-2">
+                <div class="bg-neutral-800 border border-neutral-700 px-3.5 py-1.5 rounded-xl text-center min-w-[100px] md:min-w-[125px]">
                     <div class="text-[9px] md:text-[11px] text-neutral-400 uppercase tracking-widest font-bold">Acertos Seguidos</div>
                     <div id="comboDisplay" class="text-sm md:text-xl font-black text-amber-400">🔥 0</div>
                 </div>
-                <div class="bg-neutral-800 border border-neutral-700 px-2.5 py-1 rounded-xl text-center">
+                <div class="bg-neutral-800 border border-neutral-700 px-3.5 py-1.5 rounded-xl text-center min-w-[90px] md:min-w-[110px]">
                     <div class="text-[9px] md:text-[11px] text-neutral-400 uppercase tracking-widest font-bold">Ponto Bônus</div>
                     <div id="bonusDisplay" class="text-sm md:text-xl font-black text-eyGold">💥 +0</div>
                 </div>
@@ -196,7 +222,6 @@
             </div>
         </div>
 
-        <!-- Área Central de Jogo / Canvas de Física -->
         <div id="gameContainer" class="relative flex-1 w-full overflow-hidden">
             <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-[28%] md:w-1/4 bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-2 md:p-6 text-center transition-colors">
                 <div class="text-xl md:text-4xl mb-1 md:mb-3">🛡️</div>
@@ -219,16 +244,17 @@
             <canvas id="physicsCanvas" class="absolute inset-0 z-10"></canvas>
         </div>
 
-        <div class="py-2 md:py-3 bg-neutral-900/50 text-center text-neutral-500 text-[10px] md:text-xs tracking-widest uppercase border-t border-neutral-900 z-20">
+        <footer class="w-full py-2 md:py-3 bg-neutral-900 text-center text-neutral-400 text-[10px] md:text-xs tracking-widest uppercase border-t border-neutral-800 z-20">
             Toque, segure e lance o card corporativo em direção à zona correta!
-        </div>
+        </footer>
     </div>
 
     <!-- ================= TELA 4: REGISTRO DE NOME ================= -->
-    <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black p-4 md:p-6">
-        <div class="max-w-2xl w-full mx-auto text-center z-10 my-auto">
-            <h2 class="text-3xl md:text-5xl font-black mb-2 text-white">Fim de Jogo!</h2>
-            <p class="text-lg md:text-xl text-neutral-300 mb-4">Sua pontuação final:</p>
+    <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full">
+        <div class="w-full"></div>
+        <div class="max-w-2xl w-full mx-auto text-center z-10 my-auto px-4 py-6">
+            <h2 class="title-main text-3xl md:text-5xl font-black mb-2 text-white">Fim de Jogo!</h2>
+            <p class="desc-main text-lg md:text-xl text-neutral-300 mb-4">Sua pontuação final:</p>
             <div id="finalScoreDisplay" class="text-5xl md:text-6xl font-black text-eyYellow mb-4">0 PTS</div>
 
             <div class="mb-4">
@@ -245,16 +271,21 @@
                 Salvar no Ranking & Ver Posição
             </button>
         </div>
+        <footer id="appFooter4" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
+            <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
+            <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
+        </footer>
     </div>
 
     <!-- ================= TELA 5: RANKING & VITÓRIA ================= -->
-    <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-4 md:p-6">
-        <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto py-6">
+    <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-0 h-full w-full">
+        <div class="w-full"></div>
+        <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto px-4 py-6">
             <div id="trophyIcon" class="text-5xl md:text-6xl mb-2 animate-bounce">🏆</div>
-            <h2 id="endGameTitle" class="text-3xl md:text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
-            <p id="endGameSubtitle" class="text-neutral-400 text-base md:text-lg mb-4">Você demonstrou excelente visão estratégica.</p>
+            <h2 id="endGameTitle" class="title-main text-3xl md:text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
+            <p id="endGameSubtitle" class="desc-main text-neutral-400 text-base md:text-lg mb-4">Você demonstrou excelente visão estratégica.</p>
 
-            <div class="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-4 md:p-6 mb-6 max-h-56 md:max-h-72 overflow-y-auto">
+            <div class="card-box bg-neutral-900/80 border border-neutral-800 rounded-2xl p-4 md:p-6 mb-6 max-h-56 md:max-h-72 overflow-y-auto">
                 <h3 class="text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3">Top 10 — Ranking Oficial</h3>
                 <div id="leaderboardList" class="space-y-2 md:space-y-3">
                     <!-- Preenchido via JS -->
@@ -269,14 +300,14 @@
                     Novo Jogador
                 </button>
             </div>
-
-            <div class="mt-6 text-neutral-500 text-[10px] md:text-xs tracking-widest uppercase">
-                Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span>
-            </div>
         </div>
+        <footer id="appFooter5" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
+            <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
+            <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
+        </footer>
     </div>
 
-    <!-- ================= MODAL DE INATIVIDADE (EXCLUSIVO TELA DO JOGO - 7S) ================= -->
+    <!-- ================= MODAL DE INATIVIDADE ================= -->
     <div id="inactivityModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-neutral-900 border-2 border-eyYellow p-6 md:p-8 rounded-3xl text-center max-w-md mx-auto shadow-2xl">
             <div class="text-4xl md:text-5xl mb-3">⚠️</div>
@@ -288,7 +319,7 @@
         </div>
     </div>
 
-    <!-- ================= SCRIPT COMPLETO DO APLICATIVO ================= -->
+    <!-- ================= SCRIPT COMPLETO ================= -->
     <script>
         const masterCardsData = [
             { title: "Adoção de IA Generativa", desc: "Automatização avançada de processos e atendimento ao cliente.", target: "right" },
@@ -380,6 +411,8 @@
         let modalCountdownInterval = null;
         let modalSecondsLeft = 3;
         let audioEnabled = true;
+        let volumeLevel = 1.0;
+        let isDarkMode = true;
 
         let Acerto_seguido_ponto = 0;
         let Ponto_Bonus = 0;
@@ -389,6 +422,83 @@
         let physicsAnimFrame = null;
         let dragOffset = { x: 0, y: 0 };
         let canvasW = 0, canvasH = 0;
+
+        // --- CONTROLE DE TEMA (DARK / LIGHT) ---
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.getElementById('appBody');
+            const screen1 = document.getElementById('screen1');
+            const screen2 = document.getElementById('screen2');
+            const screen4 = document.getElementById('screen4');
+            const screen5 = document.getElementById('screen5');
+            const mainTitle = document.getElementById('mainTitle');
+            const themeBtns = document.querySelectorAll('#themeBtn, .themeBtnRef');
+            const volBtns = document.querySelectorAll('#volBtn, .volBtnRef');
+            const subTexts = document.querySelectorAll('.subtext-header');
+            const descMains = document.querySelectorAll('.desc-main');
+            const titleMains = document.querySelectorAll('.title-main');
+            const cardBoxes = document.querySelectorAll('.card-box');
+            const cardTitlesInner = document.querySelectorAll('.card-title-inner');
+            const cardDescsInner = document.querySelectorAll('.card-desc-inner');
+            const footers = document.querySelectorAll('footer');
+
+            if (isDarkMode) {
+                body.className = "bg-neutral-950 text-white h-full";
+                screen1.className = "screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black cursor-pointer p-0 h-full w-full";
+                screen2.className = "screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full";
+                screen4.className = "screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full";
+                screen5.className = "screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-0 h-full w-full";
+                
+                mainTitle.className = "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-white";
+                
+                themeBtns.forEach(b => { b.innerText = "🌞 Claro"; b.className = "bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition"; });
+                volBtns.forEach(b => { b.className = "bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition"; });
+                subTexts.forEach(el => el.className = "subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline");
+                descMains.forEach(el => el.className = "desc-main text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-10 max-w-2xl mx-auto");
+                titleMains.forEach(el => el.className = "title-main text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight");
+                cardBoxes.forEach(el => el.className = "card-box bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4 text-white");
+                cardTitlesInner.forEach(el => el.className = "font-bold text-base md:text-lg text-white card-title-inner");
+                cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-400 text-xs md:text-sm");
+                footers.forEach(f => f.className = "w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50");
+            } else {
+                body.className = "bg-neutral-100 text-neutral-900 h-full";
+                screen1.className = "screen active bg-gradient-to-br from-neutral-200 via-white to-neutral-100 cursor-pointer p-0 h-full w-full";
+                screen2.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full";
+                screen4.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full";
+                screen5.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full";
+                
+                mainTitle.className = "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-neutral-900";
+                
+                themeBtns.forEach(b => { b.innerText = "🌙 Escuro"; b.className = "bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-300 transition"; });
+                volBtns.forEach(b => { b.className = "bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-300 transition"; });
+                subTexts.forEach(el => el.className = "subtext-header text-neutral-700 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline");
+                descMains.forEach(el => el.className = "desc-main text-base sm:text-xl md:text-2xl text-neutral-800 mb-6 md:mb-10 max-w-2xl mx-auto");
+                titleMains.forEach(el => el.className = "title-main text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-neutral-900 tracking-tight");
+                cardBoxes.forEach(el => el.className = "card-box bg-white border border-neutral-300 p-5 rounded-2xl flex items-center gap-4 text-neutral-900 shadow-md");
+                cardTitlesInner.forEach(el => el.className = "font-bold text-base md:text-lg text-neutral-900 card-title-inner");
+                cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-600 text-xs md:text-sm");
+                footers.forEach(f => f.className = "w-full text-neutral-600 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-200/90 border-t border-neutral-300/80");
+            }
+            playSound('click');
+        }
+
+        // --- CONTROLE DE VOLUME ---
+        function adjustVolume() {
+            if (volumeLevel === 1.0) {
+                volumeLevel = 1.5;
+                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 150%");
+            } else if (volumeLevel === 1.5) {
+                volumeLevel = 2.0;
+                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 200%");
+            } else if (volumeLevel === 2.0) {
+                volumeLevel = 0.5;
+                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 50%");
+            } else {
+                volumeLevel = 1.0;
+                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 100%");
+            }
+            playSound('click');
+        }
 
         const bgCanvas = document.getElementById('bgCanvas');
         const bgCtx = bgCanvas.getContext('2d');
@@ -455,11 +565,13 @@
                 gain.connect(ctx.destination);
                 const now = ctx.currentTime;
 
+                const mobileBoost = 1.4 * volumeLevel;
+
                 if (type === 'click') {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(440, now);
                     osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
-                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.setValueAtTime(0.15 * mobileBoost, now);
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
                     osc.start(now);
                     osc.stop(now + 0.08);
@@ -468,7 +580,7 @@
                     osc.frequency.setValueAtTime(523.25, now);
                     osc.frequency.setValueAtTime(659.25, now + 0.08);
                     osc.frequency.setValueAtTime(783.99, now + 0.16);
-                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.setValueAtTime(0.2 * mobileBoost, now);
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
                     osc.start(now);
                     osc.stop(now + 0.3);
@@ -477,7 +589,7 @@
                     osc.frequency.setValueAtTime(120, now);
                     osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);
                     osc.frequency.linearRampToValueAtTime(80, now + 0.4);
-                    gain.gain.setValueAtTime(0.35, now);
+                    gain.gain.setValueAtTime(0.35 * mobileBoost, now);
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.45);
                     osc.start(now);
                     osc.stop(now + 0.45);
@@ -486,7 +598,7 @@
                     osc.frequency.setValueAtTime(80, now);
                     osc.frequency.exponentialRampToValueAtTime(850, now + 0.25);
                     osc.frequency.linearRampToValueAtTime(50, now + 0.7);
-                    gain.gain.setValueAtTime(0.5, now);
+                    gain.gain.setValueAtTime(0.5 * mobileBoost, now);
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.75);
                     osc.start(now);
                     osc.stop(now + 0.75);
@@ -494,7 +606,7 @@
                     osc.type = 'sawtooth';
                     osc.frequency.setValueAtTime(180, now);
                     osc.frequency.linearRampToValueAtTime(110, now + 0.2);
-                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.setValueAtTime(0.25 * mobileBoost, now);
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
                     osc.start(now);
                     osc.stop(now + 0.2);
@@ -506,7 +618,7 @@
                         o.connect(g);
                         g.connect(ctx.destination);
                         o.frequency.setValueAtTime(freq, now + idx * 0.12);
-                        g.gain.setValueAtTime(0.2, now + idx * 0.12);
+                        g.gain.setValueAtTime(0.2 * mobileBoost, now + idx * 0.12);
                         g.gain.linearRampToValueAtTime(0.01, now + idx * 0.12 + 0.25);
                         o.start(now + idx * 0.12);
                         o.stop(now + idx * 0.12 + 0.25);
@@ -519,7 +631,7 @@
                         o.connect(g);
                         g.connect(ctx.destination);
                         o.frequency.setValueAtTime(freq, now + idx * 0.15);
-                        g.gain.setValueAtTime(0.25, now + idx * 0.15);
+                        g.gain.setValueAtTime(0.25 * mobileBoost, now + idx * 0.15);
                         g.gain.linearRampToValueAtTime(0.01, now + idx * 0.15 + 0.3);
                         o.start(now + idx * 0.15);
                         o.stop(now + idx * 0.15 + 0.3);
@@ -544,7 +656,7 @@
                     const now = ctx.currentTime;
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(bassNotes[step % bassNotes.length], now);
-                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.setValueAtTime(0.07 * volumeLevel, now);
                     gain.gain.linearRampToValueAtTime(0.001, now + 0.2);
                     osc.start(now);
                     osc.stop(now + 0.2);
