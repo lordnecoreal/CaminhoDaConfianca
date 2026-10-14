@@ -90,24 +90,18 @@
     <canvas id="bgCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
 
     <!-- ================= TELA 1: STANDBY ================= -->
-    <div id="screen1" class="screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black cursor-pointer p-0 h-full w-full" onclick="goToScreen(2)">
-        <!-- Topo Header Global -->
-        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4 bg-transparent">
+    <div id="screen1" class="screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full cursor-pointer" onclick="goToScreen(2)">
+        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4 bg-transparent" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
                 <span class="subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
-            <div class="flex items-center gap-2" onclick="event.stopPropagation()">
-                <button onclick="toggleTheme()" id="themeBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">
-                    🌞 Claro
-                </button>
-                <button onclick="adjustVolume()" id="volBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">
-                    🔊 100%
-                </button>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme(event)" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🌞 Claro</button>
+                <button onclick="adjustVolume(event)" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🔊 100%</button>
             </div>
         </header>
 
-        <!-- Conteúdo Central -->
         <div class="text-center z-10 max-w-4xl px-4 my-auto py-6">
             <div class="inline-block p-3 md:p-5 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 mb-4 md:mb-6 floating-orb">
                 <svg class="w-10 h-10 md:w-16 md:h-16 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +119,6 @@
             </div>
         </div>
 
-        <!-- Rodapé Semântico <footer> 100% Completo sem Tarja Isolada -->
         <footer id="appFooter1" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
             <div class="mt-1 text-[11px] md:text-xs text-neutral-400">
@@ -136,19 +129,19 @@
 
     <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
     <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full">
-        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4">
+        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
                 <span class="subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="toggleTheme()" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">Tema</button>
-                <button onclick="adjustVolume()" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">Volume</button>
+                <button onclick="toggleTheme(event)" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🌞 Claro</button>
+                <button onclick="adjustVolume(event)" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🔊 100%</button>
             </div>
         </header>
 
         <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto px-4 py-6">
-            <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-bold mb-4 md:mb-6">
+            <div id="badgeChallenge" class="inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-black mb-4 md:mb-6 uppercase tracking-wider">
                 Desafio Interativo
             </div>
             <h2 class="title-main text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight">Como Jogar</h2>
@@ -189,7 +182,7 @@
 
     <!-- ================= TELA 3: MINI-JOGO ================= -->
     <div id="screen3" class="screen bg-neutral-950 flex flex-col justify-between overflow-hidden h-full w-full">
-        <div class="w-full px-3 md:px-8 py-2 md:py-4 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-2 md:gap-6">
+        <header class="w-full px-3 md:px-8 py-2 md:py-4 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-2 md:gap-6" onclick="event.stopPropagation()">
             <div class="flex items-center gap-3 md:gap-6">
                 <div>
                     <div class="text-neutral-400 text-[10px] md:text-xs uppercase tracking-widest font-semibold hidden sm:block">Tempo</div>
@@ -213,14 +206,12 @@
             </div>
 
             <div class="flex items-center gap-1.5 md:gap-3">
-                <button onclick="toggleAudio()" id="audioBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-2.5 py-1.5 md:px-4 md:py-3 rounded-xl font-bold border border-neutral-700 text-xs md:text-sm">
-                    🔊
-                </button>
-                <button onclick="goToScreen(2)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-2.5 py-1.5 md:px-4 md:py-3 rounded-xl font-bold border border-neutral-700 text-xs md:text-sm">
-                    Reiniciar
-                </button>
+                <button onclick="toggleTheme(event)" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-neutral-700 transition">🌞</button>
+                <button onclick="adjustVolume(event)" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-2.5 py-1.5 rounded-xl text-xs font-bold border border-neutral-700 transition">🔊 100%</button>
+                <button onclick="toggleAudio(event)" id="audioBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-2.5 py-1.5 rounded-xl text-xs font-bold border border-neutral-700">🔊</button>
+                <button onclick="goToScreen(2)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-2.5 py-1.5 rounded-xl font-bold border border-neutral-700 text-xs">Sair</button>
             </div>
-        </div>
+        </header>
 
         <div id="gameContainer" class="relative flex-1 w-full overflow-hidden">
             <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-[28%] md:w-1/4 bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-2 md:p-6 text-center transition-colors">
@@ -244,33 +235,42 @@
             <canvas id="physicsCanvas" class="absolute inset-0 z-10"></canvas>
         </div>
 
-        <footer class="w-full py-2 md:py-3 bg-neutral-900 text-center text-neutral-400 text-[10px] md:text-xs tracking-widest uppercase border-t border-neutral-800 z-20">
+        <footer id="appFooter3" class="w-full py-2 md:py-3 bg-neutral-900 text-center text-neutral-400 text-[10px] md:text-xs tracking-widest uppercase border-t border-neutral-800 z-20">
             Toque, segure e lance o card corporativo em direção à zona correta!
         </footer>
     </div>
 
     <!-- ================= TELA 4: REGISTRO DE NOME ================= -->
     <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full">
-        <div class="w-full"></div>
+        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4" onclick="event.stopPropagation()">
+            <div class="flex items-center gap-4">
+                <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
+                <span class="subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme(event)" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🌞 Claro</button>
+                <button onclick="adjustVolume(event)" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🔊 100%</button>
+            </div>
+        </header>
+
         <div class="max-w-2xl w-full mx-auto text-center z-10 my-auto px-4 py-6">
             <h2 class="title-main text-3xl md:text-5xl font-black mb-2 text-white">Fim de Jogo!</h2>
             <p class="desc-main text-lg md:text-xl text-neutral-300 mb-4">Sua pontuação final:</p>
             <div id="finalScoreDisplay" class="text-5xl md:text-6xl font-black text-eyYellow mb-4">0 PTS</div>
 
             <div class="mb-4">
-                <label class="block text-xs md:text-sm uppercase tracking-widest text-neutral-400 mb-1 font-bold">Digite seu nome ou apelido:</label>
-                <p class="text-xs text-eyCyan mb-2">Você pode usar o teclado abaixo ou o teclado físico do seu dispositivo para digitar!</p>
-                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-4 py-3 md:px-6 md:py-4 text-xl md:text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase">
+                <label id="inputLabel" class="block text-xs md:text-sm uppercase tracking-widest text-neutral-400 mb-1 font-extrabold">Digite seu nome ou apelido:</label>
+                <p id="inputSubLabel" class="text-xs text-eyCyan mb-2 font-bold">Você pode usar o teclado abaixo ou o teclado físico do seu dispositivo para digitar!</p>
+                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-4 py-3 md:px-6 md:py-4 text-xl md:text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase shadow-md">
             </div>
 
-            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-2 md:p-4 rounded-2xl mb-6 shadow-2xl">
-                <!-- Gerado via script -->
-            </div>
+            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-2 md:p-4 rounded-2xl mb-6 shadow-2xl"></div>
 
             <button onclick="saveScoreAndFinish()" class="w-full py-4 md:py-5 bg-eyYellow text-black font-black text-lg md:text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
                 Salvar no Ranking & Ver Posição
             </button>
         </div>
+
         <footer id="appFooter4" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
             <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
@@ -279,17 +279,25 @@
 
     <!-- ================= TELA 5: RANKING & VITÓRIA ================= -->
     <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-0 h-full w-full">
-        <div class="w-full"></div>
+        <header class="w-full flex justify-between items-center z-20 px-4 md:px-8 py-4" onclick="event.stopPropagation()">
+            <div class="flex items-center gap-4">
+                <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
+                <span class="subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme(event)" class="themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🌞 Claro</button>
+                <button onclick="adjustVolume(event)" class="volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition">🔊 100%</button>
+            </div>
+        </header>
+
         <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto px-4 py-6">
             <div id="trophyIcon" class="text-5xl md:text-6xl mb-2 animate-bounce">🏆</div>
             <h2 id="endGameTitle" class="title-main text-3xl md:text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
             <p id="endGameSubtitle" class="desc-main text-neutral-400 text-base md:text-lg mb-4">Você demonstrou excelente visão estratégica.</p>
 
             <div class="card-box bg-neutral-900/80 border border-neutral-800 rounded-2xl p-4 md:p-6 mb-6 max-h-56 md:max-h-72 overflow-y-auto">
-                <h3 class="text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3">Top 10 — Ranking Oficial</h3>
-                <div id="leaderboardList" class="space-y-2 md:space-y-3">
-                    <!-- Preenchido via JS -->
-                </div>
+                <h3 id="rankingHeaderTitle" class="text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3">Top 10 — Ranking Oficial</h3>
+                <div id="leaderboardList" class="space-y-2 md:space-y-3"></div>
             </div>
 
             <div class="flex gap-4">
@@ -301,6 +309,7 @@
                 </button>
             </div>
         </div>
+
         <footer id="appFooter5" class="w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span></div>
             <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
@@ -423,17 +432,21 @@
         let dragOffset = { x: 0, y: 0 };
         let canvasW = 0, canvasH = 0;
 
-        // --- CONTROLE DE TEMA (DARK / LIGHT) ---
-        function toggleTheme() {
+        // --- CONTROLE DE TEMA (DARK / LIGHT) PERFEITAMENTE AJUSTADO ---
+        function toggleTheme(e) {
+            if (e) e.stopPropagation();
             isDarkMode = !isDarkMode;
             const body = document.getElementById('appBody');
-            const screen1 = document.getElementById('screen1');
-            const screen2 = document.getElementById('screen2');
-            const screen4 = document.getElementById('screen4');
-            const screen5 = document.getElementById('screen5');
             const mainTitle = document.getElementById('mainTitle');
-            const themeBtns = document.querySelectorAll('#themeBtn, .themeBtnRef');
-            const volBtns = document.querySelectorAll('#volBtn, .volBtnRef');
+            const finalScoreDisplay = document.getElementById('finalScoreDisplay');
+            const badgeChallenge = document.getElementById('badgeChallenge');
+            const inputLabel = document.getElementById('inputLabel');
+            const inputSubLabel = document.getElementById('inputSubLabel');
+            const playerNameInput = document.getElementById('playerNameInput');
+            const rankingHeaderTitle = document.getElementById('rankingHeaderTitle');
+            
+            const themeBtns = document.querySelectorAll('.themeBtnRef');
+            const volBtns = document.querySelectorAll('.volBtnRef');
             const subTexts = document.querySelectorAll('.subtext-header');
             const descMains = document.querySelectorAll('.desc-main');
             const titleMains = document.querySelectorAll('.title-main');
@@ -444,15 +457,22 @@
 
             if (isDarkMode) {
                 body.className = "bg-neutral-950 text-white h-full";
-                screen1.className = "screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black cursor-pointer p-0 h-full w-full";
-                screen2.className = "screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full";
-                screen4.className = "screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full";
-                screen5.className = "screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-0 h-full w-full";
-                
-                mainTitle.className = "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-white";
-                
-                themeBtns.forEach(b => { b.innerText = "🌞 Claro"; b.className = "bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition"; });
-                volBtns.forEach(b => { b.className = "bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition"; });
+                document.querySelectorAll('.screen').forEach(s => {
+                    s.className = s.className.replace(/bg-gradient-to-br from-neutral-200 via-white to-neutral-100/g, 'bg-gradient-to-br from-neutral-900 to-black');
+                });
+                const s1 = document.getElementById('screen1');
+                if (s1) s1.className = "screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full cursor-pointer";
+
+                if (mainTitle) mainTitle.className = "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-white";
+                if (finalScoreDisplay) finalScoreDisplay.className = "text-5xl md:text-6xl font-black text-eyYellow mb-4";
+                if (badgeChallenge) badgeChallenge.className = "inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-black mb-4 md:mb-6 uppercase tracking-wider";
+                if (inputLabel) inputLabel.className = "block text-xs md:text-sm uppercase tracking-widest text-neutral-400 mb-1 font-extrabold";
+                if (inputSubLabel) inputSubLabel.className = "text-xs text-eyCyan mb-2 font-bold";
+                if (playerNameInput) playerNameInput.className = "w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-4 py-3 md:px-6 md:py-4 text-xl md:text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase shadow-md";
+                if (rankingHeaderTitle) rankingHeaderTitle.className = "text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3";
+
+                themeBtns.forEach(b => { b.innerText = "🌞 Claro"; b.className = "themeBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition"; });
+                volBtns.forEach(b => { b.className = "volBtnRef bg-neutral-800 hover:bg-neutral-700 text-white px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-700 transition"; });
                 subTexts.forEach(el => el.className = "subtext-header text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline");
                 descMains.forEach(el => el.className = "desc-main text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-10 max-w-2xl mx-auto");
                 titleMains.forEach(el => el.className = "title-main text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight");
@@ -462,15 +482,23 @@
                 footers.forEach(f => f.className = "w-full text-neutral-400 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/80 border-t border-neutral-800/50");
             } else {
                 body.className = "bg-neutral-100 text-neutral-900 h-full";
-                screen1.className = "screen active bg-gradient-to-br from-neutral-200 via-white to-neutral-100 cursor-pointer p-0 h-full w-full";
-                screen2.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full";
-                screen4.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full";
-                screen5.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full";
-                
-                mainTitle.className = "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-neutral-900";
-                
-                themeBtns.forEach(b => { b.innerText = "🌙 Escuro"; b.className = "bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-300 transition"; });
-                volBtns.forEach(b => { b.className = "bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-300 transition"; });
+                document.querySelectorAll('.screen').forEach(s => {
+                    s.className = s.className.replace(/bg-gradient-to-br from-neutral-900 to-black/g, 'bg-gradient-to-br from-neutral-200 via-white to-neutral-100');
+                    s.className = s.className.replace(/bg-gradient-to-br from-neutral-950 via-neutral-900 to-black/g, 'bg-gradient-to-br from-neutral-200 via-white to-neutral-100');
+                });
+                const s1 = document.getElementById('screen1');
+                if (s1) s1.className = "screen active bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full cursor-pointer";
+
+                if (mainTitle) mainTitle.className = "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 md:mb-5 text-neutral-900";
+                if (finalScoreDisplay) finalScoreDisplay.className = "text-5xl md:text-6xl font-black text-amber-600 mb-4 drop-shadow";
+                if (badgeChallenge) badgeChallenge.className = "inline-block bg-eyYellow text-black border-2 border-amber-400 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-black mb-4 md:mb-6 uppercase tracking-wider shadow-sm";
+                if (inputLabel) inputLabel.className = "block text-xs md:text-sm uppercase tracking-widest text-neutral-800 mb-1 font-black";
+                if (inputSubLabel) inputSubLabel.className = "text-xs text-blue-800 mb-2 font-extrabold";
+                if (playerNameInput) playerNameInput.className = "w-full bg-white border-2 border-neutral-400 rounded-2xl px-4 py-3 md:px-6 md:py-4 text-xl md:text-2xl text-center text-neutral-900 font-black tracking-wide focus:border-amber-500 outline-none uppercase shadow-md";
+                if (rankingHeaderTitle) rankingHeaderTitle.className = "text-amber-700 font-black uppercase tracking-widest text-xs md:text-sm mb-3";
+
+                themeBtns.forEach(b => { b.innerText = "🌙 Escuro"; b.className = "themeBtnRef bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-300 transition"; });
+                volBtns.forEach(b => { b.className = "volBtnRef bg-neutral-200 hover:bg-neutral-300 text-neutral-900 px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold border border-neutral-300 transition"; });
                 subTexts.forEach(el => el.className = "subtext-header text-neutral-700 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline");
                 descMains.forEach(el => el.className = "desc-main text-base sm:text-xl md:text-2xl text-neutral-800 mb-6 md:mb-10 max-w-2xl mx-auto");
                 titleMains.forEach(el => el.className = "title-main text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-neutral-900 tracking-tight");
@@ -479,23 +507,25 @@
                 cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-600 text-xs md:text-sm");
                 footers.forEach(f => f.className = "w-full text-neutral-600 text-xs md:text-sm tracking-wider uppercase text-center py-4 z-10 bg-neutral-200/90 border-t border-neutral-300/80");
             }
+            if (currentScreen === 5) renderLeaderboard();
             playSound('click');
         }
 
         // --- CONTROLE DE VOLUME ---
-        function adjustVolume() {
+        function adjustVolume(e) {
+            if (e) e.stopPropagation();
             if (volumeLevel === 1.0) {
                 volumeLevel = 1.5;
-                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 150%");
+                document.querySelectorAll('.volBtnRef').forEach(b => b.innerText = "🔊 150%");
             } else if (volumeLevel === 1.5) {
                 volumeLevel = 2.0;
-                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 200%");
+                document.querySelectorAll('.volBtnRef').forEach(b => b.innerText = "🔊 200%");
             } else if (volumeLevel === 2.0) {
                 volumeLevel = 0.5;
-                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 50%");
+                document.querySelectorAll('.volBtnRef').forEach(b => b.innerText = "🔊 50%");
             } else {
                 volumeLevel = 1.0;
-                document.querySelectorAll('#volBtn, .volBtnRef').forEach(b => b.innerText = "🔊 100%");
+                document.querySelectorAll('.volBtnRef').forEach(b => b.innerText = "🔊 100%");
             }
             playSound('click');
         }
@@ -672,7 +702,8 @@
             }
         }
 
-        function toggleAudio() {
+        function toggleAudio(e) {
+            if (e) e.stopPropagation();
             audioEnabled = !audioEnabled;
             const btn = document.getElementById('audioBtn');
             if (audioEnabled) {
@@ -879,8 +910,8 @@
                     ctx.save();
                     ctx.shadowColor = 'rgba(0, 229, 255, 0.4)';
                     ctx.shadowBlur = 20;
-                    ctx.fillStyle = '#18181b';
-                    ctx.strokeStyle = '#71717a';
+                    ctx.fillStyle = isDarkMode ? '#18181b' : '#ffffff';
+                    ctx.strokeStyle = isDarkMode ? '#71717a' : '#cbd5e1';
                     ctx.lineWidth = 3.5;
 
                     const radius = 18;
@@ -894,12 +925,12 @@
                     ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
                     ctx.fill();
 
-                    ctx.fillStyle = '#ffffff';
+                    ctx.fillStyle = isDarkMode ? '#ffffff' : '#0f172a';
                     const titleFontSize = Math.max(18, Math.min(23, canvasW * 0.055));
                     ctx.font = `900 ${titleFontSize}px system-ui, -apple-system, sans-serif`;
                     ctx.fillText(currentCard.title, currentCard.x + 18, currentCard.y + 54, currentCard.w - 36);
 
-                    ctx.fillStyle = '#f4f4f5'; 
+                    ctx.fillStyle = isDarkMode ? '#f4f4f5' : '#334155'; 
                     const descFontSize = Math.max(15, Math.min(18, canvasW * 0.042));
                     ctx.font = `600 ${descFontSize}px system-ui, -apple-system, sans-serif`;
                     wrapText(ctx, currentCard.desc, currentCard.x + 18, currentCard.y + 86, currentCard.w - 36, descFontSize + 7);
@@ -1037,7 +1068,7 @@
                     const btn = document.createElement('button');
                     btn.className = "bg-neutral-800 hover:bg-neutral-700 active:bg-eyYellow active:text-black text-white font-black text-sm md:text-xl px-2 py-2 md:px-4 md:py-3 rounded-xl min-w-[28px] md:min-w-[55px] shadow transition";
                     btn.innerText = key;
-                    btn.onclick = () => handleVirtualKeyPress(key);
+                    btn.onclick = (e) => { e.stopPropagation(); handleVirtualKeyPress(key); };
                     rowDiv.appendChild(btn);
                 });
                 container.appendChild(rowDiv);
@@ -1096,13 +1127,18 @@
             listContainer.innerHTML = '';
 
             if (leaderboard.length === 0) {
-                listContainer.innerHTML = `<div class="text-neutral-500 py-4">Nenhum recorde registrado ainda. Seja o primeiro!</div>`;
+                listContainer.innerHTML = `<div class="${isDarkMode ? 'text-neutral-500' : 'text-neutral-700'} py-4 font-bold">Nenhum recorde registrado ainda. Seja o primeiro!</div>`;
                 return;
             }
 
             leaderboard.forEach((item, index) => {
                 const row = document.createElement('div');
-                row.className = `flex justify-between items-center p-2.5 md:p-3 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-bold' : 'bg-neutral-800/50 text-neutral-300'}`;
+                if (isDarkMode) {
+                    row.className = `flex justify-between items-center p-2.5 md:p-3 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-black' : 'bg-neutral-800/50 text-neutral-300 font-bold'}`;
+                } else {
+                    row.className = `flex justify-between items-center p-2.5 md:p-3 rounded-xl ${index === 0 ? 'bg-eyYellow text-black border-2 border-amber-400 font-black shadow-sm' : 'bg-neutral-200/80 border border-neutral-300 text-neutral-900 font-black'}`;
+                }
+                
                 row.innerHTML = `
                     <div class="flex items-center gap-3">
                         <span class="w-6 text-center font-black">#${index + 1}</span>
