@@ -117,31 +117,31 @@
         </div>
     </div>
 
-    <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
+    <!-- ================= TELA 2: INICIAL / REGRAS COM DETALHES CLAROS ================= -->
     <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-eyDarker p-6">
         <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto">
             <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-bold mb-4 md:mb-6">
                 Desafio Interativo
             </div>
             <h2 class="text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight">Como Jogar</h2>
-            <p class="text-base sm:text-xl md:text-2xl text-neutral-300 mb-8 md:mb-10 leading-relaxed">
+            <p class="text-base sm:text-xl md:text-2xl text-neutral-300 mb-6 md:mb-8 leading-relaxed">
                 Arraste e arremesse rapidamente os cartões corporativos para a zona correta.<br>
                 Classifique em <span class="text-eyPurple font-bold">Obstáculo / Insegurança</span> ou <span class="text-eyCyan font-bold">Transformar / Crescer</span> antes que o tempo acabe!
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10 text-left">
                 <div class="bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
                     <div class="text-3xl md:text-4xl">⏱️</div>
                     <div>
-                        <h4 class="font-bold text-base md:text-lg text-white">60 Segundos</h4>
-                        <p class="text-neutral-400 text-xs md:text-sm">Máxima pontuação no menor tempo possível.</p>
+                        <h4 class="font-bold text-base md:text-lg text-white">60 Segundos & Pontos</h4>
+                        <p class="text-neutral-400 text-xs md:text-sm">Cada acerto vale 100 pontos. Erros não descontam pontos!</p>
                     </div>
                 </div>
                 <div class="bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
-                    <div class="text-3xl md:text-4xl">💥</div>
+                    <div class="text-3xl md:text-4xl">🔥</div>
                     <div>
-                        <h4 class="font-bold text-base md:text-lg text-white">Combo & Kaboom Bonus</h4>
-                        <p class="text-neutral-400 text-xs md:text-sm">5 acertos seguidos dobram os pontos da rodada!</p>
+                        <h4 class="font-bold text-base md:text-lg text-white">Bônus & Combo 15</h4>
+                        <p class="text-neutral-400 text-xs md:text-sm">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b> (15 seguidos), você ganha <b>+500 pontos</b> com super boom!</p>
                     </div>
                 </div>
             </div>
@@ -323,7 +323,7 @@
             { title: "Falta de Visão de Futuro", desc: "Gestão reativa focada apenas no curto prazo e sobrevivência.", target: "left" }
         ];
 
-        // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS SOLICITADAS ---
+        // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS ---
         let currentScreen = 1;
         let score = 0;
         let timeLeft = 60;
@@ -333,9 +333,9 @@
         let modalSecondsLeft = 3;
         let audioEnabled = true;
 
-        // Novas Variáveis Pedidas pelo Usuário
-        let Acerto_seguido_ponto = 0; // Quantidade de acertos seguidos
-        let Ponto_Bonus = 0;          // Acumulado de pontos bônus recebidos
+        let Acerto_seguido_ponto = 0;
+        let Ponto_Bonus = 0;
+        let combo15 = 0;
 
         let currentCard = null;
         let physicsAnimFrame = null;
@@ -428,7 +428,6 @@
                     osc.start(now);
                     osc.stop(now + 0.3);
                 } else if (type === 'kaboom') {
-                    // Som explosivo de Kaboom / Ponto Bonus
                     osc.type = 'sawtooth';
                     osc.frequency.setValueAtTime(120, now);
                     osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);
@@ -437,6 +436,15 @@
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.45);
                     osc.start(now);
                     osc.stop(now + 0.45);
+                } else if (type === 'combo15') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(80, now);
+                    osc.frequency.exponentialRampToValueAtTime(850, now + 0.25);
+                    osc.frequency.linearRampToValueAtTime(50, now + 0.7);
+                    gain.gain.setValueAtTime(0.5, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.75);
+                    osc.start(now);
+                    osc.stop(now + 0.75);
                 } else if (type === 'error') {
                     osc.type = 'sawtooth';
                     osc.frequency.setValueAtTime(180, now);
@@ -586,12 +594,13 @@
             });
         });
 
-        // --- 6. MINI-JOGO & FÍSICA AJUSTADA PARA MOBILE & TOTEM ---
+        // --- 6. MINI-JOGO & FÍSICA ---
         function startGame() {
             score = 0;
             timeLeft = 60;
             Acerto_seguido_ponto = 0;
             Ponto_Bonus = 0;
+            combo15 = 0;
 
             updateHUD();
             goToScreen(3);
@@ -691,7 +700,6 @@
                         currentCard.y += currentCard.vy;
                         currentCard.vx *= 0.95;
 
-                        // Limites do meio para o card não entrar sozinho nas colunas
                         const zoneWidth = canvasW * 0.28;
                         const minX = zoneWidth + 5;
                         const maxX = canvasW - zoneWidth - currentCard.w - 5;
@@ -705,37 +713,37 @@
                         }
                     }
 
-                    // Renderização do Card Ajustado
+                    // Renderização do Card com Fontes Maiores e Altamente Legíveis
                     ctx.save();
-                    ctx.shadowColor = 'rgba(0, 229, 255, 0.25)';
-                    ctx.shadowBlur = 12;
+                    ctx.shadowColor = 'rgba(0, 229, 255, 0.35)';
+                    ctx.shadowBlur = 18;
                     ctx.fillStyle = '#18181b';
-                    ctx.strokeStyle = '#27272a';
-                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = '#52525b';
+                    ctx.lineWidth = 3;
 
-                    const radius = 14;
+                    const radius = 18;
                     ctx.beginPath();
                     ctx.roundRect(currentCard.x, currentCard.y, currentCard.w, currentCard.h, radius);
                     ctx.fill();
                     ctx.stroke();
 
-                    // Destaque EY amarelinho
+                    // Destaque amarelo EY
                     ctx.fillStyle = '#FFE600';
                     ctx.beginPath();
-                    ctx.roundRect(currentCard.x + 12, currentCard.y + 12, 32, 5, 2);
+                    ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
                     ctx.fill();
 
-                    // Título do Card
+                    // Título Maior e Nítido
                     ctx.fillStyle = '#ffffff';
-                    const titleFontSize = Math.max(13, Math.min(16, canvasW * 0.038));
-                    ctx.font = `bold ${titleFontSize}px system-ui`;
-                    ctx.fillText(currentCard.title, currentCard.x + 14, currentCard.y + 42, currentCard.w - 28);
+                    const titleFontSize = Math.max(17, Math.min(22, canvasW * 0.052));
+                    ctx.font = `bold ${titleFontSize}px system-ui, -apple-system, sans-serif`;
+                    ctx.fillText(currentCard.title, currentCard.x + 18, currentCard.y + 52, currentCard.w - 36);
 
-                    // Descrição do Card
-                    ctx.fillStyle = '#a1a1aa';
-                    const descFontSize = Math.max(11, Math.min(13, canvasW * 0.032));
-                    ctx.font = `${descFontSize}px system-ui`;
-                    wrapText(ctx, currentCard.desc, currentCard.x + 14, currentCard.y + 68, currentCard.w - 28, descFontSize + 5);
+                    // Descrição Maior com Máxima Legibilidade
+                    ctx.fillStyle = '#f4f4f5'; 
+                    const descFontSize = Math.max(15, Math.min(18, canvasW * 0.042));
+                    ctx.font = `600 ${descFontSize}px system-ui, -apple-system, sans-serif`;
+                    wrapText(ctx, currentCard.desc, currentCard.x + 18, currentCard.y + 82, currentCard.w - 36, descFontSize + 7);
 
                     ctx.restore();
                 }
@@ -747,11 +755,10 @@
 
         function spawnNewCard() {
             const raw = cardsData[Math.floor(Math.random() * cardsData.length)];
-            const centerZoneWidth = canvasW * 0.44; // 100% - 28% - 28%
+            const centerZoneWidth = canvasW * 0.44;
             
-            // Largura ajustada para NUNCA encostar nos lados no mobile
-            const cardW = Math.min(centerZoneWidth - 16, 260);
-            const cardH = Math.min(canvasH * 0.28, 150);
+            const cardW = Math.min(centerZoneWidth - 12, 300);
+            const cardH = Math.min(canvasH * 0.36, 195);
 
             currentCard = {
                 title: raw.title,
@@ -760,7 +767,7 @@
                 w: cardW,
                 h: cardH,
                 x: (canvasW / 2) - (cardW / 2),
-                y: 15, // Posição no topo da área central
+                y: 15,
                 vx: 0,
                 vy: 1
             };
@@ -813,24 +820,35 @@
 
             if (isCorrect) {
                 Acerto_seguido_ponto++;
+                let earned = 100;
 
-                // Checagem de Ponto Bônus a cada 5 acertos seguidos
-                if (Acerto_seguido_ponto % 5 === 0) {
-                    const bonusEarned = 200; // Pontuação dobrada
-                    score += bonusEarned;
-                    Ponto_Bonus += bonusEarned;
+                // Verificação da mecânica de combo 15 (+500 PTS)
+                if (Acerto_seguido_ponto === 15) {
+                    combo15++;
+                    earned = 500;
+                    score += earned;
+                    Ponto_Bonus += earned;
+
+                    playSound('combo15');
+                    toastBox.innerText = `🔥 COMBO 15! SUPER BOOM! (+500 PTS)`;
+                    toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-eyGold text-black border border-white animate-bounce";
+                } 
+                // Verificação de Ponto Bônus a cada 5 acertos seguidos (+200 PTS)
+                else if (Acerto_seguido_ponto % 5 === 0) {
+                    earned = 200;
+                    score += earned;
+                    Ponto_Bonus += earned;
 
                     playSound('kaboom');
-                    toastBox.innerText = `💥 KABOOM! 5 SEGUIDOS! (+${bonusEarned} PTS)`;
+                    toastBox.innerText = `💥 KABOOM! 5 SEGUIDOS! (+200 PTS)`;
                     toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-amber-950/90 text-amber-300 border border-amber-500/50 animate-bounce";
                 } else {
-                    score += 100;
+                    score += earned;
                     playSound('success');
                     toastBox.innerText = "✓ DECISÃO CERTA! (+100 PTS)";
                     toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-emerald-950/90 text-emerald-400 border border-emerald-500/50";
                 }
             } else {
-                // Errou -> Zera o contador de acertos seguidos
                 Acerto_seguido_ponto = 0;
                 playSound('error');
                 toastBox.innerText = "✗ DECISÃO INCORRETA!";
