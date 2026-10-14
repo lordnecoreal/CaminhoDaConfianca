@@ -23,7 +23,6 @@
         }
     </script>
     <style>
-        /* Regras estritas para Totem Touchscreen */
         * {
             box-sizing: border-box;
             user-select: none;
@@ -49,6 +48,7 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
+            overflow-y: auto;
         }
         .screen.active {
             display: flex;
@@ -78,7 +78,6 @@
         .toast-animate {
             animation: toastSlide 0.9s forwards ease-in-out;
         }
-        /* Esconder scrollbars */
         ::-webkit-scrollbar {
             display: none;
         }
@@ -86,68 +85,68 @@
 </head>
 <body oncontextmenu="return false;">
 
-    <!-- CANVAS DE FUNDO GLOBAL (Partículas & Física Standby) -->
+    <!-- CANVAS DE FUNDO GLOBAL -->
     <canvas id="bgCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
 
     <!-- ================= TELA 1: STANDBY ================= -->
-    <div id="screen1" class="screen active bg-gradient-to-br from-eyDarker via-neutral-900 to-black cursor-pointer" onclick="goToScreen(2)">
-        <div class="absolute top-8 left-12 flex items-center gap-4">
-            <div class="bg-eyYellow text-black font-extrabold px-4 py-2 rounded text-xl tracking-wider">EY</div>
-            <span class="text-neutral-400 text-lg uppercase tracking-widest font-semibold">Shape the future with confidence</span>
+    <div id="screen1" class="screen active bg-gradient-to-br from-eyDarker via-neutral-900 to-black cursor-pointer p-6" onclick="goToScreen(2)">
+        <div class="absolute top-6 left-6 md:top-8 md:left-12 flex items-center gap-4">
+            <div class="bg-eyYellow text-black font-extrabold px-3 py-1.5 md:px-4 md:py-2 rounded text-base md:text-xl tracking-wider">EY</div>
+            <span class="text-neutral-400 text-xs md:text-lg uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
         </div>
 
-        <div class="text-center z-10 max-w-4xl px-6">
-            <div class="inline-block p-6 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 mb-8 floating-orb">
-                <svg class="w-20 h-20 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="text-center z-10 max-w-4xl px-4 my-auto">
+            <div class="inline-block p-4 md:p-6 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 mb-6 md:mb-8 floating-orb">
+                <svg class="w-12 h-12 md:w-20 md:h-20 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
             </div>
-            <h1 class="text-6xl md:text-8xl font-black tracking-tight mb-6 bg-gradient-to-r from-white via-neutral-200 to-eyYellow bg-clip-text text-transparent">
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight mb-4 md:mb-6 bg-gradient-to-r from-white via-neutral-200 to-eyYellow bg-clip-text text-transparent">
                 CAMINHO DA CONFIANÇA
             </h1>
-            <p class="text-2xl text-neutral-300 mb-12 max-w-2xl mx-auto">
+            <p class="text-lg md:text-2xl text-neutral-300 mb-8 md:mb-12 max-w-2xl mx-auto">
                 Desafie sua agilidade estratégica em um ambiente corporativo de alta performance.
             </p>
-            <div class="inline-block px-10 py-5 bg-eyYellow text-black font-extrabold text-2xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider">
+            <div class="inline-block px-8 py-4 md:px-10 md:py-5 bg-eyYellow text-black font-extrabold text-lg md:text-2xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider">
                 Toque na tela para participar
             </div>
         </div>
 
-        <div class="absolute bottom-8 text-neutral-500 text-sm tracking-wider uppercase">
+        <div class="absolute bottom-6 text-neutral-500 text-xs md:text-sm tracking-wider uppercase">
             Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span>
         </div>
     </div>
 
     <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
-    <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-eyDarker">
-        <div class="max-w-3xl w-full mx-auto px-6 text-center z-10">
-            <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-6 py-2 rounded-full text-lg font-bold mb-6">
+    <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-eyDarker p-6">
+        <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto">
+            <div class="inline-block bg-eyYellow/10 text-eyYellow border border-eyYellow/30 px-5 py-1.5 md:px-6 md:py-2 rounded-full text-base md:text-lg font-bold mb-4 md:mb-6">
                 Desafio Interativo
             </div>
-            <h2 class="text-5xl md:text-6xl font-black mb-6 text-white tracking-tight">Como Jogar</h2>
-            <p class="text-2xl text-neutral-300 mb-10 leading-relaxed">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-black mb-4 md:mb-6 text-white tracking-tight">Como Jogar</h2>
+            <p class="text-base sm:text-xl md:text-2xl text-neutral-300 mb-8 md:mb-10 leading-relaxed">
                 Arraste e arremesse rapidamente os cartões corporativos para a zona correta.<br>
                 Classifique em <span class="text-eyPurple font-bold">Obstáculo / Insegurança</span> ou <span class="text-eyCyan font-bold">Transformar / Crescer</span> antes que o tempo acabe!
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 text-left">
-                <div class="bg-neutral-800/80 border border-neutral-700 p-6 rounded-2xl flex items-center gap-4">
-                    <div class="text-4xl">⏱️</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12 text-left">
+                <div class="bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
+                    <div class="text-3xl md:text-4xl">⏱️</div>
                     <div>
-                        <h4 class="font-bold text-lg text-white">60 Segundos</h4>
-                        <p class="text-neutral-400 text-sm">Máxima pontuação no menor tempo possível.</p>
+                        <h4 class="font-bold text-base md:text-lg text-white">60 Segundos</h4>
+                        <p class="text-neutral-400 text-xs md:text-sm">Máxima pontuação no menor tempo possível.</p>
                     </div>
                 </div>
-                <div class="bg-neutral-800/80 border border-neutral-700 p-6 rounded-2xl flex items-center gap-4">
-                    <div class="text-4xl">🎯</div>
+                <div class="bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4">
+                    <div class="text-3xl md:text-4xl">💥</div>
                     <div>
-                        <h4 class="font-bold text-lg text-white">Física & Precisão</h4>
-                        <p class="text-neutral-400 text-sm">Erros não tiram pontos. Foco em acertar!</p>
+                        <h4 class="font-bold text-base md:text-lg text-white">Combo & Kaboom Bonus</h4>
+                        <p class="text-neutral-400 text-xs md:text-sm">5 acertos seguidos dobram os pontos da rodada!</p>
                     </div>
                 </div>
             </div>
 
-            <button onclick="startGame()" class="w-full md:w-auto px-16 py-6 bg-eyYellow text-black font-black text-2xl rounded-2xl shadow-2xl hover:scale-105 transition active:scale-95 uppercase tracking-wider">
+            <button onclick="startGame()" class="w-full md:w-auto px-12 md:px-16 py-5 md:py-6 bg-eyYellow text-black font-black text-xl md:text-2xl rounded-2xl shadow-2xl hover:scale-105 transition active:scale-95 uppercase tracking-wider">
                 Iniciar Desafio
             </button>
         </div>
@@ -156,20 +155,35 @@
     <!-- ================= TELA 3: MINI-JOGO (GOOGLE GRAVITY) ================= -->
     <div id="screen3" class="screen bg-neutral-950 flex flex-col justify-between overflow-hidden">
         <!-- HUD Superior -->
-        <div class="w-full px-8 py-4 bg-neutral-900/90 border-b border-neutral-800 flex justify-between items-center z-20">
-            <div class="flex items-center gap-6">
-                <div class="text-neutral-400 text-sm uppercase tracking-widest font-semibold">Tempo Restante</div>
-                <div id="timerDisplay" class="text-4xl font-black text-eyYellow">60s</div>
+        <div class="w-full px-3 md:px-8 py-2 md:py-4 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-1 md:gap-4">
+            <div class="flex items-center gap-2 md:gap-6">
+                <div>
+                    <div class="text-neutral-400 text-[10px] md:text-xs uppercase tracking-widest font-semibold hidden sm:block">Tempo</div>
+                    <div id="timerDisplay" class="text-xl md:text-3xl font-black text-eyYellow">60s</div>
+                </div>
+                <div>
+                    <div class="text-neutral-400 text-[10px] md:text-xs uppercase tracking-widest font-semibold hidden sm:block">Pontos</div>
+                    <div id="scoreDisplay" class="text-xl md:text-3xl font-black text-eyCyan">0</div>
+                </div>
             </div>
-            <div class="flex items-center gap-6">
-                <div class="text-neutral-400 text-sm uppercase tracking-widest font-semibold">Pontuação</div>
-                <div id="scoreDisplay" class="text-4xl font-black text-eyCyan">0</div>
+
+            <!-- Indicadores de Combo e Ponto Bonus -->
+            <div class="flex items-center gap-2">
+                <div class="bg-neutral-800 border border-neutral-700 px-2.5 py-1 rounded-xl text-center">
+                    <div class="text-[9px] md:text-[11px] text-neutral-400 uppercase tracking-widest font-bold">Acertos Seguidos</div>
+                    <div id="comboDisplay" class="text-sm md:text-xl font-black text-amber-400">🔥 0</div>
+                </div>
+                <div class="bg-neutral-800 border border-neutral-700 px-2.5 py-1 rounded-xl text-center">
+                    <div class="text-[9px] md:text-[11px] text-neutral-400 uppercase tracking-widest font-bold">Ponto Bônus</div>
+                    <div id="bonusDisplay" class="text-sm md:text-xl font-black text-eyGold">💥 +0</div>
+                </div>
             </div>
-            <div class="flex items-center gap-3">
-                <button onclick="toggleAudio()" id="audioBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-3 rounded-xl font-bold flex items-center gap-2 border border-neutral-700">
-                    🔊 Som
+
+            <div class="flex items-center gap-1.5 md:gap-3">
+                <button onclick="toggleAudio()" id="audioBtn" class="bg-neutral-800 hover:bg-neutral-700 text-white px-2.5 py-1.5 md:px-4 md:py-3 rounded-xl font-bold border border-neutral-700 text-xs md:text-sm">
+                    🔊
                 </button>
-                <button onclick="goToScreen(2)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-4 py-3 rounded-xl font-bold border border-neutral-700">
+                <button onclick="goToScreen(2)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-2.5 py-1.5 md:px-4 md:py-3 rounded-xl font-bold border border-neutral-700 text-xs md:text-sm">
                     Reiniciar
                 </button>
             </div>
@@ -178,95 +192,96 @@
         <!-- Área Central de Jogo / Canvas de Física -->
         <div id="gameContainer" class="relative flex-1 w-full overflow-hidden">
             <!-- Zonas Laterais de Drop -->
-            <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-1/4 bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-6 text-center transition-colors">
-                <div class="text-4xl mb-3">🛡️</div>
-                <div class="text-eyPurple font-black text-xl md:text-2xl uppercase tracking-wider">Obstáculo / Insegurança</div>
-                <div class="text-neutral-400 text-xs mt-2">Arremesse aqui</div>
+            <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-[28%] md:w-1/4 bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-2 md:p-6 text-center transition-colors">
+                <div class="text-xl md:text-4xl mb-1 md:mb-3">🛡️</div>
+                <div class="text-eyPurple font-black text-xs md:text-2xl uppercase tracking-wider">Obstáculo / Insegurança</div>
+                <div class="text-neutral-400 text-[9px] md:text-xs mt-1 md:mt-2">Arremesse aqui</div>
             </div>
 
-            <div id="zoneRight" class="absolute right-0 top-0 bottom-0 w-1/4 bg-cyan-950/20 border-l-2 border-dashed border-eyCyan/40 flex flex-col items-center justify-center p-6 text-center transition-colors">
-                <div class="text-4xl mb-3">🚀</div>
-                <div class="text-eyCyan font-black text-xl md:text-2xl uppercase tracking-wider">Transformar / Crescer</div>
-                <div class="text-neutral-400 text-xs mt-2">Arremesse aqui</div>
+            <div id="zoneRight" class="absolute right-0 top-0 bottom-0 w-[28%] md:w-1/4 bg-cyan-950/20 border-l-2 border-dashed border-eyCyan/40 flex flex-col items-center justify-center p-2 md:p-6 text-center transition-colors">
+                <div class="text-xl md:text-4xl mb-1 md:mb-3">🚀</div>
+                <div class="text-eyCyan font-black text-xs md:text-2xl uppercase tracking-wider">Transformar / Crescer</div>
+                <div class="text-neutral-400 text-[9px] md:text-xs mt-1 md:mt-2">Arremesse aqui</div>
             </div>
 
-            <!-- Toast de Feedback Discreto (Topo centralizado) -->
-            <div id="feedbackToast" class="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-all">
-                <div id="toastBox" class="px-6 py-2 rounded-xl text-sm font-black tracking-wider shadow-lg border">
+            <!-- Toast de Feedback Discreto -->
+            <div id="feedbackToast" class="absolute top-3 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-all">
+                <div id="toastBox" class="px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg border">
                     DECISÃO CERTA!
                 </div>
             </div>
 
-            <!-- Canvas onde o card físico interativo flui -->
+            <!-- Canvas de Física -->
             <canvas id="physicsCanvas" class="absolute inset-0 z-10"></canvas>
         </div>
 
         <!-- Rodapé do Mini-Jogo -->
-        <div class="py-3 bg-neutral-900/50 text-center text-neutral-500 text-xs tracking-widest uppercase border-t border-neutral-900 z-20">
+        <div class="py-2 md:py-3 bg-neutral-900/50 text-center text-neutral-500 text-[10px] md:text-xs tracking-widest uppercase border-t border-neutral-900 z-20">
             Toque, segure e lance o card corporativo em direção à zona correta!
         </div>
     </div>
 
     <!-- ================= TELA 4: REGISTRO DE NOME ================= -->
-    <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black">
-        <div class="max-w-2xl w-full mx-auto px-6 text-center z-10">
-            <h2 class="text-4xl md:text-5xl font-black mb-3 text-white">Fim de Jogo!</h2>
-            <p class="text-xl text-neutral-300 mb-6">Sua pontuação final:</p>
-            <div id="finalScoreDisplay" class="text-6xl font-black text-eyYellow mb-8">0 PTS</div>
+    <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black p-4 md:p-6">
+        <div class="max-w-2xl w-full mx-auto text-center z-10 my-auto">
+            <h2 class="text-3xl md:text-5xl font-black mb-2 text-white">Fim de Jogo!</h2>
+            <p class="text-lg md:text-xl text-neutral-300 mb-4">Sua pontuação final:</p>
+            <div id="finalScoreDisplay" class="text-5xl md:text-6xl font-black text-eyYellow mb-4">0 PTS</div>
 
-            <div class="mb-8">
-                <label class="block text-sm uppercase tracking-widest text-neutral-400 mb-3 font-bold">Digite seu nome ou apelido:</label>
-                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-6 py-4 text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase">
+            <div class="mb-4">
+                <label class="block text-xs md:text-sm uppercase tracking-widest text-neutral-400 mb-1 font-bold">Digite seu nome ou apelido:</label>
+                <p class="text-xs text-eyCyan mb-2">Você pode usar o teclado abaixo ou o teclado físico do seu dispositivo para digitar!</p>
+                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-4 py-3 md:px-6 md:py-4 text-xl md:text-2xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase">
             </div>
 
             <!-- Teclado Virtual QWERTY Tátil -->
-            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-4 rounded-2xl mb-8 shadow-2xl">
-                <!-- Linhas geradas via script -->
+            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-2 md:p-4 rounded-2xl mb-6 shadow-2xl">
+                <!-- Gerado via script -->
             </div>
 
-            <button onclick="saveScoreAndFinish()" class="w-full py-5 bg-eyYellow text-black font-black text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+            <button onclick="saveScoreAndFinish()" class="w-full py-4 md:py-5 bg-eyYellow text-black font-black text-lg md:text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
                 Salvar no Ranking & Ver Posição
             </button>
         </div>
     </div>
 
     <!-- ================= TELA 5: RANKING & VITÓRIA ================= -->
-    <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black">
-        <div class="max-w-3xl w-full mx-auto px-6 text-center z-10 py-10">
-            <div id="trophyIcon" class="text-6xl mb-3 animate-bounce">🏆</div>
-            <h2 id="endGameTitle" class="text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
-            <p id="endGameSubtitle" class="text-neutral-400 text-lg mb-6">Você demonstrou excelente visão estratégica.</p>
+    <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-4 md:p-6">
+        <div class="max-w-3xl w-full mx-auto text-center z-10 my-auto py-6">
+            <div id="trophyIcon" class="text-5xl md:text-6xl mb-2 animate-bounce">🏆</div>
+            <h2 id="endGameTitle" class="text-3xl md:text-4xl font-black mb-2 text-white">Parabéns pelo Desempenho!</h2>
+            <p id="endGameSubtitle" class="text-neutral-400 text-base md:text-lg mb-4">Você demonstrou excelente visão estratégica.</p>
 
             <!-- Tabela Top 10 -->
-            <div class="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-6 mb-8 max-h-72 overflow-y-auto">
-                <h3 class="text-eyGold font-black uppercase tracking-widest text-sm mb-4">Top 10 — Ranking Oficial</h3>
-                <div id="leaderboardList" class="space-y-3">
+            <div class="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-4 md:p-6 mb-6 max-h-56 md:max-h-72 overflow-y-auto">
+                <h3 class="text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3">Top 10 — Ranking Oficial</h3>
+                <div id="leaderboardList" class="space-y-2 md:space-y-3">
                     <!-- Preenchido via JS -->
                 </div>
             </div>
 
             <div class="flex gap-4">
-                <button onclick="goToScreen(1)" class="flex-1 py-5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xl rounded-2xl border border-neutral-700 uppercase tracking-wider">
+                <button onclick="goToScreen(1)" class="flex-1 py-4 md:py-5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-base md:text-xl rounded-2xl border border-neutral-700 uppercase tracking-wider">
                     Tela Inicial
                 </button>
-                <button onclick="startGame()" class="flex-1 py-5 bg-eyYellow text-black font-black text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+                <button onclick="startGame()" class="flex-1 py-4 md:py-5 bg-eyYellow text-black font-black text-base md:text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
                     Novo Jogador
                 </button>
             </div>
 
-            <div class="mt-8 text-neutral-500 text-xs tracking-widest uppercase">
+            <div class="mt-6 text-neutral-500 text-[10px] md:text-xs tracking-widest uppercase">
                 Momento Especial proporcionado por: <span class="text-eyGold font-bold">EY - Brasil</span>
             </div>
         </div>
     </div>
 
-    <!-- ================= MODAL DE INATIVIDADE (7 SEGUNDOS) ================= -->
-    <div id="inactivityModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center">
-        <div class="bg-neutral-900 border-2 border-eyYellow p-8 rounded-3xl text-center max-w-md mx-4 shadow-2xl">
-            <div class="text-5xl mb-4">⚠️</div>
-            <h3 class="text-2xl font-black text-white mb-2">Você ainda está aí?</h3>
-            <p class="text-neutral-300 mb-6">O totem retornará ao modo de descanso em <span id="countdownModal" class="text-eyYellow font-black text-3xl">3</span> segundos.</p>
-            <button onclick="resetInactivityTimer()" class="w-full py-4 bg-eyYellow text-black font-black text-lg rounded-xl uppercase tracking-wider">
+    <!-- ================= MODAL DE INATIVIDADE (EXCLUSIVO TELA DO JOGO - 7S) ================= -->
+    <div id="inactivityModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-neutral-900 border-2 border-eyYellow p-6 md:p-8 rounded-3xl text-center max-w-md mx-auto shadow-2xl">
+            <div class="text-4xl md:text-5xl mb-3">⚠️</div>
+            <h3 class="text-xl md:text-2xl font-black text-white mb-2">Você ainda está aí?</h3>
+            <p class="text-sm md:text-base text-neutral-300 mb-6">O totem retornará ao modo de descanso em <span id="countdownModal" class="text-eyYellow font-black text-2xl md:text-3xl">3</span> segundos.</p>
+            <button onclick="resetInactivityTimer()" class="w-full py-3 md:py-4 bg-eyYellow text-black font-black text-base md:text-lg rounded-xl uppercase tracking-wider">
                 Continuar Jogando
             </button>
         </div>
@@ -274,7 +289,7 @@
 
     <!-- ================= SCRIPT COMPLETO DO APLICATIVO ================= -->
     <script>
-        // --- 1. BANCO DE DADOS DE CARTÕES CORPORATIVOS ---
+        // --- 1. CARTÕES CORPORATIVOS ---
         const cardsData = [
             { title: "Adoção de IA Generativa", desc: "Automatização avançada de processos e atendimento ao cliente.", target: "right" },
             { title: "Vazamento de Dados", desc: "Falha crítica de segurança em servidores corporativos em nuvem.", target: "left" },
@@ -295,10 +310,20 @@
             { title: "Parcerias Estratégicas Globais", desc: "Expansão de mercado com segurança e conformidade jurídica.", target: "right" },
             { title: "Infraestrutura Local Vulnerável", desc: "Servidores físicos expostos a falhas elétricas e invasões.", target: "left" },
             { title: "Transformação Digital Ágil", desc: "Modernização completa da jornada do cliente com tecnologia.", target: "right" },
-            { title: "Ausência de Plano de Continuidade", desc: "Empresa sem protocolos de contingência para crises graves.", target: "left" }
+            { title: "Ausência de Plano de Continuidade", desc: "Empresa sem protocolos de contingência para crises graves.", target: "left" },
+            { title: "Criptografia de Ponta a Ponta", desc: "Proteção intransigível de dados sensíveis em trânsito e repouso.", target: "right" },
+            { title: "Silos de Informação Internos", desc: "Departamentos desconectados que impedem a visão unificada.", target: "left" },
+            { title: "Cultura de Inovação Contínua", desc: "Estímulo à experimentação e melhoria ágil de produtos.", target: "right" },
+            { title: "Falta de Conformidade Regulatória", desc: "Exposição a multas pesadas por ignorar leis de mercado.", target: "left" },
+            { title: "Gestão Ágil de Riscos", desc: "Antecipação e mitigação eficiente de cenários de incerteza.", target: "right" },
+            { title: "Falta de Treinamento Técnico", desc: "Equipes defasadas diante das novas tecnologias do setor.", target: "left" },
+            { title: "Experiência Omnichannel Integrada", desc: "Jornada do cliente fluida e conectada em todos os pontos de contato.", target: "right" },
+            { title: "Monopólio de Fornecedor Único", desc: "Alta vulnerabilidade e dependência comercial crítica.", target: "left" },
+            { title: "Auditoria Automatizada em Tempo Real", desc: "Visibilidade financeira e operacional transparente e segura.", target: "right" },
+            { title: "Falta de Visão de Futuro", desc: "Gestão reativa focada apenas no curto prazo e sobrevivência.", target: "left" }
         ];
 
-        // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS GLOBAIS ---
+        // --- 2. ESTADOS DO APLICATIVO & VARIÁVEIS SOLICITADAS ---
         let currentScreen = 1;
         let score = 0;
         let timeLeft = 60;
@@ -308,14 +333,17 @@
         let modalSecondsLeft = 3;
         let audioEnabled = true;
 
-        // Física e Estado do Card Atual no Jogo
+        // Novas Variáveis Pedidas pelo Usuário
+        let Acerto_seguido_ponto = 0; // Quantidade de acertos seguidos
+        let Ponto_Bonus = 0;          // Acumulado de pontos bônus recebidos
+
         let currentCard = null;
         let physicsAnimFrame = null;
         let isDragging = false;
         let dragOffset = { x: 0, y: 0 };
         let canvasW = 0, canvasH = 0;
 
-        // Fundo em Canvas (Partículas Standby)
+        // Fundo em Canvas (Partículas)
         const bgCanvas = document.getElementById('bgCanvas');
         const bgCtx = bgCanvas.getContext('2d');
         let particles = [];
@@ -358,7 +386,7 @@
         drawBg();
         window.addEventListener('resize', initBgCanvas);
 
-        // --- 3. MOTOR DE ÁUDIO SINTETIZADO (WEB AUDIO API - 100% OFFLINE) ---
+        // --- 3. MOTOR DE ÁUDIO SINTETIZADO ---
         let audioCtx = null;
         let bgmInterval = null;
 
@@ -392,13 +420,23 @@
                     osc.stop(now + 0.08);
                 } else if (type === 'success') {
                     osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(523.25, now); // C5
-                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
-                    osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.08);
+                    osc.frequency.setValueAtTime(783.99, now + 0.16);
                     gain.gain.setValueAtTime(0.2, now);
                     gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
                     osc.start(now);
                     osc.stop(now + 0.3);
+                } else if (type === 'kaboom') {
+                    // Som explosivo de Kaboom / Ponto Bonus
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(120, now);
+                    osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);
+                    osc.frequency.linearRampToValueAtTime(80, now + 0.4);
+                    gain.gain.setValueAtTime(0.35, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.45);
+                    osc.start(now);
+                    osc.stop(now + 0.45);
                 } else if (type === 'error') {
                     osc.type = 'sawtooth';
                     osc.frequency.setValueAtTime(180, now);
@@ -408,7 +446,6 @@
                     osc.start(now);
                     osc.stop(now + 0.2);
                 } else if (type === 'victory') {
-                    // Fanfarra de vitória
                     const notes = [523.25, 659.25, 783.99, 1046.50];
                     notes.forEach((freq, idx) => {
                         const o = ctx.createOscillator();
@@ -422,7 +459,6 @@
                         o.stop(now + idx * 0.12 + 0.25);
                     });
                 } else if (type === 'highscore') {
-                    // Som especial de recorde
                     const notes = [440, 554.37, 659.25, 880];
                     notes.forEach((freq, idx) => {
                         const o = ctx.createOscillator();
@@ -436,12 +472,9 @@
                         o.stop(now + idx * 0.15 + 0.3);
                     });
                 }
-            } catch (e) {
-                console.error("Audio error:", e);
-            }
+            } catch (e) {}
         }
 
-        // BGM Contínua durante a partida
         function startBgm() {
             stopBgm();
             if (!audioEnabled) return;
@@ -478,38 +511,34 @@
             audioEnabled = !audioEnabled;
             const btn = document.getElementById('audioBtn');
             if (audioEnabled) {
-                btn.innerHTML = "🔊 Som";
+                btn.innerHTML = "🔊";
                 playSound('click');
                 if (currentScreen === 3) startBgm();
             } else {
-                btn.innerHTML = "🔇 Mudo";
+                btn.innerHTML = "🔇";
                 stopBgm();
             }
         }
 
-        // --- 4. MÁQUINA DE ESTADOS & GERENCIAMENTO DE TELAS ---
+        // --- 4. MÁQUINA DE ESTADOS & TELAS ---
         function goToScreen(screenNum) {
             playSound('click');
             currentScreen = screenNum;
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(`screen${screenNum}`).classList.add('active');
 
-            // Limpezas de timers anteriores
             if (gameInterval) clearInterval(gameInterval);
             if (physicsAnimFrame) cancelAnimationFrame(physicsAnimFrame);
             stopBgm();
-
-            if (screenNum === 1) {
-                hideInactivityModal();
-            } else {
-                resetInactivityTimer();
-            }
+            hideInactivityModal();
+            if (inactivityTimer) clearTimeout(inactivityTimer);
 
             if (screenNum === 3) {
                 initGame();
+                resetInactivityTimer();
             }
             if (screenNum === 4) {
-                document.getElementById('finalScoreDisplay5') || (document.getElementById('finalScoreDisplay').innerText = `${score} PTS`);
+                document.getElementById('finalScoreDisplay').innerText = `${score} PTS`;
                 document.getElementById('playerNameInput').value = '';
             }
             if (screenNum === 5) {
@@ -517,20 +546,20 @@
             }
         }
 
-        // --- 5. TIMER GLOBAL DE INATIVIDADE (7 SEGUNDOS) ---
+        // --- 5. TIMER DE INATIVIDADE DA TELA DO JOGO (7 SEGUNDOS) ---
         function resetInactivityTimer() {
+            if (currentScreen !== 3) return;
             hideInactivityModal();
             if (inactivityTimer) clearTimeout(inactivityTimer);
             if (modalCountdownInterval) clearInterval(modalCountdownInterval);
 
-            if (currentScreen > 1) {
-                inactivityTimer = setTimeout(() => {
-                    showInactivityModal();
-                }, 7000); // 7 segundos de inatividade
-            }
+            inactivityTimer = setTimeout(() => {
+                showInactivityModal();
+            }, 7000);
         }
 
         function showInactivityModal() {
+            if (currentScreen !== 3) return;
             modalSecondsLeft = 3;
             document.getElementById('countdownModal').innerText = modalSecondsLeft;
             document.getElementById('inactivityModal').classList.remove('hidden');
@@ -551,21 +580,21 @@
             if (modalCountdownInterval) clearInterval(modalCountdownInterval);
         }
 
-        // Ouvintes globais de toque/clique para inatividade
         ['pointerdown', 'touchstart', 'keydown'].forEach(evt => {
             window.addEventListener(evt, () => {
-                if (currentScreen > 1) resetInactivityTimer();
+                if (currentScreen === 3) resetInactivityTimer();
             });
         });
 
-        // --- 6. LÓGICA DO MINI-JOGO & FÍSICA GOOGLE GRAVITY (1 CARD POR VEZ) ---
+        // --- 6. MINI-JOGO & FÍSICA AJUSTADA PARA MOBILE & TOTEM ---
         function startGame() {
             score = 0;
             timeLeft = 60;
-            document.getElementById('scoreDisplay').innerText = score;
-            document.getElementById('timerDisplay').innerText = timeLeft + 's';
-            goToScreen(3);
+            Acerto_seguido_ponto = 0;
+            Ponto_Bonus = 0;
 
+            updateHUD();
+            goToScreen(3);
             startBgm();
 
             gameInterval = setInterval(() => {
@@ -583,6 +612,12 @@
             }, 1000);
         }
 
+        function updateHUD() {
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('comboDisplay').innerText = `🔥 ${Acerto_seguido_ponto}`;
+            document.getElementById('bonusDisplay').innerText = `💥 +${Ponto_Bonus}`;
+        }
+
         function initGame() {
             const container = document.getElementById('gameContainer');
             const canvas = document.getElementById('physicsCanvas');
@@ -595,7 +630,6 @@
 
             spawnNewCard();
 
-            // Configuração de Física e Drag/Drop
             let dragging = false;
 
             const getTouchPos = (e) => {
@@ -624,14 +658,12 @@
                 let targetX = pos.x - dragOffset.x;
                 let targetY = pos.y - dragOffset.y;
 
-                // Cálculo de velocidade de lançamento (momentum)
                 currentCard.vx = (targetX - currentCard.x) * 0.3;
                 currentCard.vy = (targetY - currentCard.y) * 0.3;
 
                 currentCard.x = targetX;
                 currentCard.y = targetY;
 
-                // Highlight nas zonas laterais
                 highlightZones(currentCard.x + currentCard.w/2);
             };
 
@@ -640,9 +672,8 @@
                 dragging = false;
                 clearZoneHighlights();
 
-                // Verificar se foi jogado nas zonas laterais
                 const centerX = currentCard.x + currentCard.w / 2;
-                const zoneWidth = canvasW * 0.25;
+                const zoneWidth = canvasW * 0.28;
 
                 if (centerX < zoneWidth || centerX > canvasW - zoneWidth) {
                     const chosenSide = centerX < zoneWidth ? 'left' : 'right';
@@ -650,56 +681,61 @@
                 }
             };
 
-            // Loop de Física a 60 FPS
             function physicsLoop() {
                 ctx.clearRect(0, 0, canvasW, canvasH);
 
                 if (currentCard) {
                     if (!dragging) {
-                        // Aplicar gravidade e inércia suave
-                        currentCard.vy += 0.2; // gravidade leve
+                        currentCard.vy += 0.2;
                         currentCard.x += currentCard.vx;
                         currentCard.y += currentCard.vy;
-                        currentCard.vx *= 0.95; // atrito do ar
+                        currentCard.vx *= 0.95;
 
-                        // Limites de tela / piso
-                        if (currentCard.x < 10) { currentCard.x = 10; currentCard.vx *= -0.5; }
-                        if (currentCard.x + currentCard.w > canvasW - 10) { currentCard.x = canvasW - 10 - currentCard.w; currentCard.vx *= -0.5; }
-                        if (currentCard.y + currentCard.h > canvasH - 20) {
-                            // Se cair no chão sem ir pra lateral, reposiciona no centro com impulso
-                            currentCard.y = canvasH - 20 - currentCard.h;
-                            currentCard.vy *= -0.4;
+                        // Limites do meio para o card não entrar sozinho nas colunas
+                        const zoneWidth = canvasW * 0.28;
+                        const minX = zoneWidth + 5;
+                        const maxX = canvasW - zoneWidth - currentCard.w - 5;
+
+                        if (currentCard.x < minX) { currentCard.x = minX; currentCard.vx *= -0.5; }
+                        if (currentCard.x > maxX) { currentCard.x = maxX; currentCard.vx *= -0.5; }
+
+                        if (currentCard.y + currentCard.h > canvasH - 15) {
+                            currentCard.y = canvasH - 15 - currentCard.h;
+                            currentCard.vy *= -0.3;
                         }
                     }
 
-                    // Desenhar Cartão Corporativo com Estilo Moderno
+                    // Renderização do Card Ajustado
                     ctx.save();
-                    ctx.shadowColor = 'rgba(0, 229, 255, 0.2)';
-                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = 'rgba(0, 229, 255, 0.25)';
+                    ctx.shadowBlur = 12;
                     ctx.fillStyle = '#18181b';
                     ctx.strokeStyle = '#27272a';
                     ctx.lineWidth = 2;
 
-                    const radius = 16;
+                    const radius = 14;
                     ctx.beginPath();
                     ctx.roundRect(currentCard.x, currentCard.y, currentCard.w, currentCard.h, radius);
                     ctx.fill();
                     ctx.stroke();
 
-                    // Barra de destaque EY no topo do card
+                    // Destaque EY amarelinho
                     ctx.fillStyle = '#FFE600';
                     ctx.beginPath();
-                    ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
+                    ctx.roundRect(currentCard.x + 12, currentCard.y + 12, 32, 5, 2);
                     ctx.fill();
 
-                    // Textos do Card
+                    // Título do Card
                     ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 20px system-ui';
-                    ctx.fillText(currentCard.title, currentCard.x + 20, currentCard.y + 60, currentCard.w - 40);
+                    const titleFontSize = Math.max(13, Math.min(16, canvasW * 0.038));
+                    ctx.font = `bold ${titleFontSize}px system-ui`;
+                    ctx.fillText(currentCard.title, currentCard.x + 14, currentCard.y + 42, currentCard.w - 28);
 
+                    // Descrição do Card
                     ctx.fillStyle = '#a1a1aa';
-                    ctx.font = '15px system-ui';
-                    wrapText(ctx, currentCard.desc, currentCard.x + 20, currentCard.y + 95, currentCard.w - 40, 22);
+                    const descFontSize = Math.max(11, Math.min(13, canvasW * 0.032));
+                    ctx.font = `${descFontSize}px system-ui`;
+                    wrapText(ctx, currentCard.desc, currentCard.x + 14, currentCard.y + 68, currentCard.w - 28, descFontSize + 5);
 
                     ctx.restore();
                 }
@@ -711,16 +747,22 @@
 
         function spawnNewCard() {
             const raw = cardsData[Math.floor(Math.random() * cardsData.length)];
+            const centerZoneWidth = canvasW * 0.44; // 100% - 28% - 28%
+            
+            // Largura ajustada para NUNCA encostar nos lados no mobile
+            const cardW = Math.min(centerZoneWidth - 16, 260);
+            const cardH = Math.min(canvasH * 0.28, 150);
+
             currentCard = {
                 title: raw.title,
                 desc: raw.desc,
                 target: raw.target,
-                w: 340,
-                h: 180,
-                x: canvasW / 2 - 170,
-                y: 40,
-                vx: (Math.random() - 0.5) * 4,
-                vy: 2
+                w: cardW,
+                h: cardH,
+                x: (canvasW / 2) - (cardW / 2),
+                y: 15, // Posição no topo da área central
+                vx: 0,
+                vy: 1
             };
         }
 
@@ -743,7 +785,7 @@
         }
 
         function highlightZones(xPos) {
-            const zoneW = canvasW * 0.25;
+            const zoneW = canvasW * 0.28;
             const zoneLeft = document.getElementById('zoneLeft');
             const zoneRight = document.getElementById('zoneRight');
 
@@ -770,28 +812,41 @@
             const toastBox = document.getElementById('toastBox');
 
             if (isCorrect) {
-                score += 100;
-                playSound('success');
-                toastBox.innerText = "✓ DECISÃO CERTA! (+100 PTS)";
-                toastBox.className = "px-6 py-2 rounded-xl text-sm font-black tracking-wider shadow-lg bg-emerald-950/90 text-emerald-400 border border-emerald-500/50";
+                Acerto_seguido_ponto++;
+
+                // Checagem de Ponto Bônus a cada 5 acertos seguidos
+                if (Acerto_seguido_ponto % 5 === 0) {
+                    const bonusEarned = 200; // Pontuação dobrada
+                    score += bonusEarned;
+                    Ponto_Bonus += bonusEarned;
+
+                    playSound('kaboom');
+                    toastBox.innerText = `💥 KABOOM! 5 SEGUIDOS! (+${bonusEarned} PTS)`;
+                    toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-amber-950/90 text-amber-300 border border-amber-500/50 animate-bounce";
+                } else {
+                    score += 100;
+                    playSound('success');
+                    toastBox.innerText = "✓ DECISÃO CERTA! (+100 PTS)";
+                    toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-emerald-950/90 text-emerald-400 border border-emerald-500/50";
+                }
             } else {
-                // Regra: Erros NÃO reduzem pontos! Apenas som sonoro e visual de aviso
+                // Errou -> Zera o contador de acertos seguidos
+                Acerto_seguido_ponto = 0;
                 playSound('error');
                 toastBox.innerText = "✗ DECISÃO INCORRETA!";
-                toastBox.className = "px-6 py-2 rounded-xl text-sm font-black tracking-wider shadow-lg bg-rose-950/90 text-rose-400 border border-rose-500/50";
+                toastBox.className = "px-4 py-1.5 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-black tracking-wider shadow-lg bg-rose-950/90 text-rose-400 border border-rose-500/50";
             }
 
-            document.getElementById('scoreDisplay').innerText = score;
+            updateHUD();
 
-            // Animação Toast Rápida e Discreta (desaparece em 900ms)
             toast.classList.remove('toast-animate');
-            void toast.offsetWidth; // reflow
+            void toast.offsetWidth;
             toast.classList.add('toast-animate');
 
             spawnNewCard();
         }
 
-        // --- 7. TECLADO VIRTUAL & FÍSICO (TELA 4) ---
+        // --- 7. TECLADO VIRTUAL & FÍSICO ---
         const keyboardLayout = [
             ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
             ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -803,10 +858,10 @@
             container.innerHTML = '';
             keyboardLayout.forEach(row => {
                 const rowDiv = document.createElement('div');
-                rowDiv.className = "flex justify-center gap-2 mb-2";
+                rowDiv.className = "flex justify-center gap-1 md:gap-2 mb-2";
                 row.forEach(key => {
                     const btn = document.createElement('button');
-                    btn.className = "bg-neutral-800 hover:bg-neutral-700 active:bg-eyYellow active:text-black text-white font-black text-lg md:text-xl px-4 py-3 rounded-xl min-w-[45px] md:min-w-[55px] shadow transition";
+                    btn.className = "bg-neutral-800 hover:bg-neutral-700 active:bg-eyYellow active:text-black text-white font-black text-sm md:text-xl px-2 py-2 md:px-4 md:py-3 rounded-xl min-w-[28px] md:min-w-[55px] shadow transition";
                     btn.innerText = key;
                     btn.onclick = () => handleVirtualKeyPress(key);
                     rowDiv.appendChild(btn);
@@ -828,7 +883,6 @@
             }
         }
 
-        // Suporte a Teclado Físico na Tela 4
         window.addEventListener('keydown', (e) => {
             if (currentScreen === 4) {
                 const input = document.getElementById('playerNameInput');
@@ -850,11 +904,10 @@
             const newEntry = { name: inputName, score: score, date: new Date().toLocaleDateString() };
             leaderboard.push(newEntry);
             leaderboard.sort((a, b) => b.score - a.score);
-            leaderboard = leaderboard.slice(0, 10); // Mantém Top 10
+            leaderboard = leaderboard.slice(0, 10);
 
             localStorage.setItem('ey_leaderboard', JSON.stringify(leaderboard));
 
-            // Verifica se quebrou recorde (1º lugar)
             if (leaderboard.length > 0 && leaderboard[0].name === inputName && leaderboard[0].score === score && score > 0) {
                 playSound('highscore');
             } else {
@@ -876,18 +929,17 @@
 
             leaderboard.forEach((item, index) => {
                 const row = document.createElement('div');
-                row.className = `flex justify-between items-center p-3 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-bold' : 'bg-neutral-800/50 text-neutral-300'}`;
+                row.className = `flex justify-between items-center p-2.5 md:p-3 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-bold' : 'bg-neutral-800/50 text-neutral-300'}`;
                 row.innerHTML = `
                     <div class="flex items-center gap-3">
                         <span class="w-6 text-center font-black">#${index + 1}</span>
                         <span>${item.name}</span>
                     </div>
-                    <div class="font-black text-lg">${item.score} PTS</div>
+                    <div class="font-black text-base md:text-lg">${item.score} PTS</div>
                 `;
                 listContainer.appendChild(row);
             });
 
-            // Ajuste de Troféu Dinâmico
             const trophy = document.getElementById('trophyIcon');
             if (score >= 1000) {
                 trophy.innerText = "🏆";
