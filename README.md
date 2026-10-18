@@ -103,8 +103,7 @@ cd caminho-da-confianca
 
 ## 👥 Autores
 
-
-* **[Lord Neco](https://portfoliolordneco.vercel.app/)** — *Desenvolvimento Front-end, Lógica de Jogo e Arquitetura*
+* **[Lord Neco](https://portfoliolordneco.vercel.app/)** — *Desenvolvimento Front-end, Lógica de Jogo e Arquitetura* <a href="https://portfoliolordneco.vercel.app/" target="_blank" rel="noopener noreferrer">🌐 (Acessar Portfólio)</a>
 * **Kauã** — *Colaboração e Design de Conteúdo*
 * **Bryan** — *Colaboração e Testes Operacionais*
 
