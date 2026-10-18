@@ -1,5 +1,5 @@
----
 
+---
 # 🚀 Caminho da Confiança — EY Brasil
 
 > **Caminho da Confiança** é um minijogo interativo de alta performance desenvolvido sob medida para eventos corporativos e de inovação em colaboração com a **EY Brasil**. O projeto foi concebido para testar a agilidade estratégica e a tomada de decisões rápidas dos participantes frente a desafios do ecossistema empresarial moderno.
