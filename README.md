@@ -1,5 +1,3 @@
-Aqui tens um **README.md** completo, profissional e estruturado para publicares o teu repositório no GitHub. Podes copiar o texto abaixo diretamente para o arquivo `README.md` do teu projeto.
-
 ---
 
 # 🚀 Caminho da Confiança — EY Brasil
