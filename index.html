@@ -36,195 +36,195 @@
     </div>
 
     <!-- ================= TELA 1: STANDBY ================= -->
-    <div id="screen1" class="screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full cursor-pointer" onclick="goToScreen(6)">
-        <header class="w-full flex justify-between items-center z-20 px-6 py-4 bg-transparent shrink-0" onclick="event.stopPropagation()">
+    <div id="screen1" class="screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full">
+        <header class="w-full flex justify-between items-center z-20 px-6 py-3 bg-transparent shrink-0" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div id="headerLogoContainer1" class="flex items-center gap-3">
-                    <div id="headerLogoBadge1" class="bg-eyYellow text-black font-extrabold px-3.5 py-2 rounded-lg text-lg tracking-wider">EY</div>
+                    <div id="headerLogoBadge1" class="bg-eyYellow text-black font-extrabold px-3.5 py-1.5 rounded-lg text-lg tracking-wider">EY</div>
                     <span id="headerSponsorText1" class="font-extrabold text-lg tracking-wider text-eyYellow hidden"></span>
                 </div>
-                <span id="headerSubtext1" class="subtext-header text-neutral-400 text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+                <span id="headerSubtext1" class="subtext-header text-neutral-400 text-xs sm:text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
             <div class="flex items-center gap-2" onclick="event.stopPropagation()">
-                <button onclick="openUserSettingsModal(event)" class="bg-neutral-800/90 hover:bg-neutral-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-neutral-700 transition flex items-center gap-2 shadow-lg">
+                <button onclick="openUserSettingsModal(event)" class="bg-neutral-800/90 hover:bg-neutral-700 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold border border-neutral-700 transition flex items-center gap-2 shadow-lg">
                     ⚙️ Configurações
                 </button>
             </div>
         </header>
 
         <div class="text-center z-10 max-w-4xl px-6 my-auto flex flex-col items-center justify-center">
-            <div class="flex items-center justify-center gap-5 mb-6">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 floating-orb p-3">
-                    <svg class="w-10 h-10 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center justify-center gap-5 mb-4 sm:mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 floating-orb p-3">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-eyYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                 </div>
-                <div id="standbySponsorOrb" class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 floating-orb p-3 overflow-hidden">
+                <div id="standbySponsorOrb" class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-eyYellow/10 border-2 border-eyYellow/30 floating-orb p-3 overflow-hidden">
                     <img id="standbySponsorImg" src="" alt="Logo Patrocinador" class="w-full h-full object-contain hidden">
-                    <span id="standbySponsorText" class="text-eyYellow font-black text-sm uppercase tracking-tight text-center leading-tight">EY</span>
+                    <span id="standbySponsorText" class="text-eyYellow font-black text-xs sm:text-sm uppercase tracking-tight text-center leading-tight">EY</span>
                 </div>
             </div>
 
-            <h1 id="mainTitle" class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 text-white">
+            <h1 id="mainTitle" class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-3 text-white">
                 CAMINHO DA <span class="text-eyYellow">CONFIANÇA</span>
             </h1>
-            <p id="mainDesc" class="desc-main text-base sm:text-xl text-neutral-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p id="mainDesc" class="desc-main text-sm sm:text-lg text-neutral-300 mb-6 max-w-2xl mx-auto leading-relaxed">
                 Desafie sua agilidade estratégica em um ambiente corporativo de alta performance.
             </p>
-            <div class="inline-block px-10 py-5 bg-eyYellow text-black font-extrabold text-xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider">
-                Toque na tela para participar
-            </div>
+            <button onclick="goToScreen(6)" class="inline-block px-8 py-4 bg-eyYellow text-black font-extrabold text-lg sm:text-xl rounded-2xl shadow-2xl pulse-btn uppercase tracking-wider hover:scale-105 active:scale-95 transition cursor-pointer z-30">
+                Toque aqui para começar
+            </button>
         </div>
 
-        <footer id="appFooter1" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
+        <footer id="appFooter1" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-3 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold footer-sponsor-name">EY - Brasil</span></div>
-            <div class="mt-1 text-[11px] text-neutral-400">
-                Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" onclick="event.stopPropagation()" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
+            <div class="mt-0.5 text-[11px] text-neutral-400">
+                Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" onclick="event.stopPropagation()" class="footer-author-link text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
             </div>
         </footer>
     </div>
 
     <!-- ================= TELA 6: MENU PRINCIPAL ================= -->
     <div id="screen6" class="screen bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full">
-        <header class="w-full flex justify-between items-center z-20 px-6 py-4 shrink-0" onclick="event.stopPropagation()">
+        <header class="w-full flex justify-between items-center z-20 px-6 py-3 shrink-0" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div id="headerLogoContainer6" class="flex items-center gap-3">
-                    <div id="headerLogoBadge6" class="bg-eyYellow text-black font-extrabold px-3.5 py-2 rounded-lg text-lg tracking-wider">EY</div>
+                    <div id="headerLogoBadge6" class="bg-eyYellow text-black font-extrabold px-3.5 py-1.5 rounded-lg text-lg tracking-wider">EY</div>
                     <span id="headerSponsorText6" class="font-extrabold text-lg tracking-wider text-eyYellow hidden"></span>
                 </div>
-                <span id="headerSubtext6" class="subtext-header text-neutral-400 text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+                <span id="headerSubtext6" class="subtext-header text-neutral-400 text-xs sm:text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
         </header>
 
-        <div class="max-w-4xl w-full mx-auto text-center z-10 my-auto px-6 flex flex-col items-center justify-center">
-            <div class="inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-6 py-2 rounded-full text-sm font-black mb-4 uppercase tracking-wider">
+        <div class="max-w-md w-full mx-auto text-center z-10 my-auto px-6 flex flex-col items-center justify-center">
+            <div class="inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-5 py-1.5 rounded-full text-xs font-black mb-3 uppercase tracking-wider">
                 Menu Principal
             </div>
-            <h2 class="title-main text-3xl sm:text-5xl font-black mb-6 text-white tracking-tight">Escolha uma Opção</h2>
+            <h2 class="title-main text-2xl sm:text-4xl font-black mb-5 text-white tracking-tight">Escolha uma Opção</h2>
             
-            <div class="flex flex-col gap-4 w-full max-w-md">
-                <button onclick="goToScreen(2)" class="w-full py-5 bg-eyYellow text-black font-black text-xl rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+            <div class="flex flex-col gap-4 w-full">
+                <button onclick="goToScreen(2)" class="w-full py-4 bg-eyYellow text-black font-black text-lg rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
                     🎮 Iniciar Desafio
                 </button>
-                <button onclick="goToScreen(5)" class="w-full py-5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-lg rounded-2xl border border-neutral-700 shadow-lg uppercase tracking-wider transition">
+                <button onclick="goToScreen(5)" class="w-full py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-base rounded-2xl border border-neutral-700 shadow-lg uppercase tracking-wider transition">
                     🏆 Ver Ranking
                 </button>
-                <button onclick="goToScreen(1)" class="w-full py-3 bg-neutral-900 hover:bg-neutral-800 text-neutral-400 font-bold text-sm rounded-xl border border-neutral-800 uppercase tracking-wider transition">
+                <button onclick="goToScreen(1)" class="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-neutral-400 font-bold text-xs rounded-xl border border-neutral-800 uppercase tracking-wider transition">
                     ← Voltar ao Standby
                 </button>
             </div>
         </div>
 
-        <footer id="appFooter6" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
+        <footer id="appFooter6" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-3 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold footer-sponsor-name">EY - Brasil</span></div>
-            <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
+            <div class="mt-0.5 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="footer-author-link text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
         </footer>
     </div>
 
     <!-- ================= TELA 2: INICIAL / REGRAS ================= -->
     <div id="screen2" class="screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full">
-        <header class="w-full flex justify-between items-center z-20 px-6 py-4 shrink-0" onclick="event.stopPropagation()">
+        <header class="w-full flex justify-between items-center z-20 px-6 py-3 shrink-0" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div id="headerLogoContainer2" class="flex items-center gap-3">
-                    <div id="headerLogoBadge2" class="bg-eyYellow text-black font-extrabold px-3.5 py-2 rounded-lg text-lg tracking-wider">EY</div>
+                    <div id="headerLogoBadge2" class="bg-eyYellow text-black font-extrabold px-3.5 py-1.5 rounded-lg text-lg tracking-wider">EY</div>
                     <span id="headerSponsorText2" class="font-extrabold text-lg tracking-wider text-eyYellow hidden"></span>
                 </div>
-                <span id="headerSubtext2" class="subtext-header text-neutral-400 text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+                <span id="headerSubtext2" class="subtext-header text-neutral-400 text-xs sm:text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
         </header>
 
         <div class="max-w-4xl w-full mx-auto text-center z-10 my-auto px-6 flex flex-col items-center justify-center">
-            <div id="badgeChallenge" class="inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-6 py-2 rounded-full text-sm font-black mb-4 uppercase tracking-wider">
+            <div id="badgeChallenge" class="inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-5 py-1.5 rounded-full text-xs font-black mb-3 uppercase tracking-wider">
                 Desafio Interativo
             </div>
-            <h2 class="title-main text-3xl sm:text-5xl font-black mb-4 text-white tracking-tight">Como Jogar</h2>
-            <p class="desc-main text-base sm:text-xl text-neutral-300 mb-6 leading-relaxed max-w-2xl">
-                Arraste e arremesse rapidamente os cartões corporativos para a zona correta.<br>
+            <h2 class="title-main text-2xl sm:text-4xl font-black mb-3 text-white tracking-tight">Como Jogar</h2>
+            <p class="desc-main text-sm sm:text-base text-neutral-300 mb-5 leading-relaxed max-w-2xl">
+                Arraste o card ou <b>toque diretamente na opção desejada</b>!<br>
                 Classifique em <span class="text-eyPurple font-bold">Obstáculo / Insegurança</span> ou <span class="text-eyCyan font-bold">Transformar / Crescer</span> antes que o tempo acabe!
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8 w-full text-left">
-                <div class="card-box bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4 shadow-lg">
-                    <div class="text-4xl">⏱️</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 w-full text-left">
+                <div class="card-box bg-neutral-800/80 border border-neutral-700 p-4 rounded-2xl flex items-center gap-4 shadow-lg">
+                    <div class="text-3xl">⏱️</div>
                     <div>
-                        <h4 id="timerBoxTitle" class="font-bold text-base text-white card-title-inner">60 Segundos & Pontos</h4>
-                        <p class="card-desc-inner text-neutral-400 text-xs sm:text-sm">Cada acerto vale 100 pontos. Erros não descontam pontos!</p>
+                        <h4 id="timerBoxTitle" class="font-bold text-sm sm:text-base text-white card-title-inner">60 Segundos & Pontos</h4>
+                        <p class="card-desc-inner text-neutral-400 text-xs">Cada acerto vale 100 pontos. Erros não descontam pontos!</p>
                     </div>
                 </div>
-                <div class="card-box bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4 shadow-lg">
-                    <div class="text-4xl">🔥</div>
+                <div class="card-box bg-neutral-800/80 border border-neutral-700 p-4 rounded-2xl flex items-center gap-4 shadow-lg">
+                    <div class="text-3xl">🔥</div>
                     <div>
-                        <h4 class="font-bold text-base text-white card-title-inner">Bônus & Combo 15</h4>
-                        <p class="card-desc-inner text-neutral-400 text-xs sm:text-sm">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b>, você ganha <b>+500 pontos</b> com super boom!</p>
+                        <h4 class="font-bold text-sm sm:text-base text-white card-title-inner">Bônus & Combo 15</h4>
+                        <p class="card-desc-inner text-neutral-400 text-xs">A cada 5 acertos seguidos você ganha <b>+200 pontos</b>. No <b>Combo 15</b>, ganha <b>+500 pontos</b>!</p>
                     </div>
                 </div>
             </div>
 
-            <div class="flex gap-4 w-full md:w-auto">
-                <button onclick="goToScreen(6)" class="px-8 py-5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-lg rounded-2xl border border-neutral-700 transition uppercase tracking-wider">
+            <div class="flex gap-5 w-full md:w-auto">
+                <button onclick="goToScreen(6)" class="px-6 py-3.5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-base rounded-2xl border border-neutral-700 transition uppercase tracking-wider">
                     Menu
                 </button>
-                <button onclick="startGame()" class="px-16 py-5 bg-eyYellow text-black font-black text-xl rounded-2xl shadow-2xl hover:scale-105 transition active:scale-95 uppercase tracking-wider">
+                <button onclick="startGame()" class="px-12 py-3.5 bg-eyYellow text-black font-black text-lg rounded-2xl shadow-2xl hover:scale-105 transition active:scale-95 uppercase tracking-wider">
                     Iniciar Desafio
                 </button>
             </div>
         </div>
 
-        <footer id="appFooter2" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
+        <footer id="appFooter2" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-3 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold footer-sponsor-name">EY - Brasil</span></div>
-            <div class="mt-1 text-[11px] text-neutral-400">
-                Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
+            <div class="mt-0.5 text-[11px] text-neutral-400">
+                Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="footer-author-link text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan
             </div>
         </footer>
     </div>
 
-    <!-- ================= TELA 3: MINI-JOGO ================= -->
+    <!-- ================= TELA 3: MINI-JOGO (HEADER ORGANIZADO) ================= -->
     <div id="screen3" class="screen bg-neutral-950 flex flex-col justify-between overflow-hidden h-full w-full">
-        <header id="gameHeader" class="w-full px-4 md:px-8 py-3 bg-neutral-900/95 border-b border-neutral-800 flex flex-wrap justify-between items-center z-20 gap-3 shrink-0" onclick="event.stopPropagation()">
-            <div class="flex items-center gap-4 md:gap-6">
-                <div class="flex items-center gap-2 bg-neutral-800/80 border border-neutral-700/80 px-3.5 py-1.5 rounded-xl">
-                    <span class="text-base">⏱️</span>
+        <header id="gameHeader" class="w-full px-3 md:px-6 py-2 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-2 shrink-0" onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2 md:gap-4">
+                <div class="flex items-center gap-2 bg-neutral-800/80 border border-neutral-700/80 px-2.5 py-1 rounded-xl">
+                    <span class="text-xs">⏱️</span>
                     <div>
-                        <div class="text-[9px] text-neutral-400 uppercase tracking-widest font-bold">Tempo</div>
-                        <div id="timerDisplay" class="text-lg md:text-2xl font-black text-eyYellow">60s</div>
+                        <div class="text-[7px] text-neutral-400 uppercase tracking-widest font-bold leading-none">Tempo</div>
+                        <div id="timerDisplay" class="text-sm md:text-lg font-black text-eyYellow leading-tight">60s</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-2 bg-neutral-800/80 border border-neutral-700/80 px-3.5 py-1.5 rounded-xl">
-                    <span class="text-base">💎</span>
+                <div class="flex items-center gap-2 bg-neutral-800/80 border border-neutral-700/80 px-2.5 py-1 rounded-xl">
+                    <span class="text-xs">💎</span>
                     <div>
-                        <div class="text-[9px] text-neutral-400 uppercase tracking-widest font-bold">Pontos</div>
-                        <div id="scoreDisplay" class="text-lg md:text-2xl font-black text-eyCyan">0</div>
+                        <div class="text-[7px] text-neutral-400 uppercase tracking-widest font-bold leading-none">Pontos</div>
+                        <div id="scoreDisplay" class="text-sm md:text-lg font-black text-eyCyan leading-tight">0</div>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center gap-2">
-                <div class="bg-neutral-800/80 border border-neutral-700/80 px-3.5 py-1.5 rounded-xl text-center min-w-[95px]">
-                    <div class="text-[9px] text-neutral-400 uppercase tracking-widest font-bold">Combo</div>
-                    <div id="comboDisplay" class="text-sm md:text-lg font-black text-amber-400">🔥 0</div>
+                <div class="bg-neutral-800/80 border border-neutral-700/80 px-2.5 py-1 rounded-xl text-center min-w-[70px]">
+                    <div class="text-[7px] text-neutral-400 uppercase tracking-widest font-bold leading-none">Combo</div>
+                    <div id="comboDisplay" class="text-xs md:text-sm font-black text-amber-400 leading-tight">🔥 0</div>
                 </div>
-                <div class="bg-neutral-800/80 border border-neutral-700/80 px-3.5 py-1.5 rounded-xl text-center min-w-[90px]">
-                    <div class="text-[9px] text-neutral-400 uppercase tracking-widest font-bold">Bônus</div>
-                    <div id="bonusDisplay" class="text-sm md:text-lg font-black text-eyGold">💥 +0</div>
+                <div class="bg-neutral-800/80 border border-neutral-700/80 px-2.5 py-1 rounded-xl text-center min-w-[65px]">
+                    <div class="text-[7px] text-neutral-400 uppercase tracking-widest font-bold leading-none">Bônus</div>
+                    <div id="bonusDisplay" class="text-xs md:text-sm font-black text-eyGold leading-tight">💥 +0</div>
                 </div>
             </div>
 
-            <div class="flex items-center gap-2" onclick="event.stopPropagation()">
-                <button onclick="goToScreen(6)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-3.5 py-2 rounded-xl font-bold border border-neutral-700 text-xs">Menu</button>
+            <div class="flex items-center gap-1.5" onclick="event.stopPropagation()">
+                <button onclick="goToScreen(6)" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-2.5 py-1.5 rounded-xl font-bold border border-neutral-700 text-xs">Menu</button>
             </div>
         </header>
 
         <div id="gameContainer" class="relative flex-1 w-full overflow-hidden">
-            <div id="zoneLeft" class="absolute left-0 top-0 bottom-0 w-[24%] md:w-[26%] bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-3 text-center transition-colors">
-                <div class="text-3xl md:text-5xl mb-2">🛡️</div>
-                <div class="text-eyPurple font-black text-xs md:text-xl uppercase tracking-wider leading-snug">Obstáculo / Insegurança</div>
-                <div class="text-neutral-400 text-[10px] mt-1 font-semibold">Arremesse aqui</div>
+            <div id="zoneLeft" onclick="handleZoneClick('left')" class="absolute left-0 top-0 bottom-0 w-[28%] md:w-[26%] bg-purple-950/20 border-r-2 border-dashed border-eyPurple/40 flex flex-col items-center justify-center p-2 text-center transition-colors cursor-pointer z-20 hover:bg-purple-900/30">
+                <div class="text-3xl md:text-5xl mb-2 pointer-events-none">🛡️</div>
+                <div class="text-eyPurple font-black text-xs md:text-lg uppercase tracking-wider leading-snug pointer-events-none">Obstáculo / Insegurança</div>
+                <div class="text-neutral-300 text-[10px] mt-2 font-bold bg-purple-900/60 px-2 py-1 rounded-md border border-purple-500/40 pointer-events-none">Arraste ou Toque Aqui</div>
             </div>
 
-            <div id="zoneRight" class="absolute right-0 top-0 bottom-0 w-[24%] md:w-[26%] bg-cyan-950/20 border-l-2 border-dashed border-eyCyan/40 flex flex-col items-center justify-center p-3 text-center transition-colors">
-                <div class="text-3xl md:text-5xl mb-2">🚀</div>
-                <div class="text-eyCyan font-black text-xs md:text-xl uppercase tracking-wider leading-snug">Transformar / Crescer</div>
-                <div class="text-neutral-400 text-[10px] mt-1 font-semibold">Arremesse aqui</div>
+            <div id="zoneRight" onclick="handleZoneClick('right')" class="absolute right-0 top-0 bottom-0 w-[28%] md:w-[26%] bg-cyan-950/20 border-l-2 border-dashed border-eyCyan/40 flex flex-col items-center justify-center p-2 text-center transition-colors cursor-pointer z-20 hover:bg-cyan-900/30">
+                <div class="text-3xl md:text-5xl mb-2 pointer-events-none">🚀</div>
+                <div class="text-eyCyan font-black text-xs md:text-lg uppercase tracking-wider leading-snug pointer-events-none">Transformar / Crescer</div>
+                <div class="text-neutral-300 text-[10px] mt-2 font-bold bg-cyan-900/60 px-2 py-1 rounded-md border border-cyan-500/40 pointer-events-none">Arraste ou Toque Aqui</div>
             </div>
 
             <div id="feedbackToast" class="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-all">
@@ -236,116 +236,116 @@
             <canvas id="physicsCanvas" class="absolute inset-0 z-10"></canvas>
         </div>
 
-        <footer id="appFooter3" class="w-full py-2.5 bg-neutral-900 text-center text-neutral-400 text-[11px] tracking-widest uppercase border-t border-neutral-800 z-20 shrink-0">
-            Toque, segure e lance o card corporativo em direção à zona correta!
+        <footer id="appFooter3" class="w-full py-2 bg-neutral-900 text-center text-neutral-400 text-[10px] sm:text-[11px] tracking-widest uppercase border-t border-neutral-800 z-20 shrink-0">
+            Arraste o card ou toque diretamente na opção desejada!
         </footer>
     </div>
 
     <!-- ================= TELA 4: REGISTRO DE NOME ================= -->
     <div id="screen4" class="screen bg-gradient-to-br from-neutral-900 to-black p-0 h-full w-full">
-        <header class="w-full flex justify-between items-center z-20 px-6 py-4 shrink-0" onclick="event.stopPropagation()">
+        <header class="w-full flex justify-between items-center z-20 px-6 py-2.5 shrink-0" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div id="headerLogoContainer4" class="flex items-center gap-3">
-                    <div id="headerLogoBadge4" class="bg-eyYellow text-black font-extrabold px-3.5 py-2 rounded-lg text-lg tracking-wider">EY</div>
-                    <span id="headerSponsorText4" class="font-extrabold text-lg tracking-wider text-eyYellow hidden"></span>
+                    <div id="headerLogoBadge4" class="bg-eyYellow text-black font-extrabold px-3 py-1 rounded-lg text-base tracking-wider">EY</div>
+                    <span id="headerSponsorText4" class="font-extrabold text-base tracking-wider text-eyYellow hidden"></span>
                 </div>
-                <span id="headerSubtext4" class="subtext-header text-neutral-400 text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+                <span id="headerSubtext4" class="subtext-header text-neutral-400 text-xs uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
         </header>
 
-        <div class="max-w-2xl w-full mx-auto text-center z-10 my-auto px-6 flex flex-col items-center justify-center">
-            <h2 class="title-main text-3xl md:text-5xl font-black mb-2 text-white">Fim de Jogo!</h2>
-            <p class="desc-main text-base md:text-xl text-neutral-300 mb-3">Sua pontuação final:</p>
-            <div id="finalScoreDisplay" class="text-5xl md:text-6xl font-black text-eyYellow mb-4">0 PTS</div>
+        <div class="max-w-xl w-full mx-auto text-center z-10 my-auto px-4 flex flex-col items-center justify-center">
+            <h2 class="title-main text-2xl sm:text-4xl font-black mb-1 text-white">Fim de Jogo!</h2>
+            <p class="desc-main text-xs sm:text-sm text-neutral-300 mb-1">Sua pontuação final:</p>
+            <div id="finalScoreDisplay" class="text-3xl sm:text-5xl font-black text-eyYellow mb-3">0 PTS</div>
 
-            <div class="mb-4 w-full">
-                <label id="inputLabel" class="block text-xs uppercase tracking-widest text-neutral-400 mb-1 font-extrabold">Digite seu nome ou apelido:</label>
-                <p id="inputSubLabel" class="text-xs text-eyCyan mb-2 font-bold">Use o teclado abaixo ou o teclado físico para digitar!</p>
-                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-6 py-3 text-xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase shadow-md">
+            <div class="mb-2 w-full">
+                <label id="inputLabel" class="block text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-0.5 font-extrabold">Digite seu nome ou apelido:</label>
+                <p id="inputSubLabel" class="text-[11px] text-eyCyan mb-1.5 font-bold">Use o teclado abaixo ou o teclado físico para digitar!</p>
+                <input type="text" id="playerNameInput" readonly placeholder="TOQUE NO TECLADO ABAIXO" class="w-full bg-neutral-800 border-2 border-neutral-700 rounded-xl px-4 py-2 text-base sm:text-lg text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase shadow-md">
             </div>
 
-            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-3 rounded-2xl mb-5 shadow-2xl w-full"></div>
+            <div id="virtualKeyboard" class="bg-neutral-900/90 border border-neutral-800 p-2 sm:p-3 rounded-2xl mb-3 shadow-2xl w-full"></div>
 
-            <button onclick="saveScoreAndFinish()" class="w-full py-4 bg-eyYellow text-black font-black text-lg rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+            <button onclick="saveScoreAndFinish()" class="w-full py-3 sm:py-3.5 bg-eyYellow text-black font-black text-base rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
                 Salvar no Ranking & Ver Posição
             </button>
         </div>
 
-        <footer id="appFooter4" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
+        <footer id="appFooter4" class="w-full text-neutral-400 text-[11px] tracking-wider uppercase text-center py-2.5 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold footer-sponsor-name">EY - Brasil</span></div>
-            <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
+            <div class="mt-0.5 text-[10px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="footer-author-link text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
         </footer>
     </div>
 
-    <!-- ================= TELA 5: RANKING & VITÓRIA (RESPONSIVIDADE COMPLETA) ================= -->
+    <!-- ================= TELA 5: RANKING & VITÓRIA ================= -->
     <div id="screen5" class="screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-black p-0 h-full w-full">
-        <header class="w-full flex justify-between items-center z-20 px-6 py-4 shrink-0" onclick="event.stopPropagation()">
+        <header class="w-full flex justify-between items-center z-20 px-6 py-2.5 shrink-0" onclick="event.stopPropagation()">
             <div class="flex items-center gap-4">
                 <div id="headerLogoContainer5" class="flex items-center gap-3">
-                    <div id="headerLogoBadge5" class="bg-eyYellow text-black font-extrabold px-3.5 py-2 rounded-lg text-lg tracking-wider">EY</div>
+                    <div id="headerLogoBadge5" class="bg-eyYellow text-black font-extrabold px-3.5 py-1.5 rounded-lg text-lg tracking-wider">EY</div>
                     <span id="headerSponsorText5" class="font-extrabold text-lg tracking-wider text-eyYellow hidden"></span>
                 </div>
-                <span id="headerSubtext5" class="subtext-header text-neutral-400 text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
+                <span id="headerSubtext5" class="subtext-header text-neutral-400 text-xs sm:text-sm uppercase tracking-widest font-semibold hidden sm:inline">Shape the future with confidence</span>
             </div>
         </header>
 
-        <div class="max-w-2xl w-full mx-auto text-center z-10 my-auto px-4 md:px-8 flex flex-col items-center justify-center">
-            <div id="trophyIcon" class="text-4xl md:text-5xl mb-2 animate-bounce">🏆</div>
-            <h2 id="endGameTitle" class="title-main text-2xl md:text-4xl font-black mb-1 text-white">Parabéns pelo Desempenho!</h2>
-            <p id="endGameSubtitle" class="desc-main text-neutral-400 text-xs md:text-base mb-4">Você demonstrou excelente visão estratégica.</p>
+        <div class="max-w-xl w-full mx-auto text-center z-10 my-auto px-4 md:px-6 flex flex-col items-center justify-center">
+            <div id="trophyIcon" class="text-3xl sm:text-4xl mb-0.5 animate-bounce">🏆</div>
+            <h2 id="endGameTitle" class="title-main text-xl sm:text-3xl font-black mb-0.5 text-white">Parabéns pelo Desempenho!</h2>
+            <p id="endGameSubtitle" class="desc-main text-neutral-400 text-xs sm:text-sm mb-2">Você demonstrou excelente visão estratégica.</p>
 
-            <div class="card-box bg-neutral-900/80 border border-neutral-800 rounded-2xl p-4 md:p-6 mb-5 max-h-[50vh] md:max-h-[55vh] overflow-y-auto w-full shadow-2xl">
-                <h3 id="rankingHeaderTitle" class="text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3">Top 10 — Ranking Oficial</h3>
-                <div id="leaderboardList" class="space-y-2"></div>
+            <div class="card-box bg-neutral-900/80 border border-neutral-800 rounded-2xl p-3 mb-2 max-h-[35vh] overflow-y-auto w-full shadow-2xl">
+                <h3 id="rankingHeaderTitle" class="text-eyGold font-black uppercase tracking-widest text-xs mb-2">Top 10 — Ranking Oficial</h3>
+                <div id="leaderboardList" class="space-y-1.5"></div>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 w-full">
-                <button onclick="goToScreen(6)" class="flex-1 py-3.5 md:py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-sm md:text-base rounded-2xl border border-neutral-700 uppercase tracking-wider transition">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full mt-5 shrink-0 pb-2">
+                <button onclick="goToScreen(6)" class="flex-1 py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-sm rounded-xl border border-neutral-700 uppercase tracking-wider transition">
                     Menu Principal
                 </button>
-                <button onclick="startGame()" class="flex-1 py-3.5 md:py-4 bg-eyYellow text-black font-black text-sm md:text-base rounded-2xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
+                <button onclick="startGame()" class="flex-1 py-3 bg-eyYellow text-black font-black text-sm rounded-xl shadow-xl hover:scale-105 transition uppercase tracking-wider">
                     Novo Jogador
                 </button>
             </div>
         </div>
 
-        <footer id="appFooter5" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
+        <footer id="appFooter5" class="w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-2.5 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0">
             <div>Momento Especial proporcionado por: <span class="text-eyGold font-bold footer-sponsor-name">EY - Brasil</span></div>
-            <div class="mt-1 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
+            <div class="mt-0.5 text-[11px] text-neutral-400">Criado por <a href="https://portfoliolordneco.vercel.app/" target="_blank" class="footer-author-link text-eyCyan font-bold hover:underline">Lord Neco</a>, Kauã e Bryan</div>
         </footer>
     </div>
 
     <!-- ================= MODAL DE CONFIGURAÇÕES DO UTILIZADOR ================= -->
     <div id="userSettingsModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-neutral-900 border-2 border-eyYellow p-6 md:p-8 rounded-3xl w-full max-w-md mx-auto shadow-2xl text-white">
-            <div class="flex justify-between items-center mb-6 border-b border-neutral-800 pb-3">
-                <h3 class="text-xl font-black text-eyYellow flex items-center gap-2">⚙️ Configurações da Tela</h3>
-                <button onclick="closeUserSettingsModal()" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-3 py-1 rounded-xl font-bold text-sm">✕ Fechar</button>
+        <div class="bg-neutral-900 border-2 border-eyYellow p-6 rounded-3xl w-full max-w-md mx-auto shadow-2xl text-white">
+            <div class="flex justify-between items-center mb-5 border-b border-neutral-800 pb-3">
+                <h3 class="text-lg font-black text-eyYellow flex items-center gap-2">⚙️ Configurações da Tela</h3>
+                <button onclick="closeUserSettingsModal()" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-3 py-1 rounded-xl font-bold text-xs">✕ Fechar</button>
             </div>
 
-            <div class="space-y-5">
-                <div class="flex items-center justify-between bg-neutral-800/80 border border-neutral-700 p-4 rounded-2xl">
+            <div class="space-y-4">
+                <div class="flex items-center justify-between bg-neutral-800/80 border border-neutral-700 p-3.5 rounded-2xl">
                     <div>
                         <div class="font-bold text-sm text-white">Mudança de cor de tela</div>
                         <div class="text-xs text-neutral-400">Alternar modo Claro / Escuro</div>
                     </div>
-                    <button type="button" onclick="toggleTheme()" id="userThemeBtn" class="bg-neutral-700 hover:bg-neutral-600 text-eyYellow font-black px-4 py-2 rounded-xl text-xs border border-neutral-600 transition uppercase">
+                    <button type="button" onclick="toggleTheme()" id="userThemeBtn" class="bg-neutral-700 hover:bg-neutral-600 text-eyYellow font-black px-3.5 py-1.5 rounded-xl text-xs border border-neutral-600 transition uppercase">
                         🌞 Claro
                     </button>
                 </div>
 
-                <div class="flex items-center justify-between bg-neutral-800/80 border border-neutral-700 p-4 rounded-2xl">
+                <div class="flex items-center justify-between bg-neutral-800/80 border border-neutral-700 p-3.5 rounded-2xl">
                     <div>
                         <div class="font-bold text-sm text-white">Volume do Som</div>
                         <div class="text-xs text-neutral-400">Ajuste de volume dos efeitos</div>
                     </div>
-                    <button type="button" onclick="adjustVolumeModal()" id="userVolBtn" class="bg-neutral-700 hover:bg-neutral-600 text-white font-black px-4 py-2 rounded-xl text-xs border border-neutral-600 transition">
+                    <button type="button" onclick="adjustVolumeModal()" id="userVolBtn" class="bg-neutral-700 hover:bg-neutral-600 text-white font-black px-3.5 py-1.5 rounded-xl text-xs border border-neutral-600 transition">
                         🔊 100%
                     </button>
                 </div>
             </div>
 
-            <button onclick="closeUserSettingsModal()" class="w-full mt-6 py-3 bg-eyYellow text-black font-black text-sm rounded-xl uppercase tracking-wider">
+            <button onclick="closeUserSettingsModal()" class="w-full mt-5 py-3 bg-eyYellow text-black font-black text-sm rounded-xl uppercase tracking-wider">
                 Concluído
             </button>
         </div>
@@ -353,11 +353,11 @@
 
     <!-- ================= MODAL DE INATIVIDADE ================= -->
     <div id="inactivityModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-neutral-900 border-2 border-eyYellow p-6 md:p-8 rounded-3xl text-center max-w-md mx-auto shadow-2xl">
-            <div class="text-4xl md:text-5xl mb-3">⚠️</div>
-            <h3 class="text-xl md:text-2xl font-black text-white mb-2">Você ainda está aí?</h3>
-            <p class="text-sm md:text-base text-neutral-300 mb-6">O totem retornará ao modo de descanso em <span id="countdownModal" class="text-eyYellow font-black text-2xl md:text-3xl">3</span> segundos.</p>
-            <button onclick="resetInactivityTimer()" class="w-full py-3 bg-eyYellow text-black font-black text-base rounded-xl uppercase tracking-wider">
+        <div class="bg-neutral-900 border-2 border-eyYellow p-6 rounded-3xl text-center max-w-md mx-auto shadow-2xl">
+            <div class="text-4xl mb-2">⚠️</div>
+            <h3 class="text-xl font-black text-white mb-2">Você ainda está aí?</h3>
+            <p class="text-sm text-neutral-300 mb-5">O totem retornará ao modo de descanso em <span id="countdownModal" class="text-eyYellow font-black text-2xl">3</span> segundos.</p>
+            <button onclick="resetInactivityTimer()" class="w-full py-3 bg-eyYellow text-black font-black text-sm rounded-xl uppercase tracking-wider">
                 Continuar Jogando
             </button>
         </div>
@@ -365,30 +365,30 @@
 
     <!-- ================= PAINEL DE CONFIGURAÇÃO DO OPERADOR ================= -->
     <div id="operatorModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-neutral-900 border-2 border-eyYellow p-6 md:p-8 rounded-3xl w-full max-w-2xl mx-auto shadow-2xl text-white my-auto">
-            <div class="flex justify-between items-center mb-5 border-b border-neutral-800 pb-4">
-                <h3 class="text-xl md:text-2xl font-black text-eyYellow flex items-center gap-2">⚙️ Painel do Operador</h3>
-                <button onclick="closeOperatorPanel()" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-3 py-1.5 rounded-xl font-bold text-sm">✕ Fechar</button>
+        <div class="bg-neutral-900 border-2 border-eyYellow p-6 rounded-3xl w-full max-w-2xl mx-auto shadow-2xl text-white my-auto">
+            <div class="flex justify-between items-center mb-4 border-b border-neutral-800 pb-3">
+                <h3 class="text-lg font-black text-eyYellow flex items-center gap-2">⚙️ Painel do Operador</h3>
+                <button onclick="closeOperatorPanel()" class="bg-neutral-800 hover:bg-neutral-700 text-neutral-300 px-3 py-1 rounded-xl font-bold text-xs">✕ Fechar</button>
             </div>
 
-            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+            <div class="space-y-3.5 max-h-[60vh] overflow-y-auto pr-2">
                 <div>
                     <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-1 font-bold">Nome do Patrocinador</label>
-                    <input type="text" id="opSponsorName" class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-4 py-2.5 text-white font-bold text-sm outline-none focus:border-eyYellow">
+                    <input type="text" id="opSponsorName" class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-3.5 py-2 text-white font-bold text-xs outline-none focus:border-eyYellow">
                 </div>
 
                 <div>
                     <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-1 font-bold">Logo do Patrocinador (PNG, JPG, SVG, WEBP)</label>
-                    <div class="flex flex-wrap items-center gap-3">
-                        <label class="cursor-pointer bg-neutral-800 hover:bg-neutral-700 text-eyYellow border border-eyYellow/40 px-4 py-2 rounded-xl text-sm font-bold transition">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <label class="cursor-pointer bg-neutral-800 hover:bg-neutral-700 text-eyYellow border border-eyYellow/40 px-3 py-1.5 rounded-xl text-xs font-bold transition">
                             Escolher imagem
                             <input type="file" id="opLogoFile" accept=".png, .jpg, .jpeg, .svg, .webp" class="hidden" onchange="handleLogoUpload(event)">
                         </label>
-                        <button onclick="removeLogo()" class="bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-800 px-4 py-2 rounded-xl text-sm font-bold transition">Remover logo</button>
+                        <button onclick="removeLogo()" class="bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-800 px-3 py-1.5 rounded-xl text-xs font-bold transition">Remover logo</button>
                     </div>
-                    <div class="mt-3 flex items-center gap-4 bg-neutral-950/60 border border-neutral-800 p-3 rounded-xl">
-                        <div class="text-xs text-neutral-400">Pré-visualização:</div>
-                        <div id="opLogoPreviewContainer" class="flex items-center gap-3">
+                    <div class="mt-2 flex items-center gap-3 bg-neutral-950/60 border border-neutral-800 p-2.5 rounded-xl">
+                        <div class="text-[11px] text-neutral-400">Pré-visualização:</div>
+                        <div id="opLogoPreviewContainer" class="flex items-center gap-2">
                             <span class="text-neutral-500 text-xs italic">Nenhum logo carregado</span>
                         </div>
                     </div>
@@ -396,41 +396,41 @@
 
                 <div>
                     <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-1 font-bold">Subtítulo do Evento (Cabeçalhos)</label>
-                    <input type="text" id="opEventSubtitle" class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-4 py-2.5 text-white font-bold text-sm outline-none focus:border-eyYellow">
+                    <input type="text" id="opEventSubtitle" class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-3.5 py-2 text-white font-bold text-xs outline-none focus:border-eyYellow">
                 </div>
 
                 <div>
                     <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-1 font-bold">Duração da Partida (Segundos)</label>
-                    <input type="number" id="opGameDuration" min="10" max="300" class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-4 py-2.5 text-white font-bold text-sm outline-none focus:border-eyYellow">
+                    <input type="number" id="opGameDuration" min="10" max="300" class="w-full bg-neutral-800 border border-neutral-700 rounded-xl px-3.5 py-2 text-white font-bold text-xs outline-none focus:border-eyYellow">
                 </div>
 
-                <div class="flex items-center justify-between bg-neutral-800/60 border border-neutral-700/80 px-4 py-3 rounded-xl">
+                <div class="flex items-center justify-between bg-neutral-800/60 border border-neutral-700/80 px-3.5 py-2.5 rounded-xl">
                     <div>
-                        <div class="font-bold text-sm text-white">Mudança de cor de tela (Tema)</div>
-                        <div class="text-xs text-neutral-400">Alternar entre o modo Claro e Escuro para todo o totem</div>
+                        <div class="font-bold text-xs text-white">Mudança de cor de tela (Tema)</div>
+                        <div class="text-[10px] text-neutral-400">Alternar entre modo Claro e Escuro</div>
                     </div>
-                    <button type="button" onclick="toggleTheme()" id="opThemeBtn" class="bg-neutral-700 hover:bg-neutral-600 text-eyYellow font-black px-4 py-2 rounded-xl text-xs border border-neutral-600 transition uppercase tracking-wider">
+                    <button type="button" onclick="toggleTheme()" id="opThemeBtn" class="bg-neutral-700 hover:bg-neutral-600 text-eyYellow font-black px-3 py-1.5 rounded-xl text-xs border border-neutral-600 transition uppercase tracking-wider">
                         🌞 Modo Claro
                     </button>
                 </div>
 
-                <div class="flex items-center justify-between bg-neutral-800/60 border border-neutral-700/80 px-4 py-3 rounded-xl">
+                <div class="flex items-center justify-between bg-neutral-800/60 border border-neutral-700/80 px-3.5 py-2.5 rounded-xl">
                     <div>
-                        <div class="font-bold text-sm text-white">Efeitos Sonoros e BGM</div>
-                        <div class="text-xs text-neutral-400">Ativar ou desativar áudio global do totem</div>
+                        <div class="font-bold text-xs text-white">Efeitos Sonoros e BGM</div>
+                        <div class="text-[10px] text-neutral-400">Ativar ou desativar áudio global</div>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" id="opAudioToggle" class="sr-only peer">
-                        <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-eyYellow"></div>
+                        <div class="w-10 h-5 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-eyYellow"></div>
                     </label>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 pt-4 border-t border-neutral-800">
-                <button onclick="saveOperatorSettings()" class="py-3 bg-eyYellow text-black font-black text-sm rounded-xl uppercase tracking-wider hover:scale-[1.02] transition shadow-lg">Salvar</button>
-                <button onclick="resetLeaderboardOp()" class="py-3 bg-rose-900/80 hover:bg-rose-800 text-white font-bold text-sm rounded-xl uppercase tracking-wider transition">Zerar ranking</button>
-                <button onclick="restoreDefaultOp()" class="py-3 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold text-sm rounded-xl uppercase tracking-wider transition border border-neutral-700">Restaurar padrão</button>
-                <button onclick="closeOperatorPanel()" class="py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-sm rounded-xl uppercase tracking-wider transition border border-neutral-700">Fechar</button>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-5 pt-3 border-t border-neutral-800">
+                <button onclick="saveOperatorSettings()" class="py-2.5 bg-eyYellow text-black font-black text-xs rounded-xl uppercase tracking-wider hover:scale-[1.02] transition shadow-lg">Salvar</button>
+                <button onclick="resetLeaderboardOp()" class="py-2.5 bg-rose-900/80 hover:bg-rose-800 text-white font-bold text-xs rounded-xl uppercase tracking-wider transition">Zerar ranking</button>
+                <button onclick="restoreDefaultOp()" class="py-2.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold text-xs rounded-xl uppercase tracking-wider transition border border-neutral-700">Restaurar padrão</button>
+                <button onclick="closeOperatorPanel()" class="py-2.5 bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs rounded-xl uppercase tracking-wider transition border border-neutral-700">Fechar</button>
             </div>
         </div>
     </div>

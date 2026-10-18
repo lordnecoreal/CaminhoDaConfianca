@@ -135,13 +135,13 @@ function applySettingsToUI() {
 
         if (badge && textSpan) {
             if (sponsorLogoVal) {
-                badge.innerHTML = `<img src="${sponsorLogoVal}" alt="Logo" class="h-8 max-w-[120px] object-contain">`;
+                badge.innerHTML = `<img src="${sponsorLogoVal}" alt="Logo" class="h-7 max-w-[110px] object-contain">`;
                 badge.className = "flex items-center";
                 textSpan.innerText = "";
                 textSpan.classList.add('hidden');
             } else {
                 badge.innerHTML = "EY";
-                badge.className = "bg-eyYellow text-black font-extrabold px-3.5 py-2 rounded-lg text-lg tracking-wider";
+                badge.className = "bg-eyYellow text-black font-extrabold px-3 py-1 rounded-lg text-base tracking-wider";
                 if (sponsorNameVal && sponsorNameVal !== "EY - Brasil") {
                     textSpan.innerText = sponsorNameVal;
                     textSpan.classList.remove('hidden');
@@ -217,6 +217,7 @@ function applyThemeToDOM() {
     const cardTitlesInner = document.querySelectorAll('.card-title-inner');
     const cardDescsInner = document.querySelectorAll('.card-desc-inner');
     const footers = document.querySelectorAll('footer');
+    const authorLinks = document.querySelectorAll('.footer-author-link');
 
     if (isDarkMode) {
         body.className = "bg-neutral-950 text-white h-full";
@@ -224,28 +225,29 @@ function applyThemeToDOM() {
             s.className = s.className.replace(/bg-gradient-to-br from-neutral-200 via-white to-neutral-100/g, 'bg-gradient-to-br from-neutral-900 to-black');
         });
         const s1 = document.getElementById('screen1');
-        if (s1) s1.className = "screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full cursor-pointer";
+        if (s1) s1.className = "screen active bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full";
         const s6 = document.getElementById('screen6');
         if (s6) s6.className = "screen bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-0 h-full w-full";
         const s3 = document.getElementById('screen3');
         if (s3) s3.className = "screen bg-neutral-950 flex flex-col justify-between overflow-hidden h-full w-full text-white";
-        if (gameHeader) gameHeader.className = "w-full px-4 md:px-8 py-3 bg-neutral-900/95 border-b border-neutral-800 flex flex-wrap justify-between items-center z-20 gap-3 shrink-0";
+        if (gameHeader) gameHeader.className = "w-full px-3 md:px-6 py-2 bg-neutral-900/95 border-b border-neutral-800 flex justify-between items-center z-20 gap-2 shrink-0";
 
-        if (mainTitle) mainTitle.className = "text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 text-white";
-        if (finalScoreDisplay) finalScoreDisplay.className = "text-5xl md:text-6xl font-black text-eyYellow mb-4";
-        if (badgeChallenge) badgeChallenge.className = "inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-6 py-2 rounded-full text-sm font-black mb-4 uppercase tracking-wider";
-        if (inputLabel) inputLabel.className = "block text-xs uppercase tracking-widest text-neutral-400 mb-1 font-extrabold";
-        if (inputSubLabel) inputSubLabel.className = "text-xs text-eyCyan mb-2 font-bold";
-        if (playerNameInput) playerNameInput.className = "w-full bg-neutral-800 border-2 border-neutral-700 rounded-2xl px-6 py-3 text-xl text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase shadow-md";
-        if (rankingHeaderTitle) rankingHeaderTitle.className = "text-eyGold font-black uppercase tracking-widest text-xs md:text-sm mb-3";
+        if (mainTitle) mainTitle.className = "text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-3 text-white";
+        if (finalScoreDisplay) finalScoreDisplay.className = "text-3xl sm:text-5xl font-black text-eyYellow mb-3";
+        if (badgeChallenge) badgeChallenge.className = "inline-block bg-eyYellow/20 text-eyYellow border border-eyYellow/40 px-5 py-1.5 rounded-full text-xs font-black mb-3 uppercase tracking-wider";
+        if (inputLabel) inputLabel.className = "block text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 mb-0.5 font-extrabold";
+        if (inputSubLabel) inputSubLabel.className = "text-[11px] text-eyCyan mb-1.5 font-bold";
+        if (playerNameInput) playerNameInput.className = "w-full bg-neutral-800 border-2 border-neutral-700 rounded-xl px-4 py-2 text-base sm:text-lg text-center text-white font-bold tracking-wide focus:border-eyYellow outline-none uppercase shadow-md";
+        if (rankingHeaderTitle) rankingHeaderTitle.className = "text-eyGold font-black uppercase tracking-widest text-xs mb-2";
 
-        subTexts.forEach(el => el.className = "subtext-header text-neutral-400 text-sm uppercase tracking-widest font-semibold hidden sm:inline");
-        descMains.forEach(el => el.className = "desc-main text-base sm:text-xl text-neutral-300 mb-6 max-w-2xl mx-auto leading-relaxed");
-        titleMains.forEach(el => el.className = "title-main text-3xl sm:text-5xl font-black mb-4 text-white tracking-tight");
-        cardBoxes.forEach(el => el.className = "card-box bg-neutral-800/80 border border-neutral-700 p-5 rounded-2xl flex items-center gap-4 text-white shadow-lg");
-        cardTitlesInner.forEach(el => el.className = "font-bold text-base text-white card-title-inner");
-        cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-400 text-xs sm:text-sm");
-        footers.forEach(f => f.className = "w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0");
+        subTexts.forEach(el => el.className = "subtext-header text-neutral-400 text-xs sm:text-sm uppercase tracking-widest font-semibold hidden sm:inline");
+        descMains.forEach(el => el.className = "desc-main text-sm sm:text-base text-neutral-300 mb-5 max-w-2xl mx-auto leading-relaxed");
+        titleMains.forEach(el => el.className = "title-main text-2xl sm:text-4xl font-black mb-3 text-white tracking-tight");
+        cardBoxes.forEach(el => el.className = "card-box bg-neutral-800/80 border border-neutral-700 p-4 rounded-2xl flex items-center gap-4 text-white shadow-lg");
+        cardTitlesInner.forEach(el => el.className = "font-bold text-sm sm:text-base text-white card-title-inner");
+        cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-400 text-xs");
+        footers.forEach(f => f.className = "w-full text-neutral-400 text-xs tracking-wider uppercase text-center py-2.5 z-10 bg-neutral-900/90 border-t border-neutral-800/50 shrink-0");
+        authorLinks.forEach(a => a.className = "footer-author-link text-eyCyan font-bold hover:underline");
     } else {
         body.className = "bg-neutral-100 text-neutral-900 h-full";
         document.querySelectorAll('.screen').forEach(s => {
@@ -253,28 +255,30 @@ function applyThemeToDOM() {
             s.className = s.className.replace(/bg-gradient-to-br from-neutral-950 via-neutral-900 to-black/g, 'bg-gradient-to-br from-neutral-200 via-white to-neutral-100');
         });
         const s1 = document.getElementById('screen1');
-        if (s1) s1.className = "screen active bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full cursor-pointer text-neutral-900";
+        if (s1) s1.className = "screen active bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full text-neutral-900";
         const s6 = document.getElementById('screen6');
         if (s6) s6.className = "screen bg-gradient-to-br from-neutral-200 via-white to-neutral-100 p-0 h-full w-full text-neutral-900";
         const s3 = document.getElementById('screen3');
         if (s3) s3.className = "screen bg-neutral-100 flex flex-col justify-between overflow-hidden h-full w-full text-neutral-900";
-        if (gameHeader) gameHeader.className = "w-full px-4 md:px-8 py-3 bg-neutral-200/95 border-b border-neutral-300 flex flex-wrap justify-between items-center z-20 gap-3 shrink-0";
+        if (gameHeader) gameHeader.className = "w-full px-3 md:px-6 py-2 bg-neutral-200/95 border-b border-neutral-300 flex justify-between items-center z-20 gap-2 shrink-0";
 
-        if (mainTitle) mainTitle.className = "text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 text-neutral-900";
-        if (finalScoreDisplay) finalScoreDisplay.className = "text-5xl md:text-6xl font-black text-amber-600 mb-4 drop-shadow";
-        if (badgeChallenge) badgeChallenge.className = "inline-block bg-eyYellow text-black border-2 border-amber-400 px-6 py-2 rounded-full text-sm font-black mb-4 uppercase tracking-wider shadow-sm";
-        if (inputLabel) inputLabel.className = "block text-xs uppercase tracking-widest text-neutral-800 mb-1 font-black";
-        if (inputSubLabel) inputSubLabel.className = "text-xs text-blue-800 mb-2 font-extrabold";
-        if (playerNameInput) playerNameInput.className = "w-full bg-white border-2 border-neutral-400 rounded-2xl px-6 py-3 text-xl text-center text-neutral-900 font-black tracking-wide focus:border-amber-500 outline-none uppercase shadow-md";
-        if (rankingHeaderTitle) rankingHeaderTitle.className = "text-amber-700 font-black uppercase tracking-widest text-xs md:text-sm mb-3";
+        if (mainTitle) mainTitle.className = "text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-3 text-neutral-900";
+        if (finalScoreDisplay) finalScoreDisplay.className = "text-3xl sm:text-5xl font-black text-amber-600 mb-3 drop-shadow";
+        if (badgeChallenge) badgeChallenge.className = "inline-block bg-eyYellow text-black border-2 border-amber-400 px-5 py-1.5 rounded-full text-xs font-black mb-3 uppercase tracking-wider shadow-sm";
+        if (inputLabel) inputLabel.className = "block text-[10px] sm:text-xs uppercase tracking-widest text-neutral-800 mb-0.5 font-black";
+        if (inputSubLabel) inputSubLabel.className = "text-[11px] text-blue-800 mb-1.5 font-extrabold";
+        if (playerNameInput) playerNameInput.className = "w-full bg-white border-2 border-neutral-400 rounded-xl px-4 py-2 text-base sm:text-lg text-center text-neutral-900 font-black tracking-wide focus:border-amber-500 outline-none uppercase shadow-md";
+        if (rankingHeaderTitle) rankingHeaderTitle.className = "text-amber-700 font-black uppercase tracking-widest text-xs mb-2";
 
-        subTexts.forEach(el => el.className = "subtext-header text-neutral-700 text-sm uppercase tracking-widest font-semibold hidden sm:inline");
-        descMains.forEach(el => el.className = "desc-main text-base sm:text-xl text-neutral-800 mb-6 max-w-2xl mx-auto leading-relaxed");
-        titleMains.forEach(el => el.className = "title-main text-3xl sm:text-5xl font-black mb-4 text-neutral-900 tracking-tight");
-        cardBoxes.forEach(el => el.className = "card-box bg-white border border-neutral-300 p-5 rounded-2xl flex items-center gap-4 text-neutral-900 shadow-md");
-        cardTitlesInner.forEach(el => el.className = "font-bold text-base text-neutral-900 card-title-inner");
-        cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-600 text-xs sm:text-sm");
-        footers.forEach(f => f.className = "w-full text-neutral-700 text-xs tracking-wider uppercase text-center py-4 z-10 bg-neutral-200/90 border-t border-neutral-300/80 shrink-0 font-bold");
+        subTexts.forEach(el => el.className = "subtext-header text-neutral-700 text-xs sm:text-sm uppercase tracking-widest font-semibold hidden sm:inline");
+        descMains.forEach(el => el.className = "desc-main text-sm sm:text-base text-neutral-800 mb-5 max-w-2xl mx-auto leading-relaxed");
+        titleMains.forEach(el => el.className = "title-main text-2xl sm:text-4xl font-black mb-3 text-neutral-900 tracking-tight");
+        cardBoxes.forEach(el => el.className = "card-box bg-white border border-neutral-300 p-4 rounded-2xl flex items-center gap-4 text-neutral-900 shadow-md");
+        cardTitlesInner.forEach(el => el.className = "font-bold text-sm sm:text-base text-neutral-900 card-title-inner");
+        cardDescsInner.forEach(el => el.className = "card-desc-inner text-neutral-600 text-xs");
+        footers.forEach(f => f.className = "w-full text-neutral-700 text-xs tracking-wider uppercase text-center py-2.5 z-10 bg-neutral-200/90 border-t border-neutral-300/80 shrink-0 font-bold");
+        
+        authorLinks.forEach(a => a.className = "footer-author-link text-blue-700 font-black hover:text-blue-900 hover:underline");
     }
     if (currentScreen === 5) renderLeaderboard();
 }
@@ -579,6 +583,12 @@ function updateHUD() {
     document.getElementById('bonusDisplay').innerText = `💥 +${Ponto_Bonus}`;
 }
 
+function handleZoneClick(chosenSide) {
+    if (currentScreen === 3 && currentCard) {
+        evaluateCard(chosenSide);
+    }
+}
+
 function initGame() {
     const container = document.getElementById('gameContainer');
     const canvas = document.getElementById('physicsCanvas');
@@ -633,8 +643,9 @@ function initGame() {
         dragging = false;
         clearZoneHighlights();
 
+        if (!currentCard) return;
         const centerX = currentCard.x + currentCard.w / 2;
-        const zoneWidth = canvasW * 0.26;
+        const zoneWidth = canvasW * 0.28;
 
         if (centerX < zoneWidth || centerX > canvasW - zoneWidth) {
             const chosenSide = centerX < zoneWidth ? 'left' : 'right';
@@ -642,13 +653,20 @@ function initGame() {
         }
     };
 
+    // REGISTRO GLOBAL DE EVENTOS NO WINDOW PARA SOLTAR O CARD PERFEITAMENTE
     canvas.onpointerdown = handlePointerDown;
     canvas.onpointermove = handlePointerMove;
-    canvas.onpointerup = canvas.onpointercancel = handlePointerUp;
+    
+    window.onpointerup = window.onpointercancel = (e) => {
+        if (currentScreen === 3) handlePointerUp(e);
+    };
 
     canvas.ontouchstart = (e) => { handlePointerDown(e); e.preventDefault(); };
     canvas.ontouchmove = (e) => { handlePointerMove(e); e.preventDefault(); };
-    canvas.ontouchend = (e) => { handlePointerUp(e); e.preventDefault(); };
+    
+    window.ontouchend = (e) => {
+        if (currentScreen === 3) handlePointerUp(e);
+    };
 
     function physicsLoop() {
         ctx.clearRect(0, 0, canvasW, canvasH);
@@ -660,7 +678,7 @@ function initGame() {
                 currentCard.y += currentCard.vy;
                 currentCard.vx *= 0.95;
 
-                const zoneWidth = canvasW * 0.26;
+                const zoneWidth = canvasW * 0.28;
                 const minX = zoneWidth + 5;
                 const maxX = canvasW - zoneWidth - currentCard.w - 5;
 
@@ -675,12 +693,12 @@ function initGame() {
 
             ctx.save();
             ctx.shadowColor = isDarkMode ? 'rgba(0, 229, 255, 0.4)' : 'rgba(0, 0, 0, 0.15)';
-            ctx.shadowBlur = 20;
+            ctx.shadowBlur = 18;
             ctx.fillStyle = isDarkMode ? '#18181b' : '#ffffff';
             ctx.strokeStyle = isDarkMode ? '#71717a' : '#cbd5e1';
             ctx.lineWidth = 3.5;
 
-            const radius = 18;
+            const radius = 16;
             ctx.beginPath();
             ctx.roundRect(currentCard.x, currentCard.y, currentCard.w, currentCard.h, radius);
             ctx.fill();
@@ -688,18 +706,18 @@ function initGame() {
 
             ctx.fillStyle = '#FFE600';
             ctx.beginPath();
-            ctx.roundRect(currentCard.x + 16, currentCard.y + 16, 40, 6, 3);
+            ctx.roundRect(currentCard.x + 14, currentCard.y + 14, 36, 5, 3);
             ctx.fill();
 
             ctx.fillStyle = isDarkMode ? '#ffffff' : '#0f172a';
-            const titleFontSize = Math.max(18, Math.min(22, canvasW * 0.05));
+            const titleFontSize = Math.max(16, Math.min(20, canvasW * 0.045));
             ctx.font = `900 ${titleFontSize}px system-ui, -apple-system, sans-serif`;
-            ctx.fillText(currentCard.title, currentCard.x + 18, currentCard.y + 54, currentCard.w - 36);
+            ctx.fillText(currentCard.title, currentCard.x + 16, currentCard.y + 46, currentCard.w - 32);
 
             ctx.fillStyle = isDarkMode ? '#f4f4f5' : '#334155'; 
-            const descFontSize = Math.max(14, Math.min(17, canvasW * 0.04));
+            const descFontSize = Math.max(12, Math.min(15, canvasW * 0.035));
             ctx.font = `600 ${descFontSize}px system-ui, -apple-system, sans-serif`;
-            wrapText(ctx, currentCard.desc, currentCard.x + 18, currentCard.y + 86, currentCard.w - 36, descFontSize + 7);
+            wrapText(ctx, currentCard.desc, currentCard.x + 16, currentCard.y + 74, currentCard.w - 32, descFontSize + 6);
 
             ctx.restore();
         }
@@ -711,10 +729,10 @@ function initGame() {
 
 function spawnNewCard() {
     const raw = getNextCard();
-    const centerZoneWidth = canvasW * 0.48;
+    const centerZoneWidth = canvasW * 0.44;
     
-    const cardW = Math.min(centerZoneWidth - 16, 320);
-    const cardH = Math.min(canvasH * 0.38, 205);
+    const cardW = Math.min(centerZoneWidth - 12, 300);
+    const cardH = Math.min(canvasH * 0.35, 185);
 
     currentCard = {
         title: raw.title,
@@ -723,7 +741,7 @@ function spawnNewCard() {
         w: cardW,
         h: cardH,
         x: (canvasW / 2) - (cardW / 2),
-        y: 15,
+        y: 12,
         vx: 0,
         vy: 1
     };
@@ -748,7 +766,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 }
 
 function highlightZones(xPos) {
-    const zoneW = canvasW * 0.26;
+    const zoneW = canvasW * 0.28;
     const zoneLeft = document.getElementById('zoneLeft');
     const zoneRight = document.getElementById('zoneRight');
 
@@ -770,7 +788,11 @@ function clearZoneHighlights() {
 }
 
 function evaluateCard(chosenSide) {
-    const isCorrect = chosenSide === currentCard.target;
+    if (!currentCard) return;
+    const evaluatingCard = currentCard;
+    currentCard = null;
+
+    const isCorrect = chosenSide === evaluatingCard.target;
     const toast = document.getElementById('feedbackToast');
     const toastBox = document.getElementById('toastBox');
 
@@ -829,10 +851,10 @@ function initVirtualKeyboard() {
     container.innerHTML = '';
     keyboardLayout.forEach(row => {
         const rowDiv = document.createElement('div');
-        rowDiv.className = "flex justify-center gap-1.5 mb-2";
+        rowDiv.className = "flex justify-center gap-1 sm:gap-1.5 mb-1 sm:mb-1.5";
         row.forEach(key => {
             const btn = document.createElement('button');
-            btn.className = "bg-neutral-800 hover:bg-neutral-700 active:bg-eyYellow active:text-black text-white font-black text-sm md:text-lg px-2.5 py-2 md:px-4 md:py-2.5 rounded-xl min-w-[30px] md:min-w-[50px] shadow transition";
+            btn.className = "bg-neutral-800 hover:bg-neutral-700 active:bg-eyYellow active:text-black text-white font-black text-xs sm:text-base px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl min-w-[26px] sm:min-w-[42px] shadow transition";
             btn.innerText = key;
             btn.onclick = (e) => { e.stopPropagation(); handleVirtualKeyPress(key); };
             rowDiv.appendChild(btn);
@@ -904,24 +926,24 @@ function renderLeaderboard() {
     listContainer.innerHTML = '';
 
     if (leaderboard.length === 0) {
-        listContainer.innerHTML = `<div class="${isDarkMode ? 'text-neutral-500' : 'text-neutral-700'} py-3 font-bold text-sm">Nenhum recorde registrado ainda. Seja o primeiro!</div>`;
+        listContainer.innerHTML = `<div class="${isDarkMode ? 'text-neutral-500' : 'text-neutral-700'} py-2 font-bold text-xs">Nenhum recorde registrado ainda. Seja o primeiro!</div>`;
         return;
     }
 
     leaderboard.forEach((item, index) => {
         const row = document.createElement('div');
         if (isDarkMode) {
-            row.className = `flex justify-between items-center px-4 py-2.5 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-black' : 'bg-neutral-800/50 text-neutral-300 font-bold'}`;
+            row.className = `flex justify-between items-center px-3 py-2 rounded-xl ${index === 0 ? 'bg-eyYellow/20 border border-eyYellow/50 text-eyYellow font-black' : 'bg-neutral-800/50 text-neutral-300 font-bold'}`;
         } else {
-            row.className = `flex justify-between items-center px-4 py-2.5 rounded-xl ${index === 0 ? 'bg-eyYellow text-black border-2 border-amber-400 font-black shadow-sm' : 'bg-neutral-200/80 border border-neutral-300 text-neutral-900 font-black'}`;
+            row.className = `flex justify-between items-center px-3 py-2 rounded-xl ${index === 0 ? 'bg-eyYellow text-black border-2 border-amber-400 font-black shadow-sm' : 'bg-neutral-200/80 border border-neutral-300 text-neutral-900 font-black'}`;
         }
         
         row.innerHTML = `
-            <div class="flex items-center gap-3">
-                <span class="w-6 text-center font-black">#${index + 1}</span>
-                <span class="truncate max-w-[150px] sm:max-w-xs">${item.name}</span>
+            <div class="flex items-center gap-2.5">
+                <span class="w-5 text-center font-black text-xs">#${index + 1}</span>
+                <span class="truncate max-w-[130px] sm:max-w-xs text-xs sm:text-sm">${item.name}</span>
             </div>
-            <div class="font-black text-sm md:text-base shrink-0">${item.score} PTS</div>
+            <div class="font-black text-xs sm:text-sm shrink-0">${item.score} PTS</div>
         `;
         listContainer.appendChild(row);
     });
@@ -1013,11 +1035,11 @@ function renderOpLogoPreview() {
     const container = document.getElementById('opLogoPreviewContainer');
     if (sponsorLogoVal) {
         container.innerHTML = `
-            <img src="${sponsorLogoVal}" alt="Logo Preview" class="h-10 max-w-[150px] object-contain rounded bg-neutral-900 p-1 border border-neutral-700">
-            <span class="text-xs text-emerald-400 font-bold">Logo ativo</span>
+            <img src="${sponsorLogoVal}" alt="Logo Preview" class="h-8 max-w-[130px] object-contain rounded bg-neutral-900 p-1 border border-neutral-700">
+            <span class="text-[11px] text-emerald-400 font-bold">Logo ativo</span>
         `;
     } else {
-        container.innerHTML = `<span class="text-neutral-500 text-xs italic">Nenhum logo carregado (Usando texto: "${sponsorNameVal}")</span>`;
+        container.innerHTML = `<span class="text-neutral-500 text-[11px] italic">Nenhum logo carregado (Usando texto: "${sponsorNameVal}")</span>`;
     }
 }
 
