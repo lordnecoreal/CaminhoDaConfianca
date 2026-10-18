@@ -8,7 +8,7 @@
 
 ## 📋 Sumário
 
-## 📋 Sumário
+
 1. [Sobre o Jogo](#-sobre-o-jogo)
 2. [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 3. [Funcionalidades Principais](#-funcionalidades-principais)
