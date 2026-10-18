@@ -109,4 +109,4 @@ cd caminho-da-confianca
 
 ---
 
-*Momento Especial proporcionado por **EY - Brasil**[cite: 4].*
+*Momento Especial proporcionado por **EY - Brasil**
