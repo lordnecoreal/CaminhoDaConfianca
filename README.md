@@ -8,14 +8,14 @@
 
 ## 📋 Sumário
 
-1. [Sobre o Jogo](https://www.google.com/search?q=%23-sobre-o-jogo)
-2. [Tecnologias Utilizadas](https://www.google.com/search?q=%23-tecnologias-utilizadas)
-3. [Funcionalidades Principais](https://www.google.com/search?q=%23-funcionalidades-principais)
-4. [Como Jogar](https://www.google.com/search?q=%23-como-jogar)
-5. [Painel do Operador](https://www.google.com/search?q=%23-painel-do-operador)
-6. [Instalação e Execução local](https://www.google.com/search?q=%23-instala%C3%A7%C3%A3o-e-execu%C3%A7%C3%A3o-local)
-7. [Autores](https://www.google.com/search?q=%23-autores)
-
+## 📋 Sumário
+1. [Sobre o Jogo](#-sobre-o-jogo)
+2. [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+3. [Funcionalidades Principais](#-funcionalidades-principais)
+4. [Como Jogar](#-como-jogar)
+5. [Painel do Operador](#-painel-do-operador)
+6. [Instalação e Execução Local](#-instalação-e-execução-local)
+7. [Autores](#-autores)
 ---
 
 ## 🎮 Sobre o Jogo
