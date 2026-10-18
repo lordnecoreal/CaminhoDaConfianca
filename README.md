@@ -1,4 +1,3 @@
-
 ---
 
 # 🚀 Caminho da Confiança — EY Brasil
